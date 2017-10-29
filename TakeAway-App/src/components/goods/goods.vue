@@ -39,7 +39,7 @@
 				</li>
 			</ul>
 		</div>
-		<shopCart :delivery-price="sellers.deliveryPrice" :min-price="sellers.minPrice"></shopCart>
+		<shopCart  :selectFoods="selectFoods" :delivery-price="sellers.deliveryPrice" :min-price="sellers.minPrice"></shopCart>
 	</div>	
 </template>
 
@@ -87,8 +87,20 @@
 					if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
 						return i;
 					}
-				} 
-			}
+				}
+				return 0; 
+			},			
+			selectFoods () {
+				let foods = [];
+				this.goods.forEach((good) => {
+					good.foods.forEach((food) => {
+						if (food.count) {
+							foods.push(food);			
+						}			
+					});
+				});				
+				return foods;				
+			}				
 		},
 		methods: {
 			initScroll () {
@@ -122,7 +134,7 @@
 				let foodList = this.$refs.goodswrapper.getElementsByClassName('food-list-hook');
 				let el = foodList[index];
 				this.goodsScroll.scrollToElement(el, 300)
-			}
+			},
 		}
 	};
 </script>

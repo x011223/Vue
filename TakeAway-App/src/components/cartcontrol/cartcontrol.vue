@@ -3,9 +3,9 @@
       <transition name="dec-fade">
         <div class="cart-decrease" v-show="food.count>0" @click="decCart">
             <img class="cartcontrol-icon" src="./减少.png">
+            <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
         </div>
-      </transition>
-      <div class="cart-count"></div>
+      </transition>     
       <div class="cart-add" @click="addCart">
           <img src="./添加.png">
       </div>
@@ -29,9 +29,7 @@
                 }
             },
             decCart () {
-                if (!this.food.count) {
-                    Vue.set(this.food,'count',1)
-                } else {
+                if (this.food.count) {
                     this.food.count--;
                 }
             }
@@ -49,23 +47,26 @@
     }
     .cart-count {
         display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-color: #8080ff;
+        vertical-align: top;
+        text-align: center;
+        line-height: 24px;
+        padding-top: 5px;
+        font-size: 10px;
+        width: 8px;
+        color: #8080ff;
     }
     .cart-decrease {
         display: inline-block;
         position: absolute;
-        right: 32px;
+        right: 20px;
     }
     .cart-add {
         display: inline-block;
         position: absolute;
-        right: 0;
-        /* top: -32px; */
+        right: -16px;
     }
     .dec-fade-enter-active {
-		transition: all 0.4s ease-in-out;
+		transition: all 0.4s cubic-bezier(0.25, 0.1, 0.33, 1.29);
 	}
 	.dec-fade-leave-active {
 		transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
