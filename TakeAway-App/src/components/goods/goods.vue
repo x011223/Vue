@@ -15,7 +15,7 @@
 				<li class="food-list food-list-hook" v-for="foodItem in goods">
 					<h1 class="food-title">{{foodItem.name}}</h1>
 					<ul>
-						<li class="food-item" v-for="food in foodItem.foods">
+						<li class="food-item" v-for="food in foodItem.foods" @click="selectFood(food,$event)">
 							<div class="food-icon">
 								<img :src="food.icon">
 							</div>
@@ -40,25 +40,29 @@
 			</ul>
 		</div>
 		<shopCart  :selectFoods="selectFoods" :delivery-price="sellers.deliveryPrice" :min-price="sellers.minPrice"></shopCart>
-	</div>	
+		<food :selectedFood="selectedFood" ref="food"></food>		
+	</div>		
 </template>
 
 <script>
 	import BetterScroll from 'better-scroll';
 	import shopCart from '../shopcart/shopcart.vue';
 	import cartControl from '../cartcontrol/cartcontrol.vue';
+	import food from '../food/food.vue'
 
 	const err_ok = 0;
-	export default {
+	export default { 
 		components: {
 			'shopCart': shopCart,
-			'cartControl': cartControl
+			'cartControl': cartControl,
+			'food': food
 		},
 		data () {
 			return {
 				goods: [],
 				listHeight: [],
-				scrollY: 0
+				scrollY: 0,
+				selectedFood: {}
 			}
 		},
 		props: {
@@ -135,6 +139,15 @@
 				let el = foodList[index];
 				this.goodsScroll.scrollToElement(el, 300)
 			},
+			selectFood (food,event) {
+				this.selectedFood = food;
+				this.$refs.food.show();
+			},
+		},
+		events: {
+			'cart.add' (target) {
+				this.drops(target);
+			}
 		}
 	};
 </script>
@@ -204,6 +217,7 @@
 	}
 	.goods-wrapper {
 		flex: 1;
+		/* z-index: 10; */
 	}
 	.food-title {
 		padding-left: 14px;
