@@ -1,33 +1,56 @@
 <template>
-  <div class="shopcart">
-      <div class="cart-content">
-          <div class="content-left">
-              <div class="logo-wrapper">
-                  <div class="logo" :class="{'highlight':totalCount>0}">
-                      <img src="./购物车.png" class="icon-shopping_cart" width="44px" height="44px">
-                  </div>
-                  <div class="food-count" v-show="totalCount>0">{{totalCount}}</div>
-              </div>
-              <div class="cart-price" :class="{'highlight':totalCount>0}">¥{{totalPrice}}</div>
-              <div class="cart-desc">另需配送费¥{{deliveryPrice}}元</div>
-          </div>
-          <div class="content-right">
-              <div class="cart-count" :class="payClass">
-                  {{payDesc}}
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="shopcart">
+        <!-- <router-link :to="{name:'cartList'}" class="cart-list"> -->
+        <div class="cart-content" @click="toggleList">
+            <div class="content-left">
+                <div class="logo-wrapper">
+                    <div class="logo" :class="{'highlight':totalCount>0}">
+                        <img src="./购物车.png" class="icon-shopping_cart" width="44px" height="44px">
+                    </div>
+                    <div class="food-count" v-show="totalCount>0">{{totalCount}}</div>
+                </div>
+                <div class="cart-price" :class="{'highlight':totalCount>0}">¥{{totalPrice}}</div>
+                <div class="cart-desc">另需配送费¥{{deliveryPrice}}元</div>
+            </div>
+            <div class="content-right">
+                <div class="cart-count" :class="payClass">{{payDesc}}</div>
+            </div>
+        </div>
+        <transition name="list-fade">
+            <div class="shopcart-list" v-show="listshow">
+                <div class="list-header">
+                    <h1 class="list-title">购物车</h1>
+                    <span class="list-empty">清空</span>
+                </div>
+                <div class="list-content">
+                    <ul>
+                        <li class="food-list" v-for="food in selectFoods">
+                            <span class="name">{{food.name}}</span>
+                            <div class="price">
+                                <span class="">¥{{food.price*food.count}}</span>
+                            </div>
+                            <div class="cartcontrol-wrapper">
+                                <cartControl :food="food"></cartControl>
+                            </div>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+        </transition>
+        <!-- </router-link>
+        <router-view></router-view> -->
+    </div>    
 </template>
-
+    
 <style type="text/css" scoped>
     .shopcart {
         position: fixed;
-        z-index: 20;
+        z-index: 50;
         left: 0;
         bottom: 0;
         width: 100%;
         height: 48px;
+        list-style: none;
     }
     .cart-content {
         display: flex;
@@ -127,10 +150,68 @@
         background: #00b43c;
         color: #fff;
     }
+    .shopcart-list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: -1;
+    }
+    .list-fade-enter-active {
+        transition: 5.5s;
+	}
+	.list-fade-leave-active {
+        transition: 5.5s;
+	}
+    .list-fade-enter, .list-fade-leave-to {
+        transform: translate3d(0, -100%, 0);
+    }
+    .list-header {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 18px;
+        background: #f3f5f7;
+        border-bottom: 1px solid rgb(7, 17, 27,0.1);
+    }
+    .list-title {
+        float: left;
+        font-size: 14px;
+        color: rgb(7, 17, 27)
+    }
+    .list-empty {
+        float: right;
+        font-size: 14px;
+        color: rgb(0, 160, 120)
+    }
+    .list-content {
+        padding: 0 18px;
+        height: 217px;
+        overflow: hidden;
+        background: #fff;
+    }
+    .cartcontrol-wrapper {
+        position: relative;
+        right: 6px;
+        top: 0;
+    }
+    .price {
+        position: relative;
+        display: inline;
+        left: 12px;
+    }
 </style>
 
 <script>
+    import cartControl from '../cartcontrol/cartcontrol.vue';
     export default {
+        data () {
+            return {
+                'fold': false,
+            }
+        },
+        components: {
+            'cartControl': cartControl,
+		},
         props: {
             selectFoods: {
                 type: Array,
@@ -148,6 +229,14 @@
             }
         },
         computed: {
+            listshow () {
+                if (this.totalCount < 1) {
+                    this.fold = false;
+                    return;
+                } else {
+                    this.fold = true;
+                }
+            },
             totalPrice () {
                 let countPrice = 0;
                 this.selectFoods.forEach((food) => {
@@ -179,6 +268,16 @@
                     return 'not-enough';
                 } else {
                     return 'enough';
+                }
+            },   
+        },
+        methods: {
+            toggleList () {
+                if (this.totalCount < 1) {
+                    this.fold = false;
+                    return;
+                } else {
+                    this.fold = true;
                 }
             }
         }

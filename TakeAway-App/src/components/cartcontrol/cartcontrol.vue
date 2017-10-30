@@ -1,12 +1,12 @@
 <template>
   <div class="cart-control">
       <transition name="dec-fade">
-        <div class="cart-decrease" v-show="food.count>0" @click="decCart">
+        <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decCart">
             <img class="cartcontrol-icon" src="./减少.png">
             <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
         </div>
       </transition>     
-      <div class="cart-add" @click="addCart">
+      <div class="cart-add" @click.stop.prevent="addCart">
           <img src="./添加.png">
       </div>
   </div>
@@ -72,9 +72,9 @@
 		transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 	}
 	.dec-fade-enter, .dec-fade-leave-to {
-	/* .slide-fade-leave-active for below version 2.1.8 */ 
-	transform: translateX(10px);
-	opacity: 0;
+	/* .slide-fade-leave-active for below version 2.1.8  */
+	    transform: translateX(10px);
+	    opacity: 0;
 	}
 </style>
 

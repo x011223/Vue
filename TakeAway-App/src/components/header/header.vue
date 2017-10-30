@@ -140,7 +140,6 @@
 		height: 18px;
 		display: inline-block;
 		vertical-align: top;
-		/*background-image: url("brand");*/
 		background-size: 30px 18px;
 		background-repeat: no-repeat;
 	}

@@ -42,6 +42,7 @@
   #tab {
     text-align: center;  
     display: flex;
+    z-index: 60;
   }
  .tab-items {
     color: #1CEEF9;

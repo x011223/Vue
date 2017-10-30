@@ -17,6 +17,7 @@ import NotFound from './components/notFound/notfound.vue'
 import Goods from './components/goods/goods.vue'
 import Ratings from './components/ratings/ratings.vue'
 import Sellers from './components/sellers/sellers.vue'
+// import cartList from './components/cartlist/cartlist.vue'
 
 /* eslint-disable no-new */
 let router = new VueRouter({
