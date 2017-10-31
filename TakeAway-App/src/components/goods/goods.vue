@@ -247,9 +247,6 @@ li {
   border-top: 1px solid rgba(7, 17n, 28, 0.1);
   content: "";
 }
-/* .food-item:last-child {
-  display: none;
-} */
 .food-name {
   font-size: 14px;
   margin: 2px 0 8px 0;
@@ -268,8 +265,7 @@ li {
 .food-content {
   flex: 1;
 }
-.food-description,
-.food-extra {
+.food-description, .food-extra {
   height: 10px;
   line-height: 10px;
   font-size: 2px;
