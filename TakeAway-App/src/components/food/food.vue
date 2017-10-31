@@ -19,15 +19,25 @@
                         <span class="now-price">¥{{selectedFood.price}}</span>
                         <span class="old-price" v-show="selectedFood.oldPrice">¥{{food.oldPrice}}</span>
                     </div>
-                </div>
-                <div class="cartcontrol-wrapper">
-                    <cartControl :food="food"></cartControl>
-                </div>
-                <transition name="buy-fade">
-                    <div class="buy" v-show = "!food.count || food.count === 0" @click="addFirst">
-                        加入购物车
+                     <div class="cartcontrol-wrapper">
+                        <cartControl :food="food"></cartControl>
                     </div>
-                </transition>
+                    <transition name="buy-fade">
+                        <div class="buy" v-show = "!food.count || food.count === 0" @click.stop.prevent="addFirst">
+                            加入购物车
+                        </div>
+                    </transition>
+                </div>                             
+            </div>
+            <!-- 分隔栏 Split组件 -->
+            <Split v-show="selectedFood.info"></Split>
+            <div class="info">
+                <h1 class="info-title">商品信息</h1>
+                <p class="info-text">{{selectedFood.info}}</p>
+            </div>
+            <Split></Split>
+            <div class="rating">
+                <h1 class="rating-title"></h1>
             </div>
         </div>
     </transition>
@@ -37,9 +47,12 @@
     import betterScroll from 'better-scroll';
     import Vue from 'vue'
     import cartControl from '../cartcontrol/cartcontrol.vue';
+    import Split from '../split/split.vue';
+
     export default {
         components: {
-            'cartControl': cartControl
+            'cartControl': cartControl,
+            'Split': Split
         },
         props: {
             food: {
@@ -168,15 +181,15 @@
         color: rgb(147, 153, 159);
     }
     .cartcontrol-wrapper {
-        position: relative;
-        right: 36px;
-        bottom: 48px;
+        position: absolute;
+        right: 42px;
+        bottom: 42px;
     }
     .buy {
         position: absolute;
-        right: 18px;
-        bottom: 18px;
-        z-index: 500;
+        right: 28px;
+        bottom: 12px;
+        z-index: 10;
         height: 32px;
         line-height: 32px;
         padding: 0 12px;
@@ -195,6 +208,21 @@
     .buy-fade-enter, .buy-fade-leave-to {
         transform: translateX(10px);
         opacity: 0.4;
+    }
+    .info {
+        padding: 18px;
+    }
+    .info-title {
+        line-height: 14px;
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: rgb(7, 17, 27);
+    }
+    .info-text {
+        padding: 0 4px;
+        line-height: 24px;
+        font-size: 12px;
+        color: rgb(77, 85, 93);
     }
 </style>
 

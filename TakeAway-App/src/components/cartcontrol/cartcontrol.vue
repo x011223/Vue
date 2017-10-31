@@ -2,6 +2,7 @@
   <div class="cart-control">
       <transition name="dec-fade">
         <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decCart">
+            <!-- stop.prevent 阻止点击事件冒泡 -->
             <img class="cartcontrol-icon" src="./减少.png">
             <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
         </div>
