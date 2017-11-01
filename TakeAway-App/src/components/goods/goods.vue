@@ -52,107 +52,102 @@
 
 	const err_ok = 0;
 	export default {
-		components: {
-			shopCart: shopCart,
-			cartControl: cartControl,
-			food: food
-		},
-		data() {
-			return {
-				goods: [],
-				listHeight: [],
-				scrollY: 0,
-				selectedFood: {},
-				food: {}
-			};
-		},
-		props: {
-			sellers: {
-				type: Object
+			components: {
+					shopCart: shopCart,
+					cartControl: cartControl,
+					food: food
 			},
-		},
-		created() {
-			this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
-			this.$http.get("/api/goods").then(response => {
-			response = response.body;
-			if (response.errno === err_ok) {
-				this.goods = response.data;
-				this.$nextTick(() => {
-				this.initScroll();
-				this.calHeight();
-				});
-			}
-			});
-		},
-		computed: {
-			currentIndex() {
-				for (let i = 0; i < this.listHeight.length; i++) {
-					let height1 = this.listHeight[i];
-					let height2 = this.listHeight[i + 1];
-					if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
-						return i;
-					}
-				}
-				return 0;
+			data() {
+				return {
+					goods: [],
+					listHeight: [],
+					scrollY: 0,
+					selectedFood: {},
+					food: {}
+				};
 			},
-			selectFoods () {
-				let foods = [];
-				this.goods.forEach(good => {
-					good.foods.forEach(food => {
-					if (food.count) {
-						foods.push(food);
-					}
+			props: {
+				sellers: {
+					type: Object
+				},
+			},
+			created() {
+				this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
+				this.$http.get("/api/goods").then(response => {
+				response = response.body;
+				if (response.errno === err_ok) {
+					this.goods = response.data;
+					this.$nextTick(() => {
+					this.initScroll();
+					this.calHeight();
 					});
-				});
-					return foods;
-			}
-		},
-		methods: {
-			initScroll() {
-				this.menusScroll = new BetterScroll(this.$refs.menuswrapper, {
-					click: true
-				});
-				this.goodsScroll = new BetterScroll(this.$refs.goodswrapper, {
-					click: true,
-					probeType: 3
-				});
-				this.goodsScroll.on("scroll", pos => {
-					// console.log(this.scrollY)
-					this.scrollY = Math.abs(Math.round(pos.y));
+				}
 				});
 			},
-			calHeight() {
-				let foodList = this.$refs.goodswrapper.getElementsByClassName(
-					"food-list-hook"
-				);
-				let Lheight = 0;
-				this.listHeight.push(Lheight);
-				for (let i = 0; i < foodList.length; i++) {
-					let item = foodList[i];
-					Lheight += item.clientHeight;
-					this.listHeight.push(Lheight);
+			computed: {
+				currentIndex() {
+					for (let i = 0; i < this.listHeight.length; i++) {
+						let height1 = this.listHeight[i];
+						let height2 = this.listHeight[i + 1];
+						if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
+							return i;
+						}
+					}
+					return 0;
+				},
+				selectFoods () {
+					let foods = [];
+					this.goods.forEach(good => {
+						good.foods.forEach(food => {
+						if (food.count) {
+							foods.push(food);
+						}
+						});
+					});
+						return foods;
 				}
 			},
-			selectMenu(index, event) {
-				// if (!event._constructed) {
-				// 	return;
-				// }
-				let foodList = this.$refs.goodswrapper.getElementsByClassName(
-					"food-list-hook"
-				);
-				let el = foodList[index];
-				this.goodsScroll.scrollToElement(el, 300);
+			methods: {
+				initScroll() {
+						this.menusScroll = new BetterScroll(this.$refs.menuswrapper, {
+							click: true
+						});
+						this.goodsScroll = new BetterScroll(this.$refs.goodswrapper, {
+							click: true,
+							probeType: 3
+						});
+						this.goodsScroll.on("scroll", pos => {
+								// console.log(this.scrollY)
+								this.scrollY = Math.abs(Math.round(pos.y));
+						});
+				},
+				calHeight() {
+					let foodList = this.$refs.goodswrapper.getElementsByClassName(
+						"food-list-hook"
+					);
+					let Lheight = 0;
+					this.listHeight.push(Lheight);
+					for (let i = 0; i < foodList.length; i++) {
+						let item = foodList[i];
+						Lheight += item.clientHeight;
+						this.listHeight.push(Lheight);
+					}
+				},
+				selectMenu(index, event) {
+						// if (!event._constructed) {
+						// 	return;
+						// }
+						let foodList = this.$refs.goodswrapper.getElementsByClassName(
+								"food-list-hook"
+						);
+						let el = foodList[index];
+						this.goodsScroll.scrollToElement(el, 300);
+				},
+				selectFood(food, event) {
+					this.selectedFood = food;
+					this.$refs.food.show();
+				}
 			},
-			selectFood(food, event) {
-				this.selectedFood = food;
-				this.$refs.food.show();
-			}
-		},
-		events: {
-			"cart.add"(target) {
-				this.drops(target);
-			}
-		}
 	};
 </script>
 

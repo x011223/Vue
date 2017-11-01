@@ -36,13 +36,13 @@
 		background-size: 16px 16px;
 	}
 	.star-36>.on {
-		background-image: url(star48_on@2x.png);
+		background-image: url(star36_on@2x.png);
 	}
 	.star-36>.off {
-		background-image: url(star48_off@2x.png);
+		background-image: url(star36_off@2x.png);
 	}
 	.star-36>.half {
-		background-image: url(star48_half@2x.png);
+		background-image: url(star36_half@2x.png);
 	}
 	.star-24>.star-item{
 		width: 20px;
@@ -51,13 +51,13 @@
 		background-size: 20px 20px;
 	}
 	.star-24>.on {
-		background-image: url(star48_on@2x.png);
+		background-image: url(star24_on@2x.png);
 	}
 	.star-24>.off {
-		background-image: url(star48_off@2x.png);
+		background-image: url(star24_off@2x.png);
 	}
 	.star-24>.half {
-		background-image: url(star48_half@2x.png);
+		background-image: url(star24_half@2x.png);
 	}
 </style>
 

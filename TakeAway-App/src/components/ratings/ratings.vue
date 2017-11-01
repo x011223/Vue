@@ -91,9 +91,12 @@
 	.allview-right {
 		flex: 1;
 		padding-left: 24px;
+		padding-top: 12px;
 	}
 	.score-wrapper {
+		top: 10px;
 		font-size: 0;
+		margin-bottom: 4px;
 	}
 	.right-title {
 		font-size: 12px;

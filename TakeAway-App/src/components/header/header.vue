@@ -177,7 +177,7 @@
 	.count {
 		font-size: 10px;
 	}
-	.icpn-r {
+	.icon-r {
 		line-height: 24px;
 		margin-right: 2px;
 		font-size: 10px;
@@ -255,6 +255,7 @@
 	.star-wrapper {
 		margin-top: 12px;
 		padding: 10px 0;
+		text-align: center;
 	}
 	.detail-title {
 		display: flex;

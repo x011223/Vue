@@ -35,20 +35,7 @@
                     <p class="info-text">{{selectedFood.info}}</p>
                 </div>
                 <Split></Split>
-                <div class="rating">
-                    <h1 class="rating-title">商品评价</h1>
-                    <div class="ratingselect">
-                        <div class="ratings-type">
-                            <span>全部</span>
-                            <span>满意</span>
-                            <span>不满意</span>
-                        </div>
-                        <div class="switch">
-                            <!-- <img src=""> -->
-                            <span class="switch-text">只看有内容的评价</span>
-                        </div>
-                    </div>
-                </div>                
+                <ratingSelect :desc="desc"></ratingSelect>
             </div>                                                      
         </div>
     </transition>
@@ -59,11 +46,13 @@
     import Vue from 'vue'
     import cartControl from '../cartcontrol/cartcontrol.vue';
     import Split from '../split/split.vue';
+    import ratingSelect from '../ratingselect/ratingselect.vue'
 
     export default {
         components: {
             'cartControl': cartControl,
             'Split': Split,
+            'ratingSelect': ratingSelect,
         },
         props: {
             food: {
@@ -71,6 +60,11 @@
             },
             selectedFood: {
                 type: Object
+            },
+            desc: {
+                all: '全部',
+                positive: '推荐',
+                negative: '失望'
             }
         },
         data () {
@@ -80,7 +74,6 @@
         },
         methods: {
             show () {
-                console.log(this.food.count);
                 this.showFlag = true;
                 this.$nextTick(() => {
                     // 判断组件是否show,防止多次show
