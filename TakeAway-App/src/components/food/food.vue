@@ -19,7 +19,7 @@
                         <span class="now-price">¥{{selectedFood.price}}</span>
                         <span class="old-price" v-show="selectedFood.oldPrice">¥{{food.oldPrice}}</span>
                     </div>
-                     <div class="cartcontrol-wrapper">
+                    <div class="cartcontrol-wrapper">
                         <cartControl :food="food"></cartControl>
                     </div>
                     <transition name="buy-fade">
@@ -27,18 +27,29 @@
                             加入购物车
                         </div>
                     </transition>
-                </div>                             
-            </div>
-            <!-- 分隔栏 Split组件 -->
-            <Split v-show="selectedFood.info"></Split>
-            <div class="info">
-                <h1 class="info-title">商品信息</h1>
-                <p class="info-text">{{selectedFood.info}}</p>
-            </div>
-            <Split></Split>
-            <div class="rating">
-                <h1 class="rating-title"></h1>
-            </div>
+                </div>   
+                <!-- 分隔栏 Split组件 -->
+                <Split v-show="selectedFood.info"></Split>
+                <div class="info" v-show="selectedFood.info">
+                    <h1 class="info-title">商品信息</h1>
+                    <p class="info-text">{{selectedFood.info}}</p>
+                </div>
+                <Split></Split>
+                <div class="rating">
+                    <h1 class="rating-title">商品评价</h1>
+                    <div class="ratingselect">
+                        <div class="ratings-type">
+                            <span>全部</span>
+                            <span>满意</span>
+                            <span>不满意</span>
+                        </div>
+                        <div class="switch">
+                            <!-- <img src=""> -->
+                            <span class="switch-text">只看有内容的评价</span>
+                        </div>
+                    </div>
+                </div>                
+            </div>                                                      
         </div>
     </transition>
 </template>
@@ -52,7 +63,7 @@
     export default {
         components: {
             'cartControl': cartControl,
-            'Split': Split
+            'Split': Split,
         },
         props: {
             food: {
@@ -64,11 +75,12 @@
         },
         data () {
             return {
-                showFlag: false,             
+                showFlag: false
             }
         },
         methods: {
             show () {
+                console.log(this.food.count);
                 this.showFlag = true;
                 this.$nextTick(() => {
                     // 判断组件是否show,防止多次show
@@ -142,6 +154,7 @@
     }
     .content {
         padding: 18px;
+        position: relative;
     }
     .title {
         line-height: 14px;
@@ -182,12 +195,12 @@
     }
     .cartcontrol-wrapper {
         position: absolute;
-        right: 42px;
+        right: -150px;
         bottom: 42px;
     }
     .buy {
         position: absolute;
-        right: 28px;
+        right: -162px;
         bottom: 12px;
         z-index: 10;
         height: 32px;
@@ -211,6 +224,7 @@
     }
     .info {
         padding: 18px;
+        position: relative;
     }
     .info-title {
         line-height: 14px;
