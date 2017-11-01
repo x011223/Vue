@@ -29,6 +29,36 @@
 	.star-48>.half {
 		background-image: url(star48_half@2x.png);
 	}
+	.star-36>.star-item{
+		width: 16px;
+		height: 16px;
+		margin-right: 4px;
+		background-size: 16px 16px;
+	}
+	.star-36>.on {
+		background-image: url(star48_on@2x.png);
+	}
+	.star-36>.off {
+		background-image: url(star48_off@2x.png);
+	}
+	.star-36>.half {
+		background-image: url(star48_half@2x.png);
+	}
+	.star-24>.star-item{
+		width: 20px;
+		height: 20px;
+		margin-right: 22px;
+		background-size: 20px 20px;
+	}
+	.star-24>.on {
+		background-image: url(star48_on@2x.png);
+	}
+	.star-24>.off {
+		background-image: url(star48_off@2x.png);
+	}
+	.star-24>.half {
+		background-image: url(star48_half@2x.png);
+	}
 </style>
 
 <script type="text/javascript">

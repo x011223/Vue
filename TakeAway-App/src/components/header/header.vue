@@ -68,8 +68,7 @@
 					<img src="../../common/img/关闭.png" width="32" height="32">
 				</div>
 			</div>			
-		</transition>
-		
+		</transition>		
 	</div>	
 </template>
 
