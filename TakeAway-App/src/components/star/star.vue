@@ -67,9 +67,6 @@
 	const star_half = 'half';
 	const star_off = 'off';
 	export default {
-		// data () {
-		// 	starItem: false;
-		// },
 		props: {
 			size: {
 				type: Number
@@ -80,7 +77,7 @@
 		},
 		computed: {
 			starType () {
-				return "star-"+this.size;
+				return "star-" + this.size;
 			},
 			starItems () {
 				const starResult = [];

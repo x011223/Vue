@@ -87,7 +87,7 @@
 			}
 		},
 		components: {
-			Star
+			Star,
 		},
 		data () {
 			return {

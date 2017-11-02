@@ -35,7 +35,10 @@
                     <p class="info-text">{{selectedFood.info}}</p>
                 </div>
                 <Split></Split>
-                <ratingSelect :desc="desc"></ratingSelect>
+                <div class="rating-wrapper">
+                    <h1 class="rating-title">商品评价</h1>
+                    <ratingSelect class="rating-select" :ratings="food.ratings" :only-content="onlyContent" :select-type="selectType" :desc="desc"></ratingSelect>
+                </div>
             </div>                                                      
         </div>
     </transition>
@@ -43,10 +46,14 @@
 
 <script>
     import betterScroll from 'better-scroll';
-    import Vue from 'vue'
+    import Vue from 'vue';
     import cartControl from '../cartcontrol/cartcontrol.vue';
     import Split from '../split/split.vue';
-    import ratingSelect from '../ratingselect/ratingselect.vue'
+    import ratingSelect from '../ratingselect/ratingselect.vue';
+
+    const All = 0;
+    const Positive = 1;
+    const Negative = 2; 
 
     export default {
         components: {
@@ -61,20 +68,24 @@
             selectedFood: {
                 type: Object
             },
-            desc: {
-                all: '全部',
-                positive: '推荐',
-                negative: '失望'
-            }
         },
         data () {
             return {
-                showFlag: false
-            }
+                showFlag: false,
+                selectType: All,
+                onlyContent: false,
+                desc: {
+                    all: '全部',
+                    positive: '满意',
+                    negative: '吐槽'
+                },                          
+           }          
         },
         methods: {
             show () {
                 this.showFlag = true;
+                this.selectType = All;
+                this.onlyContent = true;
                 this.$nextTick(() => {
                     // 判断组件是否show,防止多次show
                     if (!this.scroll) {
@@ -92,6 +103,7 @@
                 this.showFlag = false;
             },
             addFirst (event) {
+                //添加到购物车置 1
                 if (!event._constructed) {
                     returnl;
                 }
@@ -230,6 +242,15 @@
         line-height: 24px;
         font-size: 12px;
         color: rgb(77, 85, 93);
+    }
+    .rating-wrapper {
+        padding-top: 18px;
+        margin-left: 18px;
+    }
+    .rating-title {
+        line-height: 14px;
+        font-size: 14px;
+        color: rgb(7, 17, 27);
     }
 </style>
 

@@ -23,21 +23,47 @@
 						<span class="delivery-time">{{sellers.deliveryTime}}分钟</span>
 					</div>
 				</div>
+				
 			</div>
+			<split></split>
+				<ratingselect class="rating-select" :only-content="onlyContent" :select-type="selectType" :desc="desc"></ratingselect>
 		</div>
 	</div>	
 </template>
 
 <script>
-	import star from '../star/star.vue'
+	import star from '../star/star.vue';
+	import split from '../split/split.vue';
+	import ratingselect from '../ratingselect/ratingselect.vue';
+
+	const All = 0;
+    const Positive = 1;
+    const Negative = 2; 
+
 	export default {
 		props: {
 			sellers: {
 				type: Object
-			}
+			},
+			ratings: {
+				type: Object
+			},
 		},
 		components: {
 			star,
+			split,
+			ratingselect,
+		},
+		data () {
+			return {
+				selectType: All,
+                onlyContent: false,
+				desc: {
+                    all: '全部',
+                    positive: '满意',
+                    negative: '吐槽'
+                },
+			}
 		}
 	};
 </script>

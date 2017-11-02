@@ -47,20 +47,25 @@
 				<split></split>
 				<div class="pics">
 					<span class="pics-title">商家实景</span>
-					<div class="pics-wrapper">
-						<ul class="pic-list">
+					<div class="pics-wrapper" ref="pics-wrapper">
+						<ul class="pic-list" ref="pic-list">
 							<li class="pic-item" v-for="pic in sellers.pics">
 								<img :src="pic" width="120" height="90">
 							</li>
 						</ul>
 					</div>
 				</div>
+				<split></split>
 				<div class="sellers-info">
 					<h1 class="info-title">商家信息</h1>
-					<ul>
-						<li class="info-item" v-for="info in sellers.infos"></li>
+					<ul class="info-items" v-for="info in sellers.infos">
+						<li class="info-item">{{info}}</li>
 					</ul>
 				</div>
+				<!-- <div class="favorite">
+					<img class="fav-icon" src="./favorite_off.svg">
+					<span class="fav-text">{{favoriteText}}</span>
+				</div> -->
 			</div>
 		</div>
 	</div>	
@@ -91,8 +96,7 @@
 				}	else	{
 					this.scroll.refresh();
 				}						
-			}
-			
+			}			
 		},
 		watch: {
 			'sellers' () {
@@ -100,9 +104,10 @@
 			}			
 		},
 		mounted: function () {
- 			 this.$nextTick(function () {
+ 			this.$nextTick(function () {
 				this.Bscroll();
-  			})
+				// console.log(this.sellers.infos);
+  			});
 		}
 	}
 </script>
@@ -118,6 +123,9 @@
 	}
 	.overview {
 		padding: 18px;
+	}
+	.overview li {
+		list-style: none;
 	}
 	.overview-title {
 		padding-top: 12px;
@@ -191,4 +199,32 @@
 		border-bottom: 1px solid rgba(7, 17, 27, 0.1);
 		bottom: 4px;
 	}
+	.pics-wrapper {
+		margin-top: 12px;
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.pic-item {
+		display: inline-block;
+		margin-right: 6px;
+		width: 120px;
+		height: 90px;
+	}
+	.sellers-info  {
+		font-size: 16px;
+		/* margin-left: px; */
+		margin-top: 9px;
+		padding-bottom: 12px;
+	}
+	.info-items {
+		margin-left: 12px;
+		margin-top: 8px;
+		font-size: 16px;
+		color: rgba(7, 17, 27, 0.5);
+	}
+	/* .favorite {
+		position: fixed;
+		margin-top: 12px; 
+	} */
 </style>

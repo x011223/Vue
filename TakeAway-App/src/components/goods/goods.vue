@@ -23,8 +23,8 @@
 								<h2 class="food-name">{{food.name}}</h2>
 								<p class="food-description">{{food.description}}</p>
 								<div class="food-extra">
-									<span class="food-count">月售{{food.sellCount}}份</span>
-									<span>好评率:{{food.rating}}%</span>
+									 <span class="food-count">月售{{food.sellCount}}份</span>
+									 <span>好评率:{{food.rating}}%</span>
 								</div>
 								<div class="food-price">
 									<span class="now-price">¥{{food.price}}</span>
