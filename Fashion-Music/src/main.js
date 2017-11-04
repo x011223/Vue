@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 Vue.config.productionTip = false
+Vue.config.silent = true
 
 //引入4个主界面组件
 import Rank from './components/rank/rank'
