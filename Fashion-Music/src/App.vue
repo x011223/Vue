@@ -7,7 +7,9 @@
             <router-link  class="tab-item" to="/rank">排行</router-link>
             <router-link  class="tab-item" to="/search">搜索</router-link>
         </div>
+        <keep-alive>
         <router-view></router-view>
+        </keep-alive>
     </div>
 </template>
 

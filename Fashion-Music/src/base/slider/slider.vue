@@ -84,7 +84,7 @@
             // 轮播时间间隔
             interval: {
                 type: Number,
-                default: 3000
+                default: 2000
             },
         },
         mounted () {
@@ -92,14 +92,23 @@
                 this._setSliderWidth();
                 this._initDots();
                 this._initSlider();
+                if (this.autoPlay) {
+                    this._play()
+                }
             }, 20);
+            window.addEventListener('reSize', () => {
+                if (!this.slider) {
+                    return
+                }
+                this._setSliderWidth(true)
+                this.slider.refresh()
+            })
         },
         methods: {
             // 设置轮播宽度
-            _setSliderWidth () {
+            _setSliderWidth (isResize) {
                 //获取
                 this.children = this.$refs.sliderGroup.children
-                // console.log(this.children)
                 let width = 0
                 //可见宽度
                 let sliderWidth = this.$refs.slider.clientWidth
@@ -114,7 +123,7 @@
                     width += sliderWidth                      
                 }
                 //循环轮播为真,总宽度需加 2*sliderWidth（可见宽度）
-                if (this.loop) {
+                if (this.loop && !isResize) {
                     width += 2 * sliderWidth
                 }
                 this.$refs.sliderGroup.style.width = width + 'px'
@@ -142,8 +151,28 @@
                         pageIndex -= 1
                     }
                     this.pageId = pageIndex
+                    if (this.autoPlay) {
+                        //清除轮播时间,防止自动轮播与触摸轮播冲突
+                        clearTimeout(this.TimeOut)
+                        this._play()
+                    }
                 })
-            },           
+            },
+            _play () {
+                let pageIndex = this.pageId + 1
+                if (this.loop) {
+                    pageIndex += 1
+                }
+                this.TimeOut = setInterval(() => {
+                    //goToPage better-scroll提供
+                    // 0 代表纵向, 400 横向,
+                    this.slider.goToPage(pageIndex, 0, 400)
+                }, this.interval)
+            }           
+        },
+        destroyed () {
+            //slider 组件切换时,自动调用destroyed hook
+            clearTimeout(this.TimeOut)
         }
     }
 </script>
