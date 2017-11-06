@@ -16,7 +16,7 @@
                     <ul>
                         <li v-for="discList in discLists" class="discList">
                             <div class="list-icon">
-                                <img :src="discList.imgurl" width="60" height="60">
+                                <img v-lazy="discList.imgurl" width="60" height="60">
                             </div>
                             <div class="list-text">
                                 <h2 class="name" v-html="discList.creator.name"></h2>
@@ -25,6 +25,9 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div>
+                <loading class="loading-wrapper" v-show="!discLists.length"></loading>
             </div>
         </Scroll>
     </div>
@@ -51,11 +54,11 @@
         overflow: hidden;
     }
     .list-title {
-        height: 65px;
-        line-height: 65px;
+        height: 52px;
+        line-height: 52px;
         text-align: center;
-        font-size: 32px;
-        color: #00ffff;
+        font-size: 16px;
+        color: #a60000;
     }
     .discList {
         display: flex;
@@ -85,7 +88,7 @@
     .desc {
         color: #408099;
     }
-    .loading-container {
+    .loading-wrapper {
         position: absolute;
         width: 100%;
         top: 50%;
@@ -95,6 +98,7 @@
 <script>
     import Slider from '../../base/slider/slider.vue'
     import Scroll from '../../base/scroll/scroll.vue'
+    import Loading from '../../base/loading/loading.vue'
 
     import {getRecommend, getDiscList} from '../../api/recommend'
     import {ERR_OK} from '../../api/config'
@@ -103,6 +107,7 @@
         components: {
             Slider,
             Scroll,
+            Loading,
         },
         data () {
             return {
@@ -111,8 +116,8 @@
             }
         },
         created () {
-            this._getRecommend()       
-            this._getDiscList()
+            this._getRecommend()    
+            this._getDiscList()        
         },
         methods: {
             _getRecommend () {

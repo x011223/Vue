@@ -15,6 +15,12 @@ import Recommend from './components/recommend/recommend'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+//引入 vue-lazyload
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+    loading: require('../src/components/header/header_ico.svg'),
+})
+
 const routes = [
     // {path:'/',redirect:{name:'recommend'}},
     // {name: 'recommend', path: '/recommend', component: Recommend},

@@ -3,7 +3,7 @@
         <div class="header-ico">
             <img class="header-img" src="./header_ico.svg" alt="">
         </div>
-        <h1 class="header-text">Fashion Music</h1>
+        <h1 class="header-text">CX402 Music</h1>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
         position: relative;
         height: 52px;
         line-height: 52px;
-        background-color: #6a3500;
+        background-color: #31c27c;
         text-align: center;       
     }
     .header-ico {
@@ -26,7 +26,7 @@
         vertical-align: top;
         line-height: 52px;
         font-size: 18px;
-        color: #c0c0c0;     
+        color: #ffffff;     
     }
 </style>
 
