@@ -40,8 +40,7 @@
         height: 32px;
         width: 20%;
         line-height: 32px;
-        font-size: 14px;
-        
+        font-size: 14px;       
     }
     .router-link-active {
         color: #F24C4C;

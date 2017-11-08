@@ -11,6 +11,12 @@
                 </ul>
             </li>
         </ul>
+        <div class="list-enter" @touchstart="onListEnter">
+            <ul>
+                <!-- 获取到触摸点击的index -->
+                <li class="item" v-for="(item, index) in listEnter" :data-index="index">{{item}}</li>
+            </ul>
+        </div>
     </Scroll>
 </template>
 
@@ -26,6 +32,20 @@
         },
         components: {
             Scroll,
+        },
+        computed: {
+            //列表右侧入口,双向联动
+            listEnter () {
+                //对传入的数据排序
+                return this.data.map((group) => {
+                    return group.title.substr(0, 1)
+                })
+            },
+        },
+        methods: {
+            onListEnter (e) {
+                
+            }
         }
     }
 </script>
@@ -36,7 +56,7 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background: rgba(7, 17, 27, 0.4)
+        background: rgba(233, 233, 233, 0.3);
     }
     .list-group {
         padding-bottom: 30px;
@@ -46,7 +66,7 @@
         line-height: 30px;
         padding-left: 20px;
         font-size: 12px;
-        color: #5a5a5a;
+        color: rgba(7, 17, 27, 0.4);
         background: #e3e3e3;
     }
     .list-item {
@@ -63,6 +83,25 @@
         margin-left: 20px;
         color: #00a4a4;
         font-size: medium;
+    }
+    .list-enter {
+        position: absolute;
+        z-index: 30;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        padding: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+        font-family: Helvetica;
+    }
+    .item {
+        list-style: none;
+        padding: 3px;
+        line-height: 1;
+        color: #0065ca;
+        font-size: 8px;
     }
 </style>
 
