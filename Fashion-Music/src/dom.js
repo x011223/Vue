@@ -13,6 +13,7 @@ export function addClass (el, className) {
 }
 
 export function getData (el, name, val) {
+    // 有val时set 无val时get
     const prefix = "data-"
     name = prefix + name
     if (val) {

@@ -1,7 +1,7 @@
 <template>
-    <Scroll class="listview" :data="data">
+    <Scroll class="listview" :data="data" ref="listview">
         <ul>
-            <li v-for="group in data" class="list-group">
+            <li v-for="group in data" class="list-group" ref="listgroup">
                 <h2 class="list-title">{{group.title}}</h2>
                 <ul>
                     <li v-for="item in group.items" class="list-item">
@@ -11,7 +11,7 @@
                 </ul>
             </li>
         </ul>
-        <div class="list-enter" @touchstart="onListEnter">
+        <div class="list-enter" @touchstart="onListEnterTouch" @touchmove.stop.prevent="onListMove">
             <ul>
                 <!-- 获取到触摸点击的index -->
                 <li class="item" v-for="(item, index) in listEnter" :data-index="index">{{item}}</li>
@@ -23,12 +23,20 @@
 <script>
     import Scroll from '../scroll/scroll.vue'
 
+    import {getData} from '../../dom'
+
+    const anchor_Height = 18
+
     export default {
         props: {
             data: {
                 type: Array,
                 default: []
             }
+        },
+        created () {
+            // 获取touch 的值
+            this.touch = {}
         },
         components: {
             Scroll,
@@ -43,8 +51,24 @@
             },
         },
         methods: {
-            onListEnter (e) {
-                
+            // 点击右侧字母,左侧跳转到相应位置
+            onListEnterTouch (e) {
+                let anchorIndex = getData(e.target, 'index')
+                let firstTouch = e.touches[0]
+                this.touch.y1 = firstTouch.pageY
+                this.touch.anchorIndex = anchorIndex
+                this._ScrollTo(anchorIndex)
+            },
+            onListMove (e) {
+                let firstTouch = e.touches[0]
+                this.touch.y2 = firstTouch.pageY
+                let delta = (this.touch.y2 - this.touch.y1) / anchor_Height | 0
+                let anchorIndex = parseInt(this.touch.anchorIndex) + delta
+                this._ScrollTo(anchorIndex)
+            },
+            _ScrollTo (index) {
+                // 0 ,动画缓动时间
+                this.$refs.listview.scrollToElement(this.$refs.listgroup[index], 0)
             }
         }
     }

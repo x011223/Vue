@@ -24,6 +24,11 @@
                 type: Array,
                 default: null
             },
+            // 监听是否存在滚动事件
+            listenScroll: {
+                type: Boolean,
+                default: false
+            },
         },
         mounted () {
             setTimeout(() => {
@@ -42,6 +47,12 @@
                     probeType: this.probeType,
                     click: this.click
                 }) 
+                if (this.listenScroll) {
+                    let outThis = this
+                    this.scroll.on('scroll', (pos) => {
+                        outThis.$emit('scroll', pos)
+                    }) 
+                }
             },
             // 代理bett-scroll
             enable () {
@@ -50,10 +61,20 @@
             disable () {
                 this.scroll && this.scroll.disable()
             },
-            //刷新scroll,重新计算高度
+            // 刷新scroll,重新计算高度
+            // 作用：重新计算 better-scroll，当 DOM 结构发生变化的时候务必要调用确保滚动的效果正常。
             refresh () {
                 this.scroll && this.scroll.refresh()
-            }
+            },
+            // 滚动到指定位置
+            // 调用apply接收参数           
+            scrollTo () {
+                this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+            },
+            // 作用：滚动到指定的目标元素。
+            scrollToElement () {
+                this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
+            },
         },
         watch: {
             data () {
