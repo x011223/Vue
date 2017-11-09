@@ -10,6 +10,7 @@ import Rank from './components/rank/rank'
 import Search from './components/search/search'
 import Singer from './components/singer/singer'
 import Recommend from './components/recommend/recommend'
+import SingersDetail from './components/singers-detail/singers-detail'
 
 //引入路由
 import VueRouter from 'vue-router'
@@ -28,7 +29,9 @@ const routes = [
     // {name: 'recommend', path: '/rank', component: Rank},
     // {name: 'recommend', path: '/search', component: Search},
         { path: '/recommend', component: Recommend},
-        { path: '/singer', component: Singer},
+        { path: '/singer', component: Singer, children: [
+            {path: ':id', component: SingersDetail}
+        ]},
         { path: '/rank', component: Rank},
         { path: '/search', component: Search},
 ]
