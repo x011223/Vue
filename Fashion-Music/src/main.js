@@ -22,6 +22,8 @@ Vue.use(VueLazyload, {
     loading: require('../src/components/header/header_ico.svg'),
 })
 
+import store from './store'
+
 const routes = [
     // {path:'/',redirect:{name:'recommend'}},
     // {name: 'recommend', path: '/recommend', component: Recommend},
@@ -49,5 +51,6 @@ const app = new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },
+  store,
   router
 }).$mount('#app')

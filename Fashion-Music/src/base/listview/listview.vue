@@ -249,7 +249,7 @@
         color: rgba(7, 17, 27, 0.4);
         background: rgba(233, 233, 233, 0.3);
     }
-    .loading-conteiner {
+    .loading-container {
         position: absolute;
         width: 100%;
         top: 50%;

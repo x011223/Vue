@@ -19,6 +19,7 @@
 
     import {getSingerList} from '../../api/singer'
     import {ERR_OK} from '../../api/config'
+    import { mapMutations } from 'vuex'
 
     const Hot_Name = '热门'
     const Hot_Singers_len = 10
@@ -41,7 +42,8 @@
                 this.$router.push({
                     path: `/singer/${singer.id}`                    
                 })
-                console.log("123")
+                //提交mutations
+                this.setSinger(singer)
             },
             _getSingers () {
                 getSingerList().then((res) => {
@@ -104,6 +106,9 @@
                 })
                 return hot.concat(ret)
             },
+            ...mapMutations ({
+                setSinger: 'Set_Singer'
+            })
         }
     }
 </script>
