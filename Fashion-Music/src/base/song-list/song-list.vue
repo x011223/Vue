@@ -3,8 +3,13 @@
         <ul>
             <li v-for="song in songs" class="song">
                 <div class="song-content">
-                    <h2 class="song-name">{{song.name}}</h2>
-                    <p class="song-desc">{{getSongDesc(song)}}</p>
+                    <div class="song-image">
+                        <img v-lazy="song.image" width="36" height="36">
+                    </div>
+                    <div class="song_content">
+                        <h2 class="song-name">{{song.name}}</h2>
+                        <p class="song-desc">{{getSongDesc(song)}}</p>
+                    </div>                  
                 </div>
             </li>
         </ul>
@@ -21,7 +26,7 @@
         },
         methods: {
             getSongDesc (song) {
-                return `${song.singer} 。${song.album}`
+                return `专辑： ${song.album}`
             }
         },
     }
@@ -31,19 +36,31 @@
     li {
         list-style: none;
     }
-    .song-list {
+    .song {
         display: flex;
         align-items: center;
         box-sizing: border-box;
         height: 64px;
-        font-size: 12px;
     }
     .song-content {
         flex: 1;
         line-height: 20px;
         overflow: hidden;
+        font-size: 10px;
+    }
+    .song-image {
+        /* position: fixed; */
+        display: inline-block;
+    }
+    .song_content {
+        display: inline-block;
+        margin-left: 12px;
     }
     .song-name {
-        color: rgba(7, 17, 27, 0.3);
+        color: rgb(7, 17, 27);
+        font-size: 16px;
+    }    
+    .song-desc {
+        margin-top: 4px;
     }
 </style>
