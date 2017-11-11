@@ -8,18 +8,21 @@
             <router-link  class="tab-item" to="/search">搜索</router-link>
         </div>
         <keep-alive>
-        <router-view></router-view>
+            <router-view></router-view>
         </keep-alive>
+        <player></player>
     </div>
 </template>
 
 <script>
-    import MyHeader from './components/header/myheader';
+    import MyHeader from './components/header/myheader'
+    import Player from './components/player/player'
 
     export default {
         name: 'app',
         components: {
             MyHeader,
+            Player,
         },
     }
 </script>

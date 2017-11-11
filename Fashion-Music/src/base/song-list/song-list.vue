@@ -41,6 +41,9 @@
         align-items: center;
         box-sizing: border-box;
         height: 64px;
+        border-bottom: 2px solid #007bf7;
+        border-radius: 6px;
+        top: 8px;
     }
     .song-content {
         flex: 1;
