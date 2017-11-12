@@ -1,7 +1,7 @@
 <template>
     <div class="song-list">
         <ul>
-            <li v-for="song in songs" class="song">
+            <li @click="selectSong(song, index)" v-for="(song, index) in songs" class="song">
                 <div class="song-content">
                     <div class="song-image">
                         <img v-lazy="song.image" width="36" height="36">
@@ -26,8 +26,13 @@
         },
         methods: {
             getSongDesc (song) {
-                return `专辑： ${song.album}`
-            }
+                console.log(song)
+                return `${song.album}`
+            },
+            selectSong(song, index) {
+                // 点击时 分发事件
+                this.$emit('select', song, index)
+            },
         },
     }
 </script>
@@ -41,29 +46,33 @@
         align-items: center;
         box-sizing: border-box;
         height: 64px;
-        border-bottom: 2px solid #007bf7;
-        border-radius: 6px;
+        /* border-bottom: 2px solid #007bf7; */
+        /* border-radius: 6px; */
         top: 8px;
+        overflow: hidden;
     }
     .song-content {
         flex: 1;
-        line-height: 20px;
-        overflow: hidden;
-        font-size: 10px;
+        /* line-height: 24px; */
     }
-    .song-image {
-        /* position: fixed; */
+    .song-image {        
         display: inline-block;
+        vertical-align: top;
     }
     .song_content {
+        position: absolute;
         display: inline-block;
-        margin-left: 12px;
+        margin-left: 8px;
+        text-overflow: ellipsis;
     }
     .song-name {
+        position: relative;
         color: rgb(7, 17, 27);
-        font-size: 16px;
+        font-size: 14px;
     }    
     .song-desc {
-        margin-top: 4px;
+        position: relative;
+        margin-top: 6px;
+        font-size: 8px;     
     }
 </style>

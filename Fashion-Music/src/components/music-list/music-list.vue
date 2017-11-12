@@ -18,7 +18,7 @@
         </div>
         <scroll @scroll="scroll" class="songs" :data="songs" ref="songList" :probe-type="probeType" :listen-scroll="listenScroll">
             <div class="songList-wrapper">
-                <song-list :songs="songs"></song-list>
+                <song-list @select="selectSong" :songs="songs"></song-list>
             </div>
             <div class="loading" v-show="!songs.length">
                 <loading></loading>
@@ -34,6 +34,7 @@
     import Loading from '../../base/loading/loading.vue'
 
     import {prefixStyle} from '../../dom'
+    import {mapActions} from 'vuex'
 
     const Header_Height = 40
     const transform = prefixStyle('transform')
@@ -74,6 +75,12 @@
             }
         },
         methods: {
+            selectSong (song, index) {
+                this.selectPlay({
+                    list: this.songs,
+                    index
+                })
+            },
             scroll (pos) {
                 // 得到实时滚动的距离
                 this.scrollY = pos.y
@@ -82,7 +89,10 @@
                 // 以下 2 种方法都可以
                 // this.$router.back()
                 this.$router.push({path: '/singer'})
-            }
+            },
+            ...mapActions ([
+                'selectPlay'
+            ])
         },
         mounted () {
             this.imageHeight = this.$refs.bgImage.clientHeight

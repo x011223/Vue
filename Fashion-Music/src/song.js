@@ -22,7 +22,7 @@
             album: musicData.albumname,
             duration: musicData.interval,
             image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-            url: `https://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
+            url: `https://dl.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=66`
         })
     }
 
