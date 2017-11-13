@@ -22,14 +22,18 @@
                     </div>
                 </div>
                 <div class="player-bottom" enter-active-class="bottomEnter">
-                    <div class="play-progress">
+                    <div class="player-progress">
                         <span class="play-time play-timeL">{{formatTime(currentTime)}}</span>
-                        <div class="progress-wrapper"></div>
+                        <div class="progress-wrapper">
+                            <progress-bar :playsPercent="playsPercent" @percentChange="onPercentChange"></progress-bar>
+                        </div>
                         <span class="play-time play-timeR">{{formatTime(currentSong.duration)}}</span>
                     </div>
                     <div class="operators">
-                        <div class="operator operator-left play-order">
-                            <img src="./sequence.svg">
+                        <div class="operator operator-left play-order" @click.stop.prevent="changeMode">
+                            <img src="./sequence.svg" v-show="this.playMode === 0">
+                            <img src="./random.svg" v-show="this.playMode === 1">
+                            <img src="./loop.svg" v-show="this.playMode === 2">
                         </div>
                         <div class="operator operator-left prev-song" :class="disableTouch">
                             <img @click="prevSong" src="./prev_song.svg">
@@ -74,12 +78,19 @@
 
 <script>
     import {mapGetters, mapMutations} from 'vuex'
+    import {playMode} from '../../config'
+
+    import ProgressBar from '../../base/progressbar/progressbar'
 
     export default {
+        components: {
+            ProgressBar,
+        },
         data () {
             return {
                 songReady: false,
                 currentTime: 0,
+                playMode: 0,
             }
         },
         methods: {
@@ -146,6 +157,16 @@
                 const second = this._padZero(interval % 60)
                 return `${minute}:${second}`
             },
+            onPercentChange (percent) {
+                this.$refs.Audio.currentTime = this.currentSong.duration * percent
+                if (!this.playing) {
+                    this.togglePlaying()
+                }
+            },
+            changeMode () {
+                const mode = (this.mode + 1) % 3
+                this.setPlayMode(mode)
+            },
             // 为播放时间的秒 补零
             _padZero (num, n = 2) {
                 let len = num.toString().length
@@ -162,6 +183,8 @@
                 setPlayingState: 'Set_Playing_State',
                 //  当前歌曲的 index
                 setCurrentIndex: 'Set_Current_Index',
+                // 修改播放模式
+                setPlayMode: 'Set_Play_Mode'
             }),
             
         },
@@ -172,10 +195,14 @@
                 'playing',
                 'currentSong',
                 'currentIndex',
+                'playmode',
             ]),
             cdPlay () {
                 // 播放状态为 true 时 添加play 类的样式 否则添加 play pause 类的 样式
                 return this.playing ? 'play' : 'play pause'
+            },
+            playsPercent () {
+                return this.currentTime / this.currentSong.duration
             }
         },
         watch: {
@@ -196,7 +223,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     .main-player {
         position: fixed;
         left: 0;
@@ -290,7 +317,7 @@
         bottom: 50px;
         width: 100%;
     }
-    .play-progress {
+    .player-progress {
         display: flex;
         align-items: center;
         width: 80%;
@@ -303,6 +330,12 @@
         flex: 0 0 30px;
         line-height: 30px;
         width: 30px;
+    }
+    .play-timeL {
+        text-align: left;
+    }
+    .play-timeR {
+        text-align: right;
     }
     .progress-wrapper {
         flex: 1;

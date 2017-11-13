@@ -23,8 +23,7 @@
             <div class="loading" v-show="!songs.length">
                 <loading></loading>
             </div>
-        </scroll>
-        
+        </scroll>      
     </div>
 </template>
 
@@ -87,8 +86,8 @@
             },
             _back () {
                 // 以下 2 种方法都可以
-                // this.$router.back()
-                this.$router.push({path: '/singer'})
+                this.$router.back()
+                // this.$router.push({path: '/singer'})
             },
             ...mapActions ([
                 'selectPlay'

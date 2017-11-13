@@ -81,7 +81,7 @@
                 //data 变化
                 setTimeout(() => {
                     this.refresh()
-                }, 20)
+                },1)
             }
         }
     }
