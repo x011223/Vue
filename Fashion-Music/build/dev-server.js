@@ -45,6 +45,34 @@ apiRoutes.get('/getDiscList', function (req, res) {
       console.log(e)
     })
 })
+
+apiRoutes.get('/lyric', function (req, res) {
+  var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
+  //通过axios发送http请求,修改headers
+  axios.get(url, {
+      headers: {
+        //发送http 请求修改referer,host
+        referer: 'https://c.y.qq.com/',
+        //欺骗手段
+        host: 'c.y.qq.com'
+      },
+      //取出浏览器所请求接口所带的参数,传到服务端url地址
+      params: req.query,     
+  }).then((response) => {
+          var ret = response.data
+          if (typeof ret === 'string') {
+              var reg = /^\w+\(({[^()]+})\)$/
+              var matches = ret.match(reg)
+              if (matches) {
+                ret = JSON.parse(matches[1])
+              }
+          }
+          //response qq
+          res.json(ret)
+    }).catch((e) => {
+        console.log(e)
+    })
+})
   app.use('/api', apiRoutes)
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {

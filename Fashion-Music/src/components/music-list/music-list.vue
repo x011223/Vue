@@ -6,7 +6,7 @@
         <h1 class="title" v-html="title"></h1>
         <div class="bg-image" :style="bgStyle" ref="bgImage">
             <div class="play-wrapper" ref="playWrapper">
-                <div class="btn_play">
+                <div class="btn_play" @click="randomPlayAll">
                     <img src="./play.svg" class="play-icon" width="24" height="24">
                     <span class="play-text">随机播放全部</span>
                 </div>
@@ -84,13 +84,19 @@
                 // 得到实时滚动的距离
                 this.scrollY = pos.y
             },
+            randomPlayAll () {
+                this.randomPlay({
+                    list: this.songs
+                })
+            },
             _back () {
                 // 以下 2 种方法都可以
                 this.$router.back()
                 // this.$router.push({path: '/singer'})
             },
             ...mapActions ([
-                'selectPlay'
+                'selectPlay',
+                'randomPlay'
             ])
         },
         mounted () {

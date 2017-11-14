@@ -2,8 +2,7 @@
     <Scroll class="listview" :data="data" ref="listview"
                              :listenScroll = "listenScroll"
                              @scroll="scroll"
-                             :probe-type="probeType"
-                        >
+                             :probe-type="probeType">
         <ul>
             <li v-for="group in data" class="list-group" ref="listgroup">
                 <h2 class="list-title">{{group.title}}</h2>

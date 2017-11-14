@@ -7,6 +7,7 @@
         [types.Set_Singer] (state, singer) {
             state.singer = singer
         },
+
         [types.Set_Playing_State] (state, flag) {
             state.playing = flag
         },
@@ -14,8 +15,8 @@
         [types.Set_Play_List] (state, list) {
             state.playlist = list
         },
-        [types.Set_Random_List] (state, list) {
-            state.randomlist = list
+        [types.Set_Sequence_List] (state, list) {
+            state.sequenceList = list
         },
         [types.Set_Full_Screen] (state, flag) {
             state.fullscreen = flag

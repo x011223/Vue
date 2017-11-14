@@ -6,14 +6,14 @@
         singer: {},
         // 播放状态
         playing: false,
-        //播放列表
+        // 正在播放列表
         playlist: [],
-        //播放列表(随机播放时列表无序,与playlist区分)
-        randomlist: [],
+        // 原始播放列表(与playlist区分)
+        sequenceList: [],
         //播放器是否全屏显示
         fullscreen: false,
         currentIndex: -1,
-        palymode: playMode.sequence,
+        playmode: playMode.sequence,
     }
 
     export default state

@@ -26,7 +26,6 @@
         },
         methods: {
             getSongDesc (song) {
-                console.log(song)
                 return `${song.album}`
             },
             selectSong(song, index) {
