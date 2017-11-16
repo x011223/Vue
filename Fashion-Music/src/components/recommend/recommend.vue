@@ -1,5 +1,5 @@
 <template>
-    <div class="recommend">
+    <div class="recommend" ref="recommend">
         <Scroll class="recommend-content" :data="discLists" ref="scroll">
             <div class="scroll-wrapper">
                 <div v-if="recommends.length" class="slider-wrapper">
@@ -14,7 +14,7 @@
                 <div class="recommend-list">
                     <h1 class="list-title">热门推荐</h1>
                     <ul>
-                        <li v-for="discList in discLists" class="discList">
+                        <li v-for="discList in discLists" class="discList" @click="selectDisc(discList)">
                             <div class="list-icon">
                                 <img v-lazy="discList.imgurl" width="60" height="60">
                             </div>
@@ -30,6 +30,7 @@
                 <loading class="loading-wrapper" v-show="!discLists.length"></loading>
             </div>
         </Scroll>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -102,8 +103,11 @@
 
     import {getRecommend, getDiscList} from '../../api/recommend'
     import {ERR_OK} from '../../api/config'
+    import {playMixin} from '../../mixin'
+    import {mapMutations} from 'vuex'
 
     export default {
+        mixins: [playMixin],
         components: {
             Slider,
             Scroll,
@@ -120,6 +124,17 @@
             this._getDiscList()        
         },
         methods: {
+            selectDisc (discList) {
+                this.$router.push({
+                    path: `/recommend/${discList.dissid}`
+                })
+                this.setDiscDetail(discList)
+            },
+            handlePlaylist (playlist) {
+                const listBottom = playlist.length > 0 ? '60px' : ''
+                this.$refs.recommend.style.bottom = listBottom
+                this.$refs.scroll.refresh()
+            },
             _getRecommend () {
                 getRecommend().then((res) => {
                     if (res.code === ERR_OK) {
@@ -131,7 +146,6 @@
                 getDiscList().then((res) => {
                     if (res.code === ERR_OK) {
                         this.discLists = res.data.list
-                        // console.log(this.discLists)
                     }
                 })
             },
@@ -140,7 +154,10 @@
                     this.$refs.scroll.refresh()
                     this.checkLoaded = true
                 }               
-            }
+            },
+            ...mapMutations({
+                setDiscDetail: 'Set_Disc_Detail'
+            })
         }           
     }
 </script>

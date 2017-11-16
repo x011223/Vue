@@ -27,5 +27,8 @@
         [types.Set_Play_Mode] (state, mode) {
             state.playmode = mode
         },
+        [types.Set_Disc_Detail] (state, disc) {
+            state.disc = disc
+        },
     }
     export default mutations

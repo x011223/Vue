@@ -13,3 +13,9 @@
 [1113/173613.296:ERROR:process_info.cc(632)] range at 0x79a96ae600000000, size 0x24f fully unreadable
 [1113/173613.296:ERROR:process_info.cc(632)] range at 0x79a96b0600000000, size 0x24f fully unreadable
 [1113/173613.296:ERROR:process_info.cc(632)] range at 0x0, size 0x24f fully unreadable
+[1115/092629.831:ERROR:settings.cc(258)] Settings magic is not 1129342067
+[1115/200247.890:ERROR:process_info.cc(632)] range at 0x5e4c761800000000, size 0x1f7 fully unreadable
+[1115/200247.899:ERROR:process_info.cc(632)] range at 0x5e4c767c00000000, size 0x1f7 fully unreadable
+[1115/200247.899:ERROR:process_info.cc(632)] range at 0x0, size 0x1f7 fully unreadable
+[1115/200248.119:ERROR:process_reader_win.cc(242)] ReadMemory at 0x3f7f1f3f811 of 512 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[1115/200248.119:ERROR:crash_report_exception_handler.cc(116)] WriteEverything failed

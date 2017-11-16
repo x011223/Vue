@@ -7,3 +7,4 @@
     export const Set_Full_Screen = 'Set_Full_Screen'
     export const Set_Current_Index = 'Set_Current_Index'
     export const Set_Play_Mode = 'Set_Play_Mode'
+    export const Set_Disc_Detail = 'Set_Disc_Detail'

@@ -34,12 +34,14 @@
 
     import {prefixStyle} from '../../dom'
     import {mapActions} from 'vuex'
+    import {playMixin} from '../../mixin'
 
     const Header_Height = 40
     const transform = prefixStyle('transform')
     const backdrop = prefixStyle('backdrop')
 
     export default {
+        mixins: [playMixin],
         components: {
             Scroll,
             SongList,
@@ -74,6 +76,11 @@
             }
         },
         methods: {
+            handlePlaylist (playlist) {
+                const listBottom = playlist.length > 0 ? '60px' : ''
+                this.$refs.songList.$el.style.bottom = listBottom
+                this.$refs.songList.refresh()
+            },
             selectSong (song, index) {
                 this.selectPlay({
                     list: this.songs,
@@ -162,8 +169,7 @@
     .icon-back {
         display: block;
         padding: 12px;
-        font-size: 16px;
-        color: red;
+        font-size: 12px;
     }
     .title {
         position: absolute;

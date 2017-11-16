@@ -13,7 +13,10 @@
         //播放器是否全屏显示
         fullscreen: false,
         currentIndex: -1,
+        // 播放模式 顺序 随机 单曲
         playmode: playMode.sequence,
+        // 歌单歌曲列表
+        disc: {},
     }
 
     export default state

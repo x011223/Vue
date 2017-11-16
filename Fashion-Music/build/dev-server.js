@@ -73,7 +73,28 @@ apiRoutes.get('/lyric', function (req, res) {
         console.log(e)
     })
 })
-  app.use('/api', apiRoutes)
+
+apiRoutes.get('/getCdinfo', function (req, res) {
+  var url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
+  //通过axios发送http请求,修改headers
+  axios.get(url, {
+      headers: {
+        //发送http 请求修改referer,host
+        referer: 'https://c.y.qq.com/',
+        //欺骗手段
+        host: 'c.y.qq.com'
+      },
+      //取出浏览器所请求接口所带的参数,传到服务端url地址
+      params: req.query,     
+  }).then((response) => {
+      //response qq
+      res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+app.use('/api', apiRoutes)
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,

@@ -10,6 +10,7 @@ import Rank from './components/rank/rank'
 import Search from './components/search/search'
 import Singer from './components/singer/singer'
 import Recommend from './components/recommend/recommend'
+    import DiscDetail from './components/disc-detail/disc-detail'
 import SingersDetail from './components/singers-detail/singers-detail'
 
 //引入路由
@@ -30,7 +31,9 @@ const routes = [
     // {name: 'recommend', path: '/singer', component: Singer},
     // {name: 'recommend', path: '/rank', component: Rank},
     // {name: 'recommend', path: '/search', component: Search},
-        { path: '/recommend', component: Recommend},
+        { path: '/recommend', component: Recommend, children: [
+            {path: ':id', component: DiscDetail}
+        ]},
         { path: '/singer', component: Singer, children: [
             {path: ':id', component: SingersDetail}
         ]},
