@@ -3,9 +3,12 @@
         <ul>
             <li @click="selectSong(song, index)" v-for="(song, index) in songs" class="song">
                 <div class="song-content">
+                    <div class="rankcss iconfont" v-show="rankStyle">
+                        <span :class="getRankStyle(index)">{{getRankText(index)}}</span>
+                    </div>
                     <div class="song-image">
                         <img v-lazy="song.image" width="36" height="36">
-                    </div>
+                    </div>                   
                     <div class="song_content">
                         <h2 class="song-name">{{song.name}}</h2>
                         <p class="song-desc">{{getSongDesc(song)}}</p>
@@ -23,6 +26,10 @@
                 type: Array,
                 default: []
             },
+            rankStyle: {
+                type: Boolean,
+                default: false
+            }
         },
         methods: {
             getSongDesc (song) {
@@ -32,46 +39,94 @@
                 // 点击时 分发事件
                 this.$emit('select', song, index)
             },
+            getRankStyle (index) {
+                if (index < 3) {
+                    return `icon${index}`
+                } else {
+                    return 'rankText'
+                }
+            },
+            getRankText(index) {
+                if (index > 2) {
+                    return index + 1
+                }
+            }
         },
     }
 </script>
 
 <style scoped>
+    @import './rankfont/iconfont.css';
     li {
         list-style: none;
+    }
+    .rankcss {
+        display: inline-block;
+        /* position: absolute; */
+        width: 25px;
+        text-align: center;
+        border-right: 2px solid #51a8ff;
+        border-radius: 2px;
+        padding-top: 4px;
+        padding-right: 12px;
+    }
+    .icon {
+        display: inline-block;
+        width: 25px;
+        height: 24px;
+        background-size: 25px 24px;
+    }
+    .rankText {
+        color: #000080;
+        font-size: 14px;
+        margin-top: 8px;
     }
     .song {
         display: flex;
         align-items: center;
         box-sizing: border-box;
         height: 64px;
-        /* border-bottom: 2px solid #007bf7; */
-        /* border-radius: 6px; */
         top: 8px;
         overflow: hidden;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    .icon0, .icon1, .icon2 {
+        font-size: 32px;
+    }
+    .icon0 {
+        color: #ffd700;
+    }
+    .icon1 {
+        color: #c0c0c0;
+    }
+    .icon2 {
+        color: #ff331e;
     }
     .song-content {
         flex: 1;
-        /* line-height: 24px; */
     }
     .song-image {        
         display: inline-block;
         vertical-align: top;
+        /* margin-right: 8px; */
+        margin-left: 12px;
     }
     .song_content {
         position: absolute;
         display: inline-block;
-        margin-left: 8px;
+        margin-left: 16px;
         text-overflow: ellipsis;
     }
     .song-name {
         position: relative;
         color: rgb(7, 17, 27);
+        margin-top: -4px;
         font-size: 14px;
+        top: 0;
     }    
     .song-desc {
         position: relative;
-        margin-top: 6px;
+        margin-top: -4px;
         font-size: 8px;     
     }
 </style>

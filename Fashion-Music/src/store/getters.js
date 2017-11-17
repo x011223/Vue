@@ -8,6 +8,8 @@
     export const currentIndex = state => state.currentIndex
     export const playmode = state => state.playmode
     export const disc = state => state.disc
+    export const toplist = state => state.toplist
+
 
     export const currentSong = (state) => {
         return state.playlist[state.currentIndex] || {}

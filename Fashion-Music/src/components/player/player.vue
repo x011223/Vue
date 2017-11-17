@@ -5,7 +5,7 @@
                 <div class="bac-image">
                     <img :src="currentSong.image" width="100%" height="100%">
                 </div>
-                <div class="player-top" enter-active-class="topEnter">
+                <div class="player-top">
                     <div class="player-back" @click="playerBack">
                         <img class="icon-back" src="../music-list/back.svg" width="24" height="24">
                     </div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </transition>
-        <audio ref="Audio" :src="currentSong.url" @canplay="ready" @error="error" @timeupdate="updateTime" :loop="isLoop"></audio>
+        <audio ref="Audio" :src="currentSong.url" @canplay="ready" @error="error" @timeupdate="updateTime" @ended="nextSong" :loop="isLoop"></audio>
     </div>
 </template>
 
@@ -232,12 +232,13 @@
                     if (this.currentLyric) {
                         this.currentLyric.seek(0)
                     }
-                    list = this.sequenceList
                     // 循环播放
                     this.isLoop = true
+                    list = this.sequenceList            
                 } else {
                     // 顺序播放
                     list = this.sequenceList
+                    console.log("123")
                 }
                 this.resetCurrent(list)
                 this.setPlayList(list)
@@ -404,7 +405,7 @@
                 setTimeout(() => { 
                     this.$refs.Audio.play()
                     this.getLyrics()
-                }, 1000)
+                }, 120)
             },
             playing (playingState) {
                 // 控制 歌曲播放暂停

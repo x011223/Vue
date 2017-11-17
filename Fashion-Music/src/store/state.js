@@ -17,6 +17,7 @@
         playmode: playMode.sequence,
         // 歌单歌曲列表
         disc: {},
+        toplist: [],
     }
 
     export default state

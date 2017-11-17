@@ -32,7 +32,7 @@
       margin: 0;
       padding: 0;
     }
-    .main-tab {
+    /* .main-tab {
         background: rgba(7, 17, 27, 0.1);
         text-align: center;
         color: #0080ff;
@@ -53,5 +53,22 @@
     }
     .tab-item:last-child {
         right: 12px;
+    } */
+    .main-tab {
+        display: flex;
+        height: 44px;
+        line-height: 44px;
+        font-size: 14px;
+    }
+    .tab-item {
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+    }
+    .router-link-active {
+        color: #F24C4C;
+        border-bottom: 6px solid #008080;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
     }
 </style>

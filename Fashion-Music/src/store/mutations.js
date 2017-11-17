@@ -30,5 +30,8 @@
         [types.Set_Disc_Detail] (state, disc) {
             state.disc = disc
         },
+        [types.Set_Top_List] (state, toplist) {
+            state.toplist = toplist
+        }
     }
     export default mutations

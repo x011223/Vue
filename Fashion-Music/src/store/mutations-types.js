@@ -8,3 +8,4 @@
     export const Set_Current_Index = 'Set_Current_Index'
     export const Set_Play_Mode = 'Set_Play_Mode'
     export const Set_Disc_Detail = 'Set_Disc_Detail'
+    export const Set_Top_List = 'Set_Top_List'

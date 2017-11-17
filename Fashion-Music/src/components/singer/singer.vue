@@ -6,6 +6,10 @@
 </template>
 
 <style scoped>
+    * {
+        margin: 0;
+        padding: 0;
+    }
     .singer {
         position: fixed;
         top: 88px;

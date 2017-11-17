@@ -18,7 +18,7 @@
         </div>
         <scroll @scroll="scroll" class="songs" :data="songs" ref="songList" :probe-type="probeType" :listen-scroll="listenScroll">
             <div class="songList-wrapper">
-                <song-list @select="selectSong" :songs="songs"></song-list>
+                <song-list :rank-style="rankStyle" @select="selectSong" :songs="songs"></song-list>
             </div>
             <div class="loading" v-show="!songs.length">
                 <loading></loading>
@@ -68,6 +68,10 @@
             title: {
                 type: String,
                 default: ''
+            },
+            rankStyle: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

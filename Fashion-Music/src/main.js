@@ -7,6 +7,7 @@ Vue.config.silent = true
 
 //引入4个主界面组件
 import Rank from './components/rank/rank'
+    import TopList from './components/toplist/toplist'
 import Search from './components/search/search'
 import Singer from './components/singer/singer'
 import Recommend from './components/recommend/recommend'
@@ -37,7 +38,9 @@ const routes = [
         { path: '/singer', component: Singer, children: [
             {path: ':id', component: SingersDetail}
         ]},
-        { path: '/rank', component: Rank},
+        { path: '/rank', component: Rank, children: [
+            {path: ':id', component: TopList}
+        ]},
         { path: '/search', component: Search},
 ]
 const router = new VueRouter({

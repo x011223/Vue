@@ -21,5 +21,5 @@
         state,
         mutations,
         strict: debug,
-        plugins: debug ? [createLogger()] : []
+        plugins: debug ? [createLogger()] : [],
     })
