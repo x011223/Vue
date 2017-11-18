@@ -69,7 +69,7 @@
     }   
 </script>
 
-<style>
+<style scoped>
     .rank {
         position: fixed;
         width: 100%;

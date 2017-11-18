@@ -29,6 +29,10 @@
                 type: Boolean,
                 default: false
             },
+            pullup: {
+                type: Boolean,
+                default: false
+            },
         },
         mounted () {
             setTimeout(() => {
@@ -52,6 +56,13 @@
                     this.scroll.on('scroll', (pos) => {
                         outThis.$emit('scroll', pos)
                     }) 
+                }
+                if (this.pullup) {
+                    this.scroll.on('scrollEnd', () => {
+                        if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+                            this.$emit('scrollToEnd')
+                        }
+                    })
                 }
             },
             // 代理bett-scroll

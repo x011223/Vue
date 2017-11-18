@@ -2,7 +2,7 @@
     import {getLyrics} from './api/lyric'
     import {ERR_OK} from './api/config'
     import {Base64} from 'js-base64'
-import { resolve } from 'path';
+    import { resolve } from 'path'
     export default class Song {
         constructor({id, mid, singer, name, album, duration, image, url}) {
             this.id = id
@@ -46,7 +46,7 @@ import { resolve } from 'path';
         })
     }
 
-    function filterSinger (singer) {
+    export function filterSinger (singer) {
         let ret = []
         if (!singer) {
             return ''

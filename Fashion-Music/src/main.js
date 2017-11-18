@@ -41,7 +41,9 @@ const routes = [
         { path: '/rank', component: Rank, children: [
             {path: ':id', component: TopList}
         ]},
-        { path: '/search', component: Search},
+        { path: '/search', component: Search, children: [
+            {path: ':id', component: SingersDetail}
+        ]},
 ]
 const router = new VueRouter({
     //不能写成 Router
