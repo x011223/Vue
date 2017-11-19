@@ -3,7 +3,7 @@
         <div class="iconsearch iconfont">
             <i class="icon-search"></i>
         </div>
-        <input id="searchBox" v-model="inputText" :placeholder="placeholder" @click="cancelShow">
+        <input ref="inputBox" id="searchBox" v-model="inputText" :placeholder="placeholder" @click="cancelShow">
         <div class="iconclear iconfont" v-show="inputText" @click="boxClear">
             <i class="icon-clear"></i>
         </div>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+    import {debounce} from '../../js/random'
+
     export default {
         data () {
             return {
@@ -27,6 +29,9 @@
             },
         },
         methods: {
+            blur () {
+                this.$refs.inputBox.blur()
+            },
             // 清空input中的内容
             boxClear () {
                 this.inputText = ''
@@ -46,9 +51,12 @@
         },
         created () {
             // 派发事件，通知外部组件inputText改变
-            this.$watch('inputText', (newInputText) => {
+            // this.$watch('inputText', (newInputText) => {
+            //     this.$emit('inputText', newInputText)
+            // })
+            this.$watch('inputText', debounce((newInputText) => {
                 this.$emit('inputText', newInputText)
-            })
+            }, 300))
         },
     }
 </script>

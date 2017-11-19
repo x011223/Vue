@@ -1,5 +1,8 @@
 <template>
-    <scroll class="suggest" :data="results" :pullup="pullup" @scrollToEnd="searchMore" ref="suggest">
+    <scroll class="suggest" :data="results" 
+            :pullup="pullup" @scrollToEnd="searchMore"
+            ref="suggest" :before-scroll="beforeScroll"
+            @beforeScroll="resultScroll">
         <ul class="suggest-list">
             <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
                 <div class="suggest-icon iconfont">
@@ -11,17 +14,19 @@
             </li>
             <loading v-show="hasMore" title=""></loading>
         </ul>
+        <no-result v-show="!hasMore && !results.length" title="您需要的东西正光速运送"></no-result>
     </scroll>
 </template>
 
 <script>
     import {ERR_OK} from '../../api/config'
     import {search} from '../../api/search'
-    import {creatSongs} from '../../song'
-    import {mapMutations} from 'vuex'
+    import {creatSongs} from '../../js/song'
+    import {mapMutations, mapActions} from 'vuex'
  
     import Scroll from '../../base/scroll/scroll'
     import Loading from '../../base/loading/loading'
+    import NoResult from '../../base/no-result/no-result.vue'
 
     const Type_Singer = 'singer'
     const perpage = 20
@@ -29,6 +34,7 @@
         components: {
             Scroll,
             Loading,
+            NoResult,
         },
         props: {
             // 搜索框内容
@@ -49,9 +55,13 @@
                 // 是否上拉
                 pullup: true,
                 hasMore: true,
+                beforeScroll: true,
             }
         },
         methods: {
+            resultScroll (){
+                this.$emit('resultScroll')
+            },
             // 判断结果是歌曲或者歌手 并添加相应样式
             searchStyle (result) { 
                 if (result.type === Type_Singer) {                    
@@ -105,8 +115,10 @@
                         path: `/search/${singer.id}`
                     })
                     this.setSinger(singer)
+                } else {
+                    this.insertSong(result)
                 }
-                
+                this.$emit('searchHistory')
             },
             // 检查是否有新数据可上拉显示
             _checkMore (data) {
@@ -138,7 +150,10 @@
             },
             ...mapMutations ({
                 setSinger: 'Set_Singer'
-            })
+            }),
+            ...mapActions ([
+                'insertSong'
+            ])
         },
         watch: {
             // 监视 搜索框内容 变化时搜索

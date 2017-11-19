@@ -24,7 +24,7 @@
     import {mapMutations} from 'vuex'
     import {getTopList} from '../../api/rank'
     import {ERR_OK} from '../../api/config'
-    import {playMixin} from '../../mixin'
+    import {playMixin} from '../../js/mixin'
 
     import Scroll from '../../base/scroll/scroll'
     import Loading from '../../base/loading/loading'

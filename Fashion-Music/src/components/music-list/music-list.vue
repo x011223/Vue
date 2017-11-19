@@ -32,9 +32,9 @@
     import SongList from '../../base/song-list/song-list.vue'
     import Loading from '../../base/loading/loading.vue'
 
-    import {prefixStyle} from '../../dom'
+    import {prefixStyle} from '../../js/dom'
     import {mapActions} from 'vuex'
-    import {playMixin} from '../../mixin'
+    import {playMixin} from '../../js/mixin'
 
     const Header_Height = 40
     const transform = prefixStyle('transform')

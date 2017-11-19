@@ -1,18 +1,27 @@
 
 
     import * as types from './mutations-types'
-    import {shuffle} from '../random'
-    import {playMode} from '../config'
+    import {shuffle} from '../js/random'
+    import {playMode} from '../js/config'
+    import {saveSearch} from '../js/cache'
 
     // 查找列表中是否存在歌曲
     function findIndex (list, song) {
         return list.findIndex ((item) => {
-            return item.id === song.id
+            console.log(song)
+            return item.id === song.id       
         })
     }
+    // 播放选择的歌曲
     export const selectPlay = function ({commit, state}, {list, index}) {       
         commit(types.Set_Sequence_List, list)
-        commit(types.Set_Play_List, list)
+        if (state.playmode === playMode.random) {
+            let randomList = shuffle(list)
+            commit(types.Set_Play_List, randomList)
+            index = findIndex(randomList, list[index])
+        } else {
+            commit(types.Set_Play_List, list)
+        }
         commit(types.Set_Full_Screen, true)
         commit(types.Set_Playing_State, true)
         commit(types.Set_Current_Index, index)
@@ -33,8 +42,8 @@
 
     // 插入歌曲
     export const insertSong = function ({commit, state}, song) {
-        let playlist = state.playlist
-        let sequenceList = state.sequenceList
+        let playlist = state.playlist.slice()
+        let sequenceList = state.sequenceList.slice()
         let currentIndex = state.currentIndex
         // 记录当前歌曲
         let currentSong = playlist[currentIndex]
@@ -43,7 +52,7 @@
         // 插入歌曲，索引加一
         currentIndex++
         // 插入歌曲到当前位置
-        playlist.slice(currentIndex, 0, song)
+        playlist.splice(currentIndex, 0, song)
         if (fplIndex > -1) {
             // 如果当前列表存在插入歌曲
             if (currentIndex > fplIndex) {
@@ -55,4 +64,24 @@
                 playlist.splice(fplIndex + 1, 1)
             }
         }
+        let currentIndex_1 = findIndex(sequenceList, currentSong) + 1
+        let fslIndex = findIndex(sequenceList, song) 
+        sequenceList.splice(currentIndex_1, 0, song)
+        if (fslIndex > -1) {
+            if (currentIndex_1 > fslIndex) {
+                sequenceList.splice(fslIndex, 1)
+            } else {
+                sequenceList.splice(fslIndex + 1, 1)
+            }    
+        }    
+        commit(types.Set_Play_List, playlist)
+        commit(types.Set_Sequence_List, sequenceList)
+        commit(types.Set_Current_Index, currentIndex)
+        commit(types.Set_Full_Screen, true)
+        commit(types.Set_Playing_State, true)        
+    }
+
+    // 保存搜索历史
+    export const SaveSearchHistory = function ({commit}, query) {
+        commit(types.Set_Search_History, saveSearch(query))
     }

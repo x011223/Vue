@@ -10,7 +10,7 @@
     import {mapGetters} from 'vuex'
     import {getDiscSong, getCdinfo} from '../../api/recommend'
     import {ERR_OK} from '../../api/config'
-    import {creatSongs} from '../../song'
+    import {creatSongs} from '../../js/song'
 
     export default {
         components: {
@@ -33,7 +33,6 @@
                 }
                 getDiscSong ().then((res) => {
                     if (res.code === ERR_OK) {
-                        alert("123")
                         this.songs = this._creatSongs(res.cdlist[0].songlist)
                     }
                 })

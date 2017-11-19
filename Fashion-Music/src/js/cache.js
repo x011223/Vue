@@ -1,0 +1,40 @@
+
+        
+        import storage from 'good-storage'
+
+        // 记录的搜索历史
+        const Search_Key = '__search'
+        // 记录搜索记录的最大数量
+        const Search_Max_Length = 15
+        
+        // 插入历史到最前  
+        // compare  判断历史是否在记录中
+        function insertHistory (arr, val, compare, maxLen) {
+            // 取出历史在记录中的索引
+            const index = arr.findIndex(compare)
+            if (index === 0) {
+                return
+            }
+            if (index > 0) {
+                // 将之前的记录删除
+                arr.splice(index, 1)
+            }
+            // 将新的历史纪录在最前
+            arr.unshift(val)
+            if (maxLen && index > maxLen) {
+                // 记录数量超出最大值 将最后一个删除
+                arr.pop()
+            }
+        }
+        export function saveSearch (query) {
+            // 已经记录的搜索历史 默认空
+            let searches = storage.get(Search_Key, [])   
+            insertHistory (searches, query, (item) => {
+                return item === query
+            }, Search_Max_Length)
+            storage.set(Search_Key, searches)
+            return searches
+        }
+        export function loadSearch () {
+            return storage.get(Search_Key, [])
+        }

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import {prefixStyle} from '../../dom'
+    import {prefixStyle} from '../../js/dom'
 
     const transform = prefixStyle('transform')
     const BtnWidth = 16

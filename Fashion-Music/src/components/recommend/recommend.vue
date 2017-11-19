@@ -103,7 +103,7 @@
 
     import {getRecommend, getDiscList} from '../../api/recommend'
     import {ERR_OK} from '../../api/config'
-    import {playMixin} from '../../mixin'
+    import {playMixin} from '../../js/mixin'
     import {mapMutations} from 'vuex'
 
     export default {

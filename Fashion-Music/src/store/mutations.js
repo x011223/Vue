@@ -32,6 +32,9 @@
         },
         [types.Set_Top_List] (state, toplist) {
             state.toplist = toplist
+        },
+        [types.Set_Search_History] (state, history) {
+            state.searchHistory = history
         }
     }
     export default mutations

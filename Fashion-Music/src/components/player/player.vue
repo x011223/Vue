@@ -94,9 +94,9 @@
 
 <script>
     import {mapGetters, mapMutations} from 'vuex'
-    import {playMode} from '../../config'
-    import {shuffle} from "../../random"
-    import {prefixStyle} from '../../dom'
+    import {playMode} from '../../js/config'
+    import {shuffle} from "../../js/random"
+    import {prefixStyle} from '../../js/dom'
 
     import ProgressBar from '../../base/progressbar/progressbar'
     import Lyric from 'lyric-parser'

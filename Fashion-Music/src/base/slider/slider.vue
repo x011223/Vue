@@ -60,7 +60,7 @@
 </style>
 
 <script>
-    import {addClass} from '../../dom'
+    import {addClass} from '../../js/dom'
     import betterScroll from 'better-scroll'
     
     export default {

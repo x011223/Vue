@@ -24,7 +24,7 @@
     import {getSingerList} from '../../api/singer'
     import {ERR_OK} from '../../api/config'
     import { mapMutations } from 'vuex'
-    import {playMixin} from '../../mixin'
+    import {playMixin} from '../../js/mixin'
 
     const Hot_Name = '热门'
     const Hot_Singers_len = 10

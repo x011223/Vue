@@ -33,7 +33,7 @@
     import Scroll from '../scroll/scroll.vue'
     import Loading from '../../base/loading/loading.vue'
 
-    import {getData} from '../../dom'
+    import {getData} from '../../js/dom'
 
     const anchor_Height = 18
     const TITLE_HEIGHT = 30

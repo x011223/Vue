@@ -1,6 +1,6 @@
  
  
-        import jsonp from '../jsonp'
+        import jsonp from '../js/jsonp'
         import {commonParams, options} from './config'
 
         export function getTopList () {

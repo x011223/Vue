@@ -1,6 +1,7 @@
     
     
-    import {playMode} from '../config'
+    import {playMode} from '../js/config'
+    import {loadSearch} from '../js/cache'
 
     const state = {
         singer: {},
@@ -18,6 +19,7 @@
         // 歌单歌曲列表
         disc: {},
         toplist: [],
+        searchHistory: loadSearch()
     }
 
     export default state
