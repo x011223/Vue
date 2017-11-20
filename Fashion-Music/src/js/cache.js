@@ -26,6 +26,13 @@
                 arr.pop()
             }
         }
+
+        function deleteArr (arr, compare) {
+            const index = arr.findIndex(compare) 
+            if (index > -1) {
+                arr.splice(index, 1)
+            }
+        }
         export function saveSearch (query) {
             // 已经记录的搜索历史 默认空
             let searches = storage.get(Search_Key, [])   
@@ -37,4 +44,18 @@
         }
         export function loadSearch () {
             return storage.get(Search_Key, [])
+        }
+
+        export function deleteSearch (query) {
+            let searches = storage.get(Search_Key, [])
+            deleteArr (searches, (item) => {
+                return item === query
+            })   
+            storage.set(Search_Key, searches)
+            return searches
+        }
+
+        export function clearHistory () {
+            storage.clear(Search_Key)
+            return []
         }

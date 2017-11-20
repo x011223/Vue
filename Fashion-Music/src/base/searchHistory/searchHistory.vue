@@ -1,11 +1,11 @@
 <template>
     <div class="search-list" v-show="searches.length">
         <ul>
-            <li class="search-history" v-for="history in searches">
-                <span class="history">{{history}}</span>
-                <span class="iconfont">
-                    <i class="icon-clear"></i>
-                </span>
+            <li class="search-history" v-for="history in searches" @click="search(history)">
+                <div class="history-content">
+                    <span class="history">{{history}}</span>
+                    <img class="icon-delete" src="../../base/searchbox/delete.svg" width="16" height="16" @click.stop="deleteOne(history)">
+                </div>
             </li>
         </ul>
     </div>
@@ -19,6 +19,14 @@
                 default: []
             },
         },
+        methods: {
+            search (history) {
+                this.$emit('searchSelect', history)
+            },
+            deleteOne (history) {
+                this.$emit('deleteHistory', history)
+            }
+        },
     }
 </script>
 
@@ -26,10 +34,20 @@
     .search-history {
         display: flex;
         align-items: center;
-        height: 40px;
+        height: 32px;
     }
     .history {
         flex: 1;
+        /* display: flex; */
+        position: relative;
+    }
+    .icon-delete {
+        position: absolute;
+        right: 40px;
+        padding-top: 4px;
+    }
+    .history-content {
+        display: flex;
     }
 </style>
 

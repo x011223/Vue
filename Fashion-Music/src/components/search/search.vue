@@ -3,31 +3,32 @@
         <div class="search-box-wrapper">
             <search-box ref="searchBox" @inputText="onTextChange"></search-box>
         </div>
-        <div class="hot-search-wrapper" v-show="!inputText">
-            <div class="hot-search">
-                <!-- <div class="hot-key"> -->
-                    <h1 class="hotKey-title">热门搜索</h1>
-                    <h4 class="hotKey-change" @click="changeHotKey">换一批</h4>
-                    <ul>
-                        <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
-                            <span v-html="hotKey.k"></span>
-                        </li>
-                    </ul>
-                <!-- </div> -->
-            </div>
-            <div class="search-history" v-show="searchHistory.length">
-                <h1 class="history-title">
-                    <span class="name">搜索历史</span>
-                    <span class="icon iconfont">
-                         <i class="icon-delete"></i>
-                    </span>
-                </h1>
-                <search-history :searches="searchHistory"></search-history>
-            </div>
-        </div>
-        <div class="search-result-wrapper" v-show="inputText">
-            <search-suggest @searchHistory="saveHistory" @resultScroll='inputBlur' :input-text="inputText"></search-suggest>
-        </div>        
+        <scroll class="hot-search-wrapper" ref="ScrollD" v-show="!inputText" :data="data_scroll">
+            <div class="A1">
+                <div class="hot-search">
+                    <!-- <div class="hot-key"> -->
+                        <h1 class="hotKey-title">热门搜索</h1>
+                        <h4 class="hotKey-change" @click="changeHotKey">换一批</h4>
+                        <ul>
+                            <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
+                                <span v-html="hotKey.k"></span>
+                            </li>
+                        </ul>
+                    <!-- </div> -->
+                </div>
+                <div class="search-history" v-show="searchHistory.length">
+                    <h1 class="history-title">
+                        <span class="name">搜索历史</span>
+                        <img @click="showConfirm" class="icon-delete" src="../../base/searchbox/clear.svg" width="18" height="18">
+                    </h1>
+                    <search-history :searches="searchHistory" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory"></search-history>
+                </div>
+            </div>       
+        </scroll>
+        <div class="search-result-wrapper" v-show="inputText" ref="resultW">
+            <search-suggest ref="suggest" @searchHistory="saveHistory" @resultScroll='inputBlur' :input-text="inputText"></search-suggest>
+        </div>   
+        <confirm ref="conFirm" text="确认删除所有历史记录吗？" btnConfirm="清空" @confirmConfirm="ClearSearchHistory"></confirm>     
         <router-view></router-view>
     </div>
 </template>
@@ -36,15 +37,23 @@
     import {getHotSearch} from '../../api/search'
     import {ERR_OK} from '../../api/config'
     import {mapActions, mapGetters} from 'vuex'
+    import {playMixin} from '../../js/mixin'
 
     import SearchBox from '../../base/searchbox/searchbox'
     import SearchSuggest from '../searchsuggest/searchsuggest'
     import SearchHistory from '../../base/searchHistory/searchHistory'
+    import Confirm from '../../base/confirm/confirm'
+    import Scroll from '../../base/scroll/scroll'
+
+    
     export default {
+        mixins: [playMixin],
         components: {
             SearchBox,
             SearchSuggest,
             SearchHistory,
+            Confirm,
+            Scroll,
         },
         created () {
             this._getHotSearch()
@@ -60,9 +69,22 @@
         computed: {
             ...mapGetters([
                 'searchHistory'
-            ])
+            ]),
+            data_scroll () {
+                return this.hotKeys.concat(this.searchHistory)
+            }
         },    
         methods: {
+            handlePlaylist (playlist) {
+                const searchBottom = playlist.length > 0 ? '60px' : ''                
+                this.$refs.ScrollD.$el.style.bottom = searchBottom
+                this.$refs.ScrollD.refresh()
+                this.$refs.resultW.style.bottom = searchBottom
+                this.$refs.suggest.refresh()
+            },
+            showConfirm () {
+                this.$refs.conFirm.confirmShow()
+            },
             saveHistory () {
                 this.SaveSearchHistory(this.inputText)
             },
@@ -94,9 +116,24 @@
             onTextChange (inputText) {
                 this.inputText = inputText
             },
+            deleteHistory (history) {
+                this.DeleteSearchHistory(history)
+            },
             ...mapActions([
                 'SaveSearchHistory',
+                'DeleteSearchHistory',
+                'ClearSearchHistory',
             ])
+        },
+        watch: {
+            inputText (newInputText) {
+                if (!newInputText) {
+                    setTimeout(() => {
+                        console.log("1")
+                        this.$refs.ScrollD.refresh()
+                    }, 20);
+                }
+            }
         }
     }
 </script>
@@ -110,9 +147,9 @@
         top: 152px;
         bottom: 0;
         width: 100%;
+        overflow: hidden;
     }
     .hot-search {
-        overflow: hidden;
         margin: 0 20px 20px 20px;
     }
     .hotKey-title, .hotKey-change {
@@ -144,9 +181,10 @@
         bottom: 0;
     }
     .search-history {
-        position: absolute;
+        position: relative;
         margin: 0 20px 20px 20px;
         width: 100%;
+        overflow: hidden;
     }
     .history-title {
         width: 100%;
@@ -157,12 +195,11 @@
         color: rgba(7, 17, 27, 0.7);
         text-align: left;
     }
-    .history-title > .icon {
-        display: inline-block;
-        position: relative;
-        font-size: 18px;
-        bottom: 8px;
-        right: 24px;
-        color: rgba(7, 17, 27, 0.3)
+    .history-title > .icon-delete {
+        display: inline-block;   
+        position: absolute;    
+        right: 40px; 
+        padding-top: 4px;
+        color: rgba(7, 17, 27, 0.3)    
     }
 </style>

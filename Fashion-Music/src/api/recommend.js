@@ -56,22 +56,22 @@ export function getDiscSong (disstid) {
     return jsonp(url, data, options1)
 }
 
-// export function getCdinfo () {
-//     const url = '/api/getCdinfo'
-//     const data = Object.assign({}, commonParams, {
-//         platform: 'yqq',
-//         hostUin: 0,
-//         needNewCode: 0,
-//         accessed_favbase: 0,
-//         accessed_plaza_cache: 1,
-//         cdnum: 1,
-//         realcdnum: 1,
-//         format: 'json',
-//         g_tk: 1928093487
-//     })
-//     return axios.get(url, {
-//             params: data
-//         }).then((res) => {
-//                 return Promise.resolve(res.cdlist)
-//     })
-// }
+export function getCdinfo () {
+    const url = '/api/getCdinfo'
+    const data = Object.assign({}, commonParams, {
+        platform: 'yqq',
+        hostUin: 0,
+        needNewCode: 0,
+        accessed_favbase: 0,
+        accessed_plaza_cache: 1,
+        cdnum: 1,
+        realcdnum: 1,
+        format: 'json',
+        g_tk: 1928093487
+    })
+    return axios.get(url, {
+            params: data
+        }).then((res) => {
+                return Promise.resolve(res.cdlist)
+    })
+}

@@ -5,8 +5,10 @@
             @beforeScroll="resultScroll">
         <ul class="suggest-list">
             <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
-                <div class="suggest-icon iconfont">
-                    <i :class="searchStyle(result)"></i>
+                <div class="suggest-icon">
+                    <img :class="type_singer">
+                    <!-- <img :class="type_singer" src="../../base/searchbox/singer.svg">
+                    <img src="../../base/searchbox/song.svg"> -->
                 </div>
                 <div class="suggest-name">
                     <p class="suggest-text" v-html="resultName(result)"></p>
@@ -56,25 +58,32 @@
                 pullup: true,
                 hasMore: true,
                 beforeScroll: true,
+                type_singer: false,
             }
         },
         methods: {
-            resultScroll (){
-                this.$emit('resultScroll')
-            },
-            // 判断结果是歌曲或者歌手 并添加相应样式
-            searchStyle (result) { 
-                if (result.type === Type_Singer) {                    
+            type_singer () {
+                if (result.type === Type_Singer) {
+                    // 判断结果是歌曲或者歌手 并添加相应样式
                     return 'icon-singer'
                 } else {
-                    return 'icon-yinyue'
+                    return 'icon-song'
                 }
+            },
+            refresh () {
+                this.$refs.suggest.refresh()
+            },
+            resultScroll (){
+                this.$emit('resultScroll')
             },
             // 判断结果是歌曲或者歌手 并显示相应内容
             resultName(result) {
                 if (result.type === Type_Singer) {
+                    // 判断结果是歌曲或者歌手 并添加相应样式
+                    this.type_singer = true
                     return result.singername
                 } else {
+                    this.type_singer = false
                     return `${result.name}---${result.singer}`
                 }
             },
@@ -166,7 +175,6 @@
 </script>
 
 <style scoped>
-    @import '../../base/searchbox/searchfont/iconfont.css';
     .suggest {
         height: 100%;
         overflow: hidden;
@@ -182,10 +190,10 @@
     .suggest-icon {
         flex: 0 0 30px;      
     }
-    .suggest-item[class^='icon-'] {
+    /* .suggest-item[class^='icon-'] {
         color: rgba(255, 255, 255, 0.3);
         font-size: 14px;
-    }
+    } */
     .suggest-name {
         flex: 1;
         font-size: 14px;
@@ -197,5 +205,11 @@
         overflow: hidden;
         font-size: 14px;
         white-space: nowrap;
+    }
+    .icon-singer {
+        background-image: '../../base/searchbox/singer.svg'
+    }
+    .icon-song {
+        background-image: '../../base/searchbox/song.svg'
     }
 </style>

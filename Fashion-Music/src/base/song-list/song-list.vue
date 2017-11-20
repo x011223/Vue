@@ -12,7 +12,8 @@
                     <div class="song_content">
                         <h2 class="song-name">{{song.name}}</h2>
                         <p class="song-desc">{{getSongDesc(song)}}</p>
-                    </div>                  
+                    </div> 
+                    <img src="./song.svg" class="icon-song" width="32" height="32">                 
                 </div>
             </li>
         </ul>
@@ -59,6 +60,10 @@
     @import './rankfont/iconfont.css';
     li {
         list-style: none;
+    }
+    .icon-song {
+        position: absolute;
+        right: 20px;
     }
     .rankcss {
         display: inline-block;
@@ -122,11 +127,11 @@
         color: rgb(7, 17, 27);
         margin-top: -4px;
         font-size: 14px;
-        top: 0;
+        /* top: 0; */
     }    
     .song-desc {
         position: relative;
-        margin-top: -4px;
+        margin-top: 12px;
         font-size: 8px;     
     }
 </style>

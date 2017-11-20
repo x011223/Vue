@@ -3,7 +3,7 @@
     import * as types from './mutations-types'
     import {shuffle} from '../js/random'
     import {playMode} from '../js/config'
-    import {saveSearch} from '../js/cache'
+    import {saveSearch, deleteSearch, clearHistory} from '../js/cache'
 
     // 查找列表中是否存在歌曲
     function findIndex (list, song) {
@@ -84,4 +84,12 @@
     // 保存搜索历史
     export const SaveSearchHistory = function ({commit}, query) {
         commit(types.Set_Search_History, saveSearch(query))
+    }
+
+    export const DeleteSearchHistory = function ({commit}, query) {
+        commit(types.Set_Search_History, deleteSearch(query))
+    }
+
+    export const ClearSearchHistory = function ({commit}) {
+        commit(types.Set_Search_History, clearHistory())
     }

@@ -1,11 +1,11 @@
 <template>
     <div class="search-box">
         <div class="iconsearch iconfont">
-            <i class="icon-search"></i>
+            <img src="./search.svg" width="24" height="24">
         </div>
         <input ref="inputBox" id="searchBox" v-model="inputText" :placeholder="placeholder" @click="cancelShow">
-        <div class="iconclear iconfont" v-show="inputText" @click="boxClear">
-            <i class="icon-clear"></i>
+        <div class="iconclear" v-show="inputText" @click="boxClear">
+            <img src="./delete.svg" width="24" height="24">
         </div>
         <span class="searchCancel" v-show="isCancelShow || this.inputText" @click="cancelHide">取消</span>
     </div>
@@ -62,7 +62,7 @@
 </script>
 
 <style scoped>
-    @import './searchfont/iconfont.css';
+    /* @import './searchfont/iconfont.css'; */
     #searchBox {
         flex: 1;
         width: 100%;
@@ -85,9 +85,11 @@
     }
     .iconsearch {
         position: absolute;
+        padding-top: 4px;
     }
     .iconclear {
         position: absolute;
+        padding-top: 8px;
         right: 64px;
     }
     .searchCancel {
