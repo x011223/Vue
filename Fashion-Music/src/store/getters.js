@@ -10,7 +10,7 @@
     export const disc = state => state.disc
     export const toplist = state => state.toplist
     export const searchHistory = state => state.searchHistory
-
+    export const playHistory = state => state.playHistory
     export const currentSong = (state) => {
         return state.playlist[state.currentIndex] || {}
     }

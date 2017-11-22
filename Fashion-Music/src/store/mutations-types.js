@@ -10,3 +10,4 @@
     export const Set_Disc_Detail = 'Set_Disc_Detail'
     export const Set_Top_List = 'Set_Top_List'
     export const Set_Search_History = 'Set_Search_History'
+    export const Set_Play_History = 'Set_Play_History'

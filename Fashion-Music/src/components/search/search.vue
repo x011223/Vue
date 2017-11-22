@@ -37,7 +37,7 @@
     import {getHotSearch} from '../../api/search'
     import {ERR_OK} from '../../api/config'
     import {mapActions, mapGetters} from 'vuex'
-    import {playMixin} from '../../js/mixin'
+    import {playMixin, searchMixin} from '../../js/mixin'
 
     import SearchBox from '../../base/searchbox/searchbox'
     import SearchSuggest from '../searchsuggest/searchsuggest'
@@ -47,7 +47,7 @@
 
     
     export default {
-        mixins: [playMixin],
+        mixins: [playMixin, searchMixin],
         components: {
             SearchBox,
             SearchSuggest,
@@ -63,13 +63,9 @@
                 hotKeys: [],
                 hotKeys1: [],
                 indexs: 0,
-                inputText: '',
             }
         },   
-        computed: {
-            ...mapGetters([
-                'searchHistory'
-            ]),
+        computed: {           
             data_scroll () {
                 return this.hotKeys.concat(this.searchHistory)
             }
@@ -84,10 +80,7 @@
             },
             showConfirm () {
                 this.$refs.conFirm.confirmShow()
-            },
-            saveHistory () {
-                this.SaveSearchHistory(this.inputText)
-            },
+            },            
             // 获得热搜数据
             _getHotSearch () {
                 getHotSearch().then((res) => {
@@ -98,30 +91,15 @@
                         this.hotKeys1.push(res.data.hotkey.slice(21, 30))               
                     }
                 })
-            },
-            inputBlur () {
-                this.$refs.searchBox.blur()
-            },
+            },            
             // 换热搜词
             changeHotKey () {
                 this.indexs++ 
                 if (this.indexs === 3) {
                     this.indexs = 0
                 }
-            },
-            // 填入input
-            addSearchText (inputText) {
-                this.$refs.searchBox.setSearchBox(inputText)
-            },
-            onTextChange (inputText) {
-                this.inputText = inputText
-            },
-            deleteHistory (history) {
-                this.DeleteSearchHistory(history)
-            },
+            },          
             ...mapActions([
-                'SaveSearchHistory',
-                'DeleteSearchHistory',
                 'ClearSearchHistory',
             ])
         },
@@ -129,7 +107,6 @@
             inputText (newInputText) {
                 if (!newInputText) {
                     setTimeout(() => {
-                        console.log("1")
                         this.$refs.ScrollD.refresh()
                     }, 20);
                 }

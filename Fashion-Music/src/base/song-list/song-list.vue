@@ -113,7 +113,6 @@
     .song-image {        
         display: inline-block;
         vertical-align: top;
-        /* margin-right: 8px; */
         margin-left: 12px;
     }
     .song_content {
@@ -127,7 +126,6 @@
         color: rgb(7, 17, 27);
         margin-top: -4px;
         font-size: 14px;
-        /* top: 0; */
     }    
     .song-desc {
         position: relative;

@@ -3,12 +3,12 @@
     import * as types from './mutations-types'
     import {shuffle} from '../js/random'
     import {playMode} from '../js/config'
-    import {saveSearch, deleteSearch, clearHistory} from '../js/cache'
+    import {saveSearch, deleteSearch, clearHistory, savePlay} from '../js/cache'
+
 
     // 查找列表中是否存在歌曲
     function findIndex (list, song) {
         return list.findIndex ((item) => {
-            console.log(song)
             return item.id === song.id       
         })
     }
@@ -92,4 +92,33 @@
 
     export const ClearSearchHistory = function ({commit}) {
         commit(types.Set_Search_History, clearHistory())
+    }
+
+    export const deleteSongs = function ({commit, state}, song) {
+        let playlist = state.playlist.slice()
+        let sequenceList = state.sequenceList.slice()
+        let currentIndex = state.currentIndex
+        let pIndex = findIndex(playlist, song) 
+        playlist.splice(pIndex, 1)
+        let sIndex = findIndex(sequenceList, song) 
+        sequenceList.splice(sIndex, 1)        
+        if (pIndex < currentIndex || currentIndex === playlist.length) {
+            currentIndex--
+        }
+        commit(types.Set_Play_List, playlist)
+        commit(types.Set_Sequence_List, sequenceList)
+        commit(types.Set_Current_Index, currentIndex)
+        const playL = playlist.length > 0
+        commit(types.Set_Playing_State, playL)
+    }
+
+    export const clearSong = function ({commit}) {
+        commit(types.Set_Current_Index, -1)
+        commit(types.Set_Playing_State, false)
+        commit(types.Set_Play_List, [])
+        commit(types.Set_Sequence_List, [])
+    }
+
+    export const SavePlayHistory = function ({commit}, play) {
+        commit(types.Set_Play_History, savePlay(play))
     }

@@ -1,6 +1,8 @@
 
 
-        import {mapGetters} from 'vuex'
+        import {mapGetters, mapMutations, mapActions} from 'vuex'
+        import {playMode} from './config'
+        import {shuffle} from "./random"
         export const playMixin = {
             computed: {
                 ...mapGetters([
@@ -25,4 +27,99 @@
                     throw new Error('component must implement handlePlaylist method')
                 }
             }
+        }
+
+        export const playerMixin = {
+            methods: {
+                changeMode () {
+                    // 切换播放模式
+                    const mode = (this.playmode + 1) % 3
+                    this.setPlayMode(mode)
+                    let list = null
+                    if (mode === playMode.random) {
+                        // 打乱歌曲顺序，随机播放
+                        list = shuffle(this.sequenceList)
+                    } else if (mode === playMode.loop) {
+                        // 歌词滚动重新开始
+                        if (this.currentLyric) {
+                            this.currentLyric.seek(0)
+                        }
+                        // 循环播放
+                        this.isLoop = true
+                        list = this.sequenceList            
+                    } else {
+                        // 顺序播放
+                        list = this.sequenceList
+                    }
+                    this.resetCurrent(list)
+                    this.setPlayList(list)
+                },
+                // 使当前播放的歌曲index不变
+                resetCurrent (list) {
+                    // let index = list.findIndex((item) => {
+                    //     return item.id === this.currentSong.id
+                    // })
+                    // findIndex ES6 语法
+                    let index = list.findIndex(item => item.id === this.currentSong.id)
+                    this.setCurrentIndex(index)
+                },
+                ...mapMutations ({
+                    //通过mutations 修改是否全屏
+                    setFullScreen: 'Set_Full_Screen',
+                    // 播放状态
+                    setPlayingState: 'Set_Playing_State',
+                    //  当前歌曲的 index
+                    setCurrentIndex: 'Set_Current_Index',
+                    // 修改播放模式
+                    setPlayMode: 'Set_Play_Mode',
+                    setPlayList: 'Set_Play_List',
+                }),
+            },
+            computed: {
+                ...mapGetters ([
+                    'fullscreen',
+                    'playlist',
+                    'playing',
+                    'currentSong',
+                    'currentIndex',
+                    'playmode',
+                    'sequenceList',
+                ]),
+                // 播放模式图标
+                iconMode () {
+                    return this.playmode === playMode.sequence ? 'icon-sequ' : this.playmode === playMode.loop ? 'icon-loop' : 'icon-random'
+                }
+            },
+        }
+
+        export const searchMixin = {
+            data () {
+                return {
+                    inputText: '',
+                }
+            },
+            computed: {
+                ...mapGetters([
+                    'searchHistory'
+                ]),
+            },
+            methods: {
+                saveHistory () {
+                    this.SaveSearchHistory(this.inputText)
+                },
+                inputBlur () {
+                    this.$refs.searchBox.blur()
+                },
+                // 填入input
+                addSearchText (inputText) {
+                    this.$refs.searchBox.setSearchBox(inputText)
+                },
+                onTextChange (inputText) {
+                    this.inputText = inputText
+                },
+                ...mapActions([
+                    'SaveSearchHistory',
+                    'DeleteSearchHistory',
+                ])
+            },
         }

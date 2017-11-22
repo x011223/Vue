@@ -6,6 +6,10 @@
         const Search_Key = '__search'
         // 记录搜索记录的最大数量
         const Search_Max_Length = 15
+
+        // 播放历史记录
+        const Play_Key = '__play'
+        const Play_Max_Length = 200
         
         // 插入历史到最前  
         // compare  判断历史是否在记录中
@@ -58,4 +62,17 @@
         export function clearHistory () {
             storage.clear(Search_Key)
             return []
+        }
+
+        export function savePlay (play) {
+            let plays = storage.get(Play_Key, [])   
+            insertHistory (plays, play, (item) => {
+                return item.id === play.id
+            }, Play_Max_Length)
+            storage.set(Play_Key, plays)
+            return plays
+        }
+
+        export function loadPlay () {
+            return storage.get(Play_Key, [])
         }

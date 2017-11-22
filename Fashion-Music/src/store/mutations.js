@@ -35,6 +35,9 @@
         },
         [types.Set_Search_History] (state, history) {
             state.searchHistory = history
+        },
+        [types.Set_Play_History] (state, history) {
+            state.playHistory = history
         }
     }
     export default mutations

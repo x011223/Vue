@@ -6,9 +6,9 @@
         <ul class="suggest-list">
             <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
                 <div class="suggest-icon">
-                    <img :class="type_singer">
-                    <!-- <img :class="type_singer" src="../../base/searchbox/singer.svg">
-                    <img src="../../base/searchbox/song.svg"> -->
+                    <!-- <img :class="type_singer">
+                    <img :class="type_singer" src="../../base/searchbox/singer.svg"> -->
+                    <img src="../../base/searchbox/song.svg" width="20" height="20">
                 </div>
                 <div class="suggest-name">
                     <p class="suggest-text" v-html="resultName(result)"></p>
@@ -170,7 +170,6 @@
                 this.search()
             }
         },
-
     }
 </script>
 

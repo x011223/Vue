@@ -90,4 +90,21 @@
         flex: 1;
         padding-left: 80px;
     }
+    .confirm-enter-active,  {
+        animation: confirm-fadein
+    }
+    .confirm-leave-active {
+        animation: confirm-fadeout
+    }
+    .confirm-enter, .confirm-leave-to {
+        transform: translate3d(0, 100%, 0)
+    }
+    @keyframes confirm-fadein {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @keyframes confirm-fadeout {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
 </style>
