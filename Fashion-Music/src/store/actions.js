@@ -3,7 +3,7 @@
     import * as types from './mutations-types'
     import {shuffle} from '../js/random'
     import {playMode} from '../js/config'
-    import {saveSearch, deleteSearch, clearHistory, savePlay} from '../js/cache'
+    import {saveSearch, deleteSearch, clearHistory, savePlay, saveFavorite, deleteFavorite} from '../js/cache'
 
 
     // 查找列表中是否存在歌曲
@@ -121,4 +121,12 @@
 
     export const SavePlayHistory = function ({commit}, play) {
         commit(types.Set_Play_History, savePlay(play))
+    }
+
+    export const SaveFavoriteList = function ({commit, state}, song) {
+        commit(types.Set_Favorite_list, saveFavorite(song))
+    }
+
+    export const DeleteFavoriteList = function ({commit, state}, song) {
+        commit(types.Set_Favorite_list, deleteFavorite(song))
     }

@@ -96,6 +96,7 @@
             data () {
                 return {
                     inputText: '',
+                    refreshTime: 420,
                 }
             },
             computed: {

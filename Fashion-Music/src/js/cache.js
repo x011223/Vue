@@ -1,6 +1,7 @@
 
         
         import storage from 'good-storage'
+import { insertSong } from '../store/actions';
 
         // 记录的搜索历史
         const Search_Key = '__search'
@@ -11,6 +12,9 @@
         const Play_Key = '__play'
         const Play_Max_Length = 200
         
+        const Fav_Key = '__Fav'
+        const Fav_Max_Length = 2000
+
         // 插入历史到最前  
         // compare  判断历史是否在记录中
         function insertHistory (arr, val, compare, maxLen) {
@@ -75,4 +79,26 @@
 
         export function loadPlay () {
             return storage.get(Play_Key, [])
+        }
+
+        export function saveFavorite (song) {
+            let favorites = storage.get(Fav_Key, [])
+            insertSong (favorites, song, (item) => {
+                return song.id === item.id
+            }, Fav_Max_Length)
+            storage.set(Fav_Key, favorites)
+            return favorites
+        }
+ 
+        export function deleteFavorite (song) {
+            let favorites = storage.get(Fav_Key, [])
+            deleteArr(favorites, (item) => {
+                return song.id === item.id
+            })
+            storage.set(Fav_Key, favorites)
+            return favorites
+        }
+
+        export function loadFavorite () {
+            return storage.get(Fav_Key, [])
         }

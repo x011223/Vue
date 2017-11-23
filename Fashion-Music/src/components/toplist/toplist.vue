@@ -65,7 +65,7 @@
 
 <style scoped>
     .topList-trans-enter-active, .topList-trans-leave-active {
-        transition: all 0.5s ease-in-out
+        transition: all 0.1s ease-in-out
     }
     .topList-trans-enter, .topList-trans-leave-to {
         transform: translate3d(100%, 0, 0)

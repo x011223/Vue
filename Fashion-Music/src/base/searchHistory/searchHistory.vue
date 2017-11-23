@@ -1,13 +1,15 @@
 <template>
     <div class="search-list" v-show="searches.length">
-        <ul>
-            <li class="search-history" v-for="history in searches" @click="search(history)">
-                <div class="history-content">
-                    <span class="history">{{history}}</span>
-                    <img class="icon-delete" src="../../base/searchbox/delete.svg" width="16" height="16" @click.stop="deleteOne(history)">
-                </div>
-            </li>
-        </ul>
+        <transition-group name="searchlist" tag="ul">
+            <!-- <ul>             -->
+                <li :key="history" class="search-history" v-for="history in searches" @click="search(history)">
+                    <div class="history-content">
+                        <span class="history">{{history}}</span>
+                        <img class="icon-delete" src="../../base/searchbox/delete.svg" width="16" height="16" @click.stop="deleteOne(history)">
+                    </div>
+                </li>                     
+            <!-- </ul> -->
+        </transition-group>  
     </div>
 </template>
 
@@ -31,6 +33,12 @@
 </script>
 
 <style scoped>
+    .searchlist-enter-active, .searchlist-leave-active {
+        transition: all 0.3s linear
+    }
+    .searchlist-enter, .searchlist-leave-to {
+        transform: translateX(100%)
+    }
     .search-history {
         display: flex;
         align-items: center;

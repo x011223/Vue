@@ -38,6 +38,10 @@
                 type: Boolean,
                 default: false
             },
+            refreshTime: {
+                type: Number,
+                default: 300
+            }
         },
         mounted () {
             setTimeout(() => {
@@ -102,7 +106,7 @@
                 //data 变化
                 setTimeout(() => {
                     this.refresh()
-                },1)
+                }, this.refreshTime)
             }
         }
     }

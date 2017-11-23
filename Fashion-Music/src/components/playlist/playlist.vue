@@ -209,7 +209,7 @@
         overflow: hidden;
     }
     .delete_song-enter-active, .delete_song-leave-active {
-        transition: all 0.2s linear;
+        transition: all 0.1s linear;
     }
     .delete_song-enter, .delete_song-leave-to {
         transform: translateY(-1000%)
@@ -268,7 +268,7 @@
         background: #0080ff;
     }
     .playlist-enter-active, .playlist-leave-active {
-        transition: all 0.3s ease-in
+        transition: all 0.1s ease-in
     }
     .playlist-enter, .playlist-leave-to {
         transform: translate3d(0, 100%, 0)

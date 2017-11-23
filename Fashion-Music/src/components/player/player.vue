@@ -394,7 +394,7 @@
 <style scoped>
     @import './play-icon_font/iconfont.css';
     .top_in-enter-active, .top_in-leave-active {
-        transition: all 0.3s cubic-bezier(0.37, -0.67, 0.48, 1.48)
+        transition: all 0.1s cubic-bezier(0.37, -0.67, 0.48, 1.48)
     }
     .top_in-enter, .top_in-leave-to {
         transform: translateY(100%)
@@ -585,10 +585,10 @@
         text-align: left;
     }
     .mainPlayer-enter-active, .mainPlayer-leave-active {
-        transition: all 0.4s;
+        transition: all 0.1s;
     }
     .mainPlayer-enter, .mainPlayer-leave-to {
-        transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32);
+        transition: all 0.1s cubic-bezier(0.86, 0.18, 0.82, 1.32);
         opacity: 0;
     }
     .mini-player {
@@ -628,10 +628,10 @@
         color: rgba(195, 195, 195, 0.4);
     }
     .player-top, .player-bottom {
-        transition: all 0.4s;
+        transition: all 0.1s;
     }
     .miniPlayer-enter-active，.miniPlayer-leave-active {
-        transition: all 0.4s; 
+        transition: all 0.1s; 
         opacity: 0;
     }
     .control-list {

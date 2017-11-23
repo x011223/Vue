@@ -67,7 +67,6 @@
     }
     .rankcss {
         display: inline-block;
-        /* position: absolute; */
         width: 25px;
         text-align: center;
         border-right: 2px solid #51a8ff;

@@ -68,7 +68,6 @@
     .router-link-active {
         color: #F24C4C;
         border-bottom: 6px solid #008080;
-        border-bottom-right-radius: 4px;
-        border-bottom-left-radius: 4px;
+        border-radius: 4px;
     }
 </style>

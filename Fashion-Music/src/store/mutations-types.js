@@ -11,3 +11,4 @@
     export const Set_Top_List = 'Set_Top_List'
     export const Set_Search_History = 'Set_Search_History'
     export const Set_Play_History = 'Set_Play_History'
+    export const Set_Favorite_list = 'Set_Favorite_list'

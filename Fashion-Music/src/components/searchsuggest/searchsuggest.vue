@@ -2,7 +2,8 @@
     <scroll class="suggest" :data="results" 
             :pullup="pullup" @scrollToEnd="searchMore"
             ref="suggest" :before-scroll="beforeScroll"
-            @beforeScroll="resultScroll">
+            @beforeScroll="resultScroll"
+            :refreshTime="refreshTime">
         <ul class="suggest-list">
             <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
                 <div class="suggest-icon">
@@ -59,6 +60,7 @@
                 hasMore: true,
                 beforeScroll: true,
                 type_singer: false,
+                refreshTime: 200,
             }
         },
         methods: {
@@ -189,10 +191,6 @@
     .suggest-icon {
         flex: 0 0 30px;      
     }
-    /* .suggest-item[class^='icon-'] {
-        color: rgba(255, 255, 255, 0.3);
-        font-size: 14px;
-    } */
     .suggest-name {
         flex: 1;
         font-size: 14px;

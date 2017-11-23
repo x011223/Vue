@@ -9,10 +9,12 @@ Vue.config.silent = true
 import Rank from './components/rank/rank'
     import TopList from './components/toplist/toplist'
 import Search from './components/search/search'
-import Singer from './components/singer/singer'
+    import SingersDetail from './components/singers-detail/singers-detail'
+import Singer from './components/singer/singer'    
 import Recommend from './components/recommend/recommend'
     import DiscDetail from './components/disc-detail/disc-detail'
-import SingersDetail from './components/singers-detail/singers-detail'
+import UserCenter from './components/usercenter/usercenter'
+
 
 //引入路由
 import VueRouter from 'vue-router'
@@ -44,6 +46,7 @@ const routes = [
         { path: '/search', component: Search, children: [
             {path: ':id', component: SingersDetail}
         ]},
+        { path: '/user', component: UserCenter},
 ]
 const router = new VueRouter({
     //不能写成 Router

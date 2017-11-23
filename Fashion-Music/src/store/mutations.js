@@ -38,6 +38,9 @@
         },
         [types.Set_Play_History] (state, history) {
             state.playHistory = history
+        },
+        [types.Set_Favorite_list] (state, list) {
+            state.favorotelist = list
         }
     }
     export default mutations
