@@ -4,9 +4,6 @@
             <img class="header-img" src="./header_ico.svg" alt="">
         </div>
         <h1 class="header-text">xuanran Music</h1>
-        <router-link to="/user" class="mine" tag="div">
-            <img src="../usercenter/user.svg" width="16" height="16">
-        </router-link>
     </div>
 </template>
 
@@ -37,9 +34,6 @@
         line-height: 36px;
         font-size: 18px;
         color: #ffffff;     
-    }
-    .router-link-active {
-        border: none;
     }
 </style>
 

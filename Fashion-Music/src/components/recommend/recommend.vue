@@ -1,40 +1,48 @@
 <template>
-    <div class="recommend" ref="recommend">
-        <Scroll class="recommend-content" :data="discLists" ref="scroll">
-            <div class="scroll-wrapper">
-                <div v-if="recommends.length" class="slider-wrapper">
-                    <slider>
-                        <div v-for="recommend in recommends">
-                            <a :href="recommend.linkUrl">
-                                <img @load="loadImage" :src="recommend.picUrl">
-                            </a>
-                        </div>
-                    </slider>
-                </div>
-                <div class="recommend-list">
-                    <h1 class="list-title">热门推荐</h1>
-                    <ul>
-                        <li v-for="discList in discLists" class="discList" @click="selectDisc(discList)">
-                            <div class="list-icon">
-                                <img v-lazy="discList.imgurl" width="60" height="60">
+    <transition name="Recommend">
+        <div class="recommend" ref="recommend">
+            <Scroll class="recommend-content" :data="discLists" ref="scroll">
+                <div class="scroll-wrapper">
+                    <div v-if="recommends.length" class="slider-wrapper">
+                        <slider>
+                            <div v-for="recommend in recommends">
+                                <a :href="recommend.linkUrl">
+                                    <img @load="loadImage" :src="recommend.picUrl">
+                                </a>
                             </div>
-                            <div class="list-text">
-                                <h2 class="name" v-html="discList.creator.name"></h2>
-                                <p class="desc" v-html="discList.dissname"></p>
-                            </div>
-                        </li>
-                    </ul>
+                        </slider>
+                    </div>
+                    <div class="recommend-list">
+                        <h1 class="list-title">热门推荐</h1>
+                        <ul>
+                            <li v-for="discList in discLists" class="discList" @click="selectDisc(discList)">
+                                <div class="list-icon">
+                                    <img v-lazy="discList.imgurl" width="60" height="60">
+                                </div>
+                                <div class="list-text">
+                                    <h2 class="name" v-html="discList.creator.name"></h2>
+                                    <p class="desc" v-html="discList.dissname"></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <loading class="loading-wrapper" v-show="!discLists.length"></loading>
-            </div>
-        </Scroll>
-        <router-view></router-view>
-    </div>
+                <div>
+                    <loading class="loading-wrapper" v-show="!discLists.length"></loading>
+                </div>
+            </Scroll>
+            <router-view></router-view>
+        </div>
+    </transition>
 </template>
 
 <style scoped>
+    .Recommend-enter-active, .Recommend-leave-active {
+        transition: all 0.1s 
+    }
+    .Recommend-enter, .Recommend-leave-to {
+        transform: translateX(-100%)
+    }
     .recommend {
         position: fixed;
         width: 100%;

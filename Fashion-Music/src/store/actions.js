@@ -123,10 +123,10 @@
         commit(types.Set_Play_History, savePlay(play))
     }
 
-    export const SaveFavoriteList = function ({commit, state}, song) {
+    export const SaveFavoriteList = function ({commit}, song) {
         commit(types.Set_Favorite_list, saveFavorite(song))
     }
 
-    export const DeleteFavoriteList = function ({commit, state}, song) {
+    export const DeleteFavoriteList = function ({commit}, song) {
         commit(types.Set_Favorite_list, deleteFavorite(song))
     }

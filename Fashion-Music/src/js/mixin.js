@@ -63,6 +63,26 @@
                     let index = list.findIndex(item => item.id === this.currentSong.id)
                     this.setCurrentIndex(index)
                 },
+                iconFav (song) {
+                    if (this.isFavorite(song)) {
+                        return 'icon-fav_on'
+                    } else {
+                        return 'icon-fav_off'
+                    }
+                },
+                toggleFavorite (song) {
+                    if (this.isFavorite(song)) {
+                        this.DeleteFavoriteList(song)
+                    } else {
+                        this.SaveFavoriteList(song)
+                    }
+                },
+                isFavorite (song) {
+                    let index = this.favoritelist.findIndex((item) => {
+                        return item.id === song.id
+                    })
+                    return index > -1
+                },
                 ...mapMutations ({
                     //通过mutations 修改是否全屏
                     setFullScreen: 'Set_Full_Screen',
@@ -74,6 +94,10 @@
                     setPlayMode: 'Set_Play_Mode',
                     setPlayList: 'Set_Play_List',
                 }),
+                ...mapActions([
+                    'SaveFavoriteList',
+                    'DeleteFavoriteList'
+                ])
             },
             computed: {
                 ...mapGetters ([
@@ -84,6 +108,7 @@
                     'currentIndex',
                     'playmode',
                     'sequenceList',
+                    'favoritelist'
                 ]),
                 // 播放模式图标
                 iconMode () {

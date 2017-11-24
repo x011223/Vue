@@ -1,28 +1,121 @@
 <template>
     <transition name="userFade">
-       <div class="usercenter">
-            <div class="user-back" @click="userBack">
+       <div class="usercenter" ref="userCenter">
+            <!-- <div class="user-back" @click="userBack">
                 <img src="./back.svg" width="24" height="24">
-            </div>
+            </div> -->
             <div class="user-switch">
-                <p class="switch-fav">我的最爱</p>
-                <p class="switch-play">曾经鉴赏</p>
+                <p class="switch-fav" @click.stop="showFav">我的最爱</p>
+                <p class="switch-play" @click.stop="showPlay">曾经鉴赏</p>
             </div>
-            <div class="user-play iconfont">
+            <div class="user-play iconfont" @click="randomplay">
                 <i class="icon-bofang"></i>
                 <span class="random-play">随机播放全部</span>
             </div>
-            <div class="user-list"></div>
+            <div class="user-list" ref="userList">
+                <div ref="FavList" class="favorite-list"  v-show="showFavList">
+                    <scroll ref="scroll" class="scroll" :data="favoritelist">
+                        <div>
+                            <song-list class="list_1" :songs="favoritelist" @select="selectSong"></song-list>
+                        </div>
+                    </scroll>
+                </div>      
+                <div ref="PlayList" class="play-list" v-show="showPlayList"> 
+                    <scroll ref="scroll" class="scroll" :data="searchHistory"> 
+                        <div>                  
+                            <song-list class="list_1" :songs="playHistory" @select="selectSong"></song-list>
+                        </div>  
+                    </scroll>
+                </div>   
+            </div>
+            <div class="noresult" v-show="whoNoresult">
+                <no-result :title="noresult_content"></no-result>
+            </div>
         </div>
     </transition>
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex'
+    import {insertSong} from '../../store/actions'
+    import {playMixin} from '../../js/mixin'
+
+    import Scroll from '../../base/scroll/scroll'
+    import SongList from '../../base/song-list/song-list'
+    import Song from '../../js/song'
+    import NoResult from '../../base/no-result/no-result'
     export default {
+        mixins: [playMixin],
+        data () {
+            return {
+                showFavList: true,
+                showPlayList: false,
+            }
+        },
+        components: {
+            Scroll,
+            SongList,
+            NoResult,
+        },
         methods: {
+            handlePlaylist (playlist) {
+                this.$refs.scroll.refresh()
+                let UserBottom = playlist.length > 0 ? '60px' : ''
+                this.$refs.userList.style.bottom = UserBottom
+                this.$refs.scroll.refresh()
+            },
+            randomplay () {
+                let list = this.showFavList ? this.favoritelist : this.playHistory
+                list = list.map((song) => {
+                    return new Song(song)
+                })
+                this.randomPlay({
+                    list
+                })
+            },
+            showFav () {
+                this.showFavList = true
+                this.showPlayList = false
+                this.$refs.scroll.refresh()
+            },
+            showPlay () {
+                this.showFavList = false
+                this.showPlayList = true
+                this.$refs.scroll.refresh()
+            },
             userBack () {
                 this.$router.back()
-            }
+            },
+            selectSong (song) {
+                this.insertSong(new Song(song))
+            },
+            ...mapActions([
+                'insertSong',
+                'randomPlay'
+            ])
+        },
+        computed: {
+            whoNoresult () {
+                if (this.showFavList) {
+                    return !this.favoritelist.length
+                }
+                if (this.showPlayList) {
+                    return !this.playHistory.length
+                }
+            },
+            noresult_content () {
+                if (this.showFavList) {
+                    return "暂无收藏"
+                }
+                if (this.showPlayList) {
+                    return "暂无播放"
+                }
+            },
+            ...mapGetters([
+                'favoritelist',
+                'playHistory',
+                'playlist'
+            ])
         }
     }
 </script>
@@ -30,24 +123,18 @@
 <style scoped>
     @import '../player/play-icon_font/iconfont.css';
     .userFade-enter-active, .userFade-leave-active {
-        transition: all 0.1s ease-in
+        transition: all 0.1s
     }
     .userFade-enter, .userFade-leave-to {
-        transform: translateX(100%)
+        transform: translateY(100%);
     }
     .usercenter {
         position: fixed;
         width: 100%;
-        top: 0;
+        top: 88px;
         bottom: 0;
         text-align: center;
-        z-index: 500;
         background: #408080;
-    }
-    .user-back {
-        position: absolute;
-        top: 0.9rem;
-        left: 0.7rem;
     }
     .user-switch {
         display: flex;
@@ -65,7 +152,7 @@
     }
     .user-play {
         position: absolute;
-        top: 80px;
+        top: 3.5rem;
         left: 5rem;
         border: 1px solid #ff0000;
         border-radius: 16px;
@@ -80,7 +167,20 @@
         font-size: 18px;
     }
     .user-list {
-
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        top: 5rem;
     }
-    
+    .favorite-list, .play-list, .scroll {       
+        position: fixed;
+        overflow: hidden;
+        top: 13.5rem;
+        left: 0;
+        height: 100%;
+        width: 100%
+    }
+    .scroll > div {
+        margin-left: -20rem;
+    }
 </style>

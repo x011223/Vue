@@ -68,7 +68,7 @@
                             <i @click="nextSong" class="icon-next"></i>
                         </div>
                         <div class="operator operator-right iconfont">
-                            <i class="icon-fav_off"></i>
+                            <i @click="toggleFavorite(currentSong)" :class="iconFav(currentSong)"></i>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
             </div>
         </transition>
         <play-list ref="PLAYLIST"></play-list>
-        <audio ref="Audio" :src="currentSong.url" @canplay="ready" @error="error" @timeupdate="updateTime" @ended="nextSong" :loop="isLoop"></audio>
+        <audio ref="Audio" :src="currentSong.url" @play="ready" @error="error" @timeupdate="updateTime" @ended="nextSong" :loop="isLoop"></audio>
     </div>
 </template>
 
@@ -176,6 +176,7 @@
                 }
                 if (this.playlist.length === 1) {
                     this.isLoop = true
+                    return
                 } else {
                     let index = this.currentIndex + 1
                     if (index === this.playlist.length) {
@@ -214,6 +215,7 @@
             },
             error () {
                 this.songReady = true
+                this.nextSong()
             },
             disableTouch () {
                 return this.songReady ? '' : 'disable'
@@ -246,6 +248,9 @@
             // 获得处理后的歌词
             getLyrics () {
                 this.currentSong.getLyrics().then((lyric) => {
+                    if (this.currentSong.lyric !== lyric) {
+                        return
+                    }
                     this.currentLyric = new Lyric(lyric, this.lyricHandle) 
                     if (this.playing) {
                         // 使歌词滚动
@@ -373,12 +378,15 @@
                 // 歌曲切换时停止上一首歌的歌词滚动
                 if (this.currentLyric) {
                     this.currentLyric.stop()
+                    this.currentTime = 0
+                    this.currentLyricLine = 0
                 }
+                clearTimeout(this.timer)
                 // 播放选择 的歌曲
-                setTimeout(() => { 
+                this.timer = setTimeout(() => { 
                     this.$refs.Audio.play()
                     this.getLyrics()
-                }, 120)
+                }, 1000)
             },
             playing (playingState) {
                 // 控制 歌曲播放暂停

@@ -40,7 +40,7 @@
             state.playHistory = history
         },
         [types.Set_Favorite_list] (state, list) {
-            state.favorotelist = list
+            state.favoritelist = list
         }
     }
     export default mutations

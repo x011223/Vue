@@ -1,36 +1,38 @@
 <template>
-    <div class="search">
-        <div class="search-box-wrapper">
-            <search-box ref="searchBox" @inputText="onTextChange"></search-box>
+    <transition name="Search">
+        <div class="search">
+            <div class="search-box-wrapper">
+                <search-box ref="searchBox" @inputText="onTextChange"></search-box>
+            </div>
+            <scroll class="hot-search-wrapper" ref="ScrollD" v-show="!inputText" :data="data_scroll">
+                <div class="A1">
+                    <div class="hot-search">
+                        <!-- <div class="hot-key"> -->
+                            <h1 class="hotKey-title">热门搜索</h1>
+                            <h4 class="hotKey-change" @click="changeHotKey">换一批</h4>
+                            <ul>
+                                <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
+                                    <span v-html="hotKey.k"></span>
+                                </li>
+                            </ul>
+                        <!-- </div> -->
+                    </div>
+                    <div class="search-history" v-show="searchHistory.length">
+                        <h1 class="history-title">
+                            <span class="name">搜索历史</span>
+                            <img @click="showConfirm" class="icon-delete" src="../../base/searchbox/clear.svg" width="18" height="18">
+                        </h1>
+                        <search-history :searches="searchHistory" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory"></search-history>
+                    </div>
+                </div>       
+            </scroll>
+            <div class="search-result-wrapper" v-show="inputText" ref="resultW">
+                <search-suggest ref="suggest" @searchHistory="saveHistory" @resultScroll='inputBlur' :input-text="inputText"></search-suggest>
+            </div>   
+            <confirm ref="conFirm" text="确认删除所有历史记录吗？" btnConfirm="清空" @confirmConfirm="ClearSearchHistory"></confirm>     
+            <router-view></router-view>
         </div>
-        <scroll class="hot-search-wrapper" ref="ScrollD" v-show="!inputText" :data="data_scroll">
-            <div class="A1">
-                <div class="hot-search">
-                    <!-- <div class="hot-key"> -->
-                        <h1 class="hotKey-title">热门搜索</h1>
-                        <h4 class="hotKey-change" @click="changeHotKey">换一批</h4>
-                        <ul>
-                            <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
-                                <span v-html="hotKey.k"></span>
-                            </li>
-                        </ul>
-                    <!-- </div> -->
-                </div>
-                <div class="search-history" v-show="searchHistory.length">
-                    <h1 class="history-title">
-                        <span class="name">搜索历史</span>
-                        <img @click="showConfirm" class="icon-delete" src="../../base/searchbox/clear.svg" width="18" height="18">
-                    </h1>
-                    <search-history :searches="searchHistory" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory"></search-history>
-                </div>
-            </div>       
-        </scroll>
-        <div class="search-result-wrapper" v-show="inputText" ref="resultW">
-            <search-suggest ref="suggest" @searchHistory="saveHistory" @resultScroll='inputBlur' :input-text="inputText"></search-suggest>
-        </div>   
-        <confirm ref="conFirm" text="确认删除所有历史记录吗？" btnConfirm="清空" @confirmConfirm="ClearSearchHistory"></confirm>     
-        <router-view></router-view>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -116,6 +118,12 @@
 </script>
 
 <style scoped>
+    .Search-enter-active, .Search-leave-active {
+        transition: all 0.1s 
+    }
+    .Search-enter, .Search-leave-to {
+        transform: translateX(100%)
+    }
     li {
         list-style: none;
     }

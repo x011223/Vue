@@ -1,7 +1,6 @@
 
         
         import storage from 'good-storage'
-import { insertSong } from '../store/actions';
 
         // 记录的搜索历史
         const Search_Key = '__search'
@@ -12,8 +11,8 @@ import { insertSong } from '../store/actions';
         const Play_Key = '__play'
         const Play_Max_Length = 200
         
-        const Fav_Key = '__Fav'
-        const Fav_Max_Length = 2000
+        const Favorite_Key = '__favorite'
+        const Favorite_Max_Length = 1000
 
         // 插入历史到最前  
         // compare  判断历史是否在记录中
@@ -81,24 +80,25 @@ import { insertSong } from '../store/actions';
             return storage.get(Play_Key, [])
         }
 
-        export function saveFavorite (song) {
-            let favorites = storage.get(Fav_Key, [])
-            insertSong (favorites, song, (item) => {
-                return song.id === item.id
-            }, Fav_Max_Length)
-            storage.set(Fav_Key, favorites)
-            return favorites
-        }
- 
-        export function deleteFavorite (song) {
-            let favorites = storage.get(Fav_Key, [])
-            deleteArr(favorites, (item) => {
-                return song.id === item.id
+        export function saveFavorite(song) {
+            let songs = storage.get(Favorite_Key, [])
+            insertHistory (songs, song, (item) => {
+              return song.id === item.id
+            }, Favorite_Max_Length)
+            storage.set(Favorite_Key, songs)
+            return songs
+          }
+          
+          export function deleteFavorite(song) {
+            let songs = storage.get(Favorite_Key, [])
+            deleteArr (songs, (item) => {
+              return item.id === song.id
             })
-            storage.set(Fav_Key, favorites)
-            return favorites
-        }
-
-        export function loadFavorite () {
-            return storage.get(Fav_Key, [])
-        }
+            storage.set(Favorite_Key, songs)
+            return songs
+          }
+          
+          export function loadFavorite() {
+            return storage.get(Favorite_Key, [])
+          }
+          

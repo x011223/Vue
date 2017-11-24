@@ -18,7 +18,7 @@
                             <span class="song-name">{{song.name}}</span>
                             <div class="icons">
                                 <i class="iconplay" :class="currentIcon(song)"></i>
-                                <i class="icon-fav_off"></i>
+                                <i :class="iconFav(song)" @click.stop="toggleFavorite(song)"></i>
                                 <img class="icon-delete" @click.stop="deleteSong(song)" src="./delete.svg" width="14" height="14">
                             </div>
                         </li>
@@ -154,7 +154,7 @@
 </script>
 
 <style scoped>
-    @import '../player/play-icon_font/iconfont.css';
+    @import '../player/play-icon_font/iconfont.css'; 
     * {
         margin: 0;
         padding: 0;
@@ -240,7 +240,7 @@
     .icon-zanting {
         font-size: 16px;
     }
-    .icon-fav_off {
+    .icon-fav_off, .icon-fav_on {
         font-size: 16px;
     }
     .icon-delete {

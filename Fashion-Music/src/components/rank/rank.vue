@@ -1,23 +1,25 @@
 <template>
-    <div class="rank" ref="rank">
-        <scroll :data="topList" class="toplist" ref="topList">
-            <ul>
-                <li v-for="rankItem in topList" class="item" @click="showTopList(rankItem)">
-                    <div icon>
-                        <img v-lazy="rankItem.picUrl" width="100" height="100">
-                    </div>               
-                    <ul class="songlist">
-                        <li v-for="(songItem, index) in rankItem.songList" class="song">
-                            <span>{{index + 1}}</span>
-                            <span>{{songItem.songname}}-{{songItem.singername}}</span>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <loading v-show="!topList.length"></loading>
-        </scroll>
-        <router-view></router-view>
-    </div>
+    <transition name="Rank">
+        <div class="rank" ref="rank">
+            <scroll :data="topList" class="toplist" ref="topList">
+                <ul>
+                    <li v-for="rankItem in topList" class="item" @click="showTopList(rankItem)">
+                        <div icon>
+                            <img v-lazy="rankItem.picUrl" width="100" height="100">
+                        </div>               
+                        <ul class="songlist">
+                            <li v-for="(songItem, index) in rankItem.songList" class="song">
+                                <span>{{index + 1}}</span>
+                                <span>{{songItem.songname}}-{{songItem.singername}}</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <loading v-show="!topList.length"></loading>
+            </scroll>
+            <router-view></router-view>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -70,6 +72,12 @@
 </script>
 
 <style scoped>
+    .Rank-enter-active, .Rank-leave-active {
+        transition: all 0.1s 
+    }
+    .Rank-enter, .Rank-leave-to {
+        transform: translateX(100%)
+    }
     .rank {
         position: fixed;
         width: 100%;

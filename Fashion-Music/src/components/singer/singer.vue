@@ -1,11 +1,19 @@
 <template>
-    <div class="singer" ref="singer">
-        <list-view ref="listview" :data="singers" @select="selectSinger"></list-view>
-        <router-view></router-view>
-    </div>
+    <transition name="Singer">
+        <div class="singer" ref="singer">
+            <list-view ref="listview" :data="singers" @select="selectSinger"></list-view>
+            <router-view></router-view>
+        </div>
+    </transition>
 </template>
 
 <style scoped>
+    .Singer-enter-active, .Singer-leave-active {
+        transition: all 0.1s 
+    }
+    .Singer-enter, .Singer-leave-to {
+        transform: translateX(-100%)
+    }
     * {
         margin: 0;
         padding: 0;

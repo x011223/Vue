@@ -4,6 +4,7 @@
         <div class="main-tab">
             <router-link  class="tab-item" to="/recommend">推荐</router-link>
             <router-link  class="tab-item" to="/singer">歌手</router-link>
+            <router-link  class="tab-item" to="/user">Mine</router-link>
             <router-link  class="tab-item" to="/rank">排行</router-link>
             <router-link  class="tab-item" to="/search">搜索</router-link>
         </div>
@@ -27,7 +28,7 @@
     }
 </script>
 
-<style>
+<style lang="scss">
     * {
       margin: 0;
       padding: 0;
@@ -54,6 +55,7 @@
     .tab-item:last-child {
         right: 12px;
     } */
+    $act-color: #F90;
     .main-tab {
         display: flex;
         height: 44px;
@@ -66,7 +68,8 @@
         text-decoration: none;
     }
     .router-link-active {
-        color: #F24C4C;
+        // color: #F24C4C;
+        color: $act-color;
         border-bottom: 6px solid #008080;
         border-radius: 4px;
     }
