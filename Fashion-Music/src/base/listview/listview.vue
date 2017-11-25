@@ -5,10 +5,10 @@
                              :probe-type="probeType">
         <ul>
             <li v-for="group in data" class="list-group" ref="listgroup">
-                <h2 class="list-title">{{group.title}}</h2>
+                <h2 class="boxSize list-title">{{group.title}}</h2>
                 <ul>
                     <li v-for="item in group.items" class="list-item" @click="selectItem(item)">
-                        <img class="avatar" v-lazy="item.avatar">
+                        <img class="lineSize item-avatar" v-lazy="item.avatar">
                         <span class="item-name">{{item.name}}</span>
                     </li>
                 </ul>
@@ -17,10 +17,10 @@
         <div class="list-enter" @touchstart="onListEnterTouch" @touchmove.stop.prevent="onListMove">
             <ul>
                 <!-- 获取到触摸点击的index -->
-                <li class="item" v-for="(item, index) in listEnter" :data-index="index" :class="{'current':currentIndex===index}">{{item}}</li>
+                <li class="item-pos" v-for="(item, index) in listEnter" :data-index="index" :class="{'current':currentIndex===index}">{{item}}</li>
             </ul>
         </div>
-        <div class="list-fixed" v-show="fixedTitle" ref="fixed">
+        <div class="list-fixed posAbs" v-show="fixedTitle" ref="fixed">
             <h1 class="fixed-title">{{fixedTitle}}</h1>
         </div>
         <div class="loading-container" v-show="!data.length">
@@ -178,82 +178,79 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/mixin.scss';
+    @import '../../sass/style.scss';
     .listview {
         position: relative;
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background: rgba(233, 233, 233, 0.3);
-    }
-    .list-group {
-        padding-bottom: 30px;
-    }
-    .list-title {
-        height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-        font-size: 12px;
-        color: rgba(7, 17, 27, 0.4);
-        background: #e3e3e3;
-    }
-    .list-item {
-        display: flex;
-        align-items: center;
-        padding: 20px 0 0 30px;
-    }
-    .avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-    }
-    .item-name {
-        margin-left: 20px;
-        color: #00a4a4;
-        font-size: medium;
-    }
-    .list-enter {
-        position: absolute;
-        z-index: 30;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 20px;
-        padding: 20px 0;
-        border-radius: 10px;
-        text-align: center;
-        font-family: Helvetica;
-    }
-    .item {
-        list-style: none;
-        padding: 3px;
-        line-height: 1;
-        color: #0065ca;
-        font-size: 8px;
-    }
-    .current {
-        color: red;
-    }
-    .list-fixed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-    }
-    .fixed-title {
-        height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-        font-size: 12px;
-        color: rgba(7, 17, 27, 0.4);
-        background: rgba(233, 233, 233, 0.3);
-    }
-    .loading-container {
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+        background: $background-color-list;
+        .list-group {
+            margin-bottom: 12px;
+            .list-title {
+                height: $height-big;
+                line-height: $height-big;
+                padding-left: $padding-left-list-item;
+                font-size: $font-size-n;
+                color: $color-text-title;
+                background: $background-color-compare;
+            }
+            .list-item {
+                display: flex;
+                align-items: center;
+                padding: {
+                    top: $padding-top-list-item;
+                    left: $padding-left-list-item;
+                }
+                .item-avatar {
+                    width: $height-big-xx;
+                    height: $height-big-xx;
+                    border-radius: 50%;
+                }
+                .item-name {
+                    margin-left: 20px;
+                    color: $color-text-name;
+                    font-size: $font-size-b;
+                }
+            }
+        }
+        .list-enter {
+            position: absolute;
+            z-index: 30;
+            right: 0;
+            top: 50%;
+            /*! 使侧边定位栏上移50%*/
+            transform: translateY(-50%);
+            text-align: center;
+            .item-pos {
+                list-style: none;
+                padding: 3px;
+                line-height: 1;
+                color: #0065ca;
+                font-size: $font-size-s;
+            }
+            .current {
+                color: red;
+            }
+        }
+        .list-fixed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            .fixed-title {
+                height: $height-big;
+                line-height: $height-big;
+                padding-left: $padding-left-list-item;
+                font-size: $font-size-n;
+                color: $color-text-medium;
+                background: $background-color-title;
+            }
+        }
+        @include loadingStyle;
+    }  
 </style>
 
 

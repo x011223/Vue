@@ -7,22 +7,18 @@
     </transition>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
     .Singer-enter-active, .Singer-leave-active {
         transition: all 0.1s 
     }
     .Singer-enter, .Singer-leave-to {
         transform: translateX(-100%)
     }
-    * {
-        margin: 0;
-        padding: 0;
-    }
     .singer {
         position: fixed;
-        top: 88px;
-        bottom: 0;
         width: 100%;
+        top: 88px;
+        bottom: 0;       
     }
 </style>
 

@@ -52,7 +52,6 @@
     }
     .recommend-content {
         height: 100%;
-        overflow: hidden;
     }
     .scroll-wrapper {
         overflow: hidden;
@@ -92,10 +91,10 @@
     }
     .name {
         margin-bottom: 10px;
-        color: #408060;
+        color: #3f7e5f;
     }
     .desc {
-        color: #408099;
+        color: #5ca2bc;
     }
     .loading-wrapper {
         position: absolute;
