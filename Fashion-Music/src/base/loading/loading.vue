@@ -16,15 +16,16 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .loading {
         width: 100%;
         text-align: center;
     }
     .loading-title {
-        line-height: 20px;
+        line-height: $height-small;
         top: 8px;
-        font-size: 12px;
+        font-size: $font-size-b;
         color: #0080ff;
     }
 </style>

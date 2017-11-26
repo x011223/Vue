@@ -175,33 +175,37 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
+    @import '../../sass/mixin.scss';
     .suggest {
         height: 100%;
         overflow: hidden;
-    }
-    .suggest-list {
-        padding: 0 30px;
-    }
-    .suggest-item {
-        display: flex;
-        align-items: center;
-        padding-bottom: 20px;
-    }
-    .suggest-icon {
-        flex: 0 0 30px;      
-    }
-    .suggest-name {
-        flex: 1;
-        font-size: 14px;
-        color: rgba(7, 17, 27, 0.7);
-        overflow: hidden;
-    }
-    .suggest-text { 
-        text-overflow: ellipsis;
-        overflow: hidden;
-        font-size: 14px;
-        white-space: nowrap;
+        .suggest-list {
+            padding-left: $height-big;
+            margin-top: $height-small-ss;
+            overflow: hidden;
+                .suggest-item {
+                display: flex;
+                height: $height-big;
+                line-height: $height-big;
+                .suggest-icon {
+                    flex: 0 0 40px;      
+                }
+                .suggest-name {
+                    flex: 1;
+                    font-size: 14px;
+                    color: rgba(7, 17, 27, 0.7);
+                    overflow: hidden;
+                    .suggest-text { 
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        font-size: $font-size-b;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
     }
     .icon-singer {
         background-image: '../../base/searchbox/singer.svg'

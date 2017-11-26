@@ -7,22 +7,20 @@
             <scroll class="hot-search-wrapper" ref="ScrollD" v-show="!inputText" :data="data_scroll">
                 <div class="A1">
                     <div class="hot-search">
-                        <!-- <div class="hot-key"> -->
                             <h1 class="hotKey-title">热门搜索</h1>
                             <h4 class="hotKey-change" @click="changeHotKey">换一批</h4>
-                            <ul>
-                                <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
-                                    <span v-html="hotKey.k"></span>
-                                </li>
-                            </ul>
-                        <!-- </div> -->
+                        <ul class="content-warpper">
+                            <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
+                                <span v-html="hotKey.k"></span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="search-history" v-show="searchHistory.length">
                         <h1 class="history-title">
                             <span class="name">搜索历史</span>
                             <img @click="showConfirm" class="icon-delete" src="../../base/searchbox/clear.svg" width="18" height="18">
                         </h1>
-                        <search-history :searches="searchHistory" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory"></search-history>
+                        <search-history class="history-content" :searches="searchHistory" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory"></search-history>
                     </div>
                 </div>       
             </scroll>
@@ -46,7 +44,6 @@
     import SearchHistory from '../../base/searchHistory/searchHistory'
     import Confirm from '../../base/confirm/confirm'
     import Scroll from '../../base/scroll/scroll'
-
     
     export default {
         mixins: [playMixin, searchMixin],
@@ -117,7 +114,8 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .Search-enter-active, .Search-leave-active {
         transition: all 0.1s 
     }
@@ -127,64 +125,77 @@
     li {
         list-style: none;
     }
-    .hot-search-wrapper {
-        position: fixed;
-        top: 152px;
-        bottom: 0;
-        width: 100%;
-        overflow: hidden;
-    }
-    .hot-search {
-        margin: 0 20px 20px 20px;
-    }
-    .hotKey-title, .hotKey-change {
-        display: inline-block;
-    }
-    .hotKey-title {
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: rgba(7, 17, 27, 0.7);
-    }
-    .hotKey-change {
-        position: absolute;
-        font-size: 18px;
-        top: 6px;
-        right: 8px;
-        color: rgba(7, 17, 27, 0.3)
-    }
-    .hotKey-content {
-        display: inline-block;
-        padding: 5px 10px;
-        margin: 0 20px 10px 0;
-        border-radius: 6px;
-        background: rgba(255, 205, 49, 0.5);
-    }
-    .search-result-wrapper {
-        position: fixed;
-        width: 100%;
-        top: 152px;
-        bottom: 0;
-    }
-    .search-history {
-        position: relative;
-        margin: 0 20px 20px 20px;
-        width: 100%;
-        overflow: hidden;
-    }
-    .history-title {
-        width: 100%;
-    }
-    .history-title > .name {
-        display: inline-block;
-        font-size: 24px;
-        color: rgba(7, 17, 27, 0.7);
-        text-align: left;
-    }
-    .history-title > .icon-delete {
-        display: inline-block;   
-        position: absolute;    
-        right: 40px; 
-        padding-top: 4px;
-        color: rgba(7, 17, 27, 0.3)    
+    .search {
+        .hot-search-wrapper {
+            position: fixed;
+            top: 10rem;
+            bottom: 0;
+            width: 100%;
+            overflow: hidden;
+            margin-top: $height-small-s;
+            .A1 {
+                .hot-search {
+                    .hotKey-title {   
+                        height: $height-big-x;
+                        line-height: $height-big-x;
+                        padding-left: 1.6rem;
+                        background: $background-color-title-dark;                  
+                        font: {
+                            size: $font-size-X;
+                            weight: $font-weight-s;
+                        }
+                    }
+                    .hotKey-change {
+                        position: absolute;  
+                        top: 0.75rem;
+                        right: 1.4rem; 
+                        font-weight: $font-weight-s;
+                    }
+                    .content-warpper {
+                        margin-bottom: 1.6rem;
+                        padding-left: 1.6rem;
+                        .hotKey-content { 
+                            padding: {
+                                top: 8px;
+                                right: 8px;
+                            }
+                            display: inline-block;
+                            margin-top: 16px;
+                            span {                                
+                                padding: 8px 8px;                
+                                border-radius: 9px;
+                                background: $background-color-light;
+                            }
+                        }
+                    }
+                }
+                .search-history {
+                    .history-title {
+                        position: relative;                        
+                        padding-left: 1.6rem;
+                        background: $background-color-title-dark;
+                        .name {
+                            height: $height-big-x;
+                            line-height: $height-big-x;
+                            font: {
+                                size: $font-size-X;
+                                weight: $font-weight-s;
+                            }
+                        }
+                        .icon-delete {
+                            position: absolute;
+                            right: 2.4rem;
+                            top: 1rem;
+                        }
+                    }
+                    .history-content {
+                        padding: {
+                            left: 1.6rem;
+                            top: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 </style>

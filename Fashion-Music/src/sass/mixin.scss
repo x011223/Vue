@@ -29,3 +29,9 @@
                 overflow: hidden;
             }
         }
+
+        @mixin inputNoneBorder {
+            input:focus {
+                outline: none;
+            }
+        }

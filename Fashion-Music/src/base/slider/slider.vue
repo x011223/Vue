@@ -84,7 +84,7 @@
             // 轮播时间间隔
             interval: {
                 type: Number,
-                default: 2000
+                default: 3000
             },
         },
         mounted () {
@@ -96,7 +96,7 @@
                     this._play()
                 }
             }, 20);
-            window.addEventListener('reSize', () => {
+            window.addEventListener('resize', () => {
                 if (!this.slider) {
                     return
                 }
@@ -160,6 +160,7 @@
                 this.slider.on('beforeScrollStart', () => {
                     if (this.autoPlay) {
                         clearTimeout(this.TimeOut)
+                        this._play()
                     }
                 })
             },

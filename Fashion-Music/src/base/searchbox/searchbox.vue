@@ -5,7 +5,7 @@
         </div>
         <input ref="inputBox" id="searchBox" v-model="inputText" :placeholder="placeholder" @click="cancelShow">
         <div class="iconclear" v-show="inputText" @click="boxClear">
-            <img src="./delete.svg" width="24" height="24">
+            <img src="./delete.svg" width="20" height="20">
         </div>
         <span class="searchCancel" v-show="isCancelShow || this.inputText" @click="cancelHide">取消</span>
     </div>
@@ -61,39 +61,45 @@
     }
 </script>
 
-<style scoped>
-    /* @import './searchfont/iconfont.css'; */
-    #searchBox {
-        flex: 1;
-        width: 100%;
-        text-indent: 32px;
-        height: 32px;
-        border: none;
-        line-height: 18px;
-        padding: 0 8px;
-    }
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';  
+    @import '../../sass/mixin.scss';  
     .search-box {
+        @include inputNoneBorder;
         display: flex;
         align-items: center;
-        box-sizing: border-box;
-        width: 100%;
-        padding: 0 6px;
+        padding: 8px 12px;
         margin-top: 12px;
-        height: 40px;
-        background: #9999ff;
-        border-radius: 6px;
-    }
-    .iconsearch {
-        position: absolute;
-        padding-top: 4px;
-    }
-    .iconclear {
-        position: absolute;
-        padding-top: 8px;
-        right: 64px;
-    }
-    .searchCancel {
-        margin-left: 8px;
-        padding: 0 4px;
-    }
+        height: $height-big-x;
+        background: $background-color-light;
+        border-radius: 12px;
+        #searchBox {
+            flex: 1;
+            width: 100%;
+            text-indent: $height-big;
+            height: $height-big;           
+            line-height: $height-big;
+            border: none;          
+        }
+        .iconsearch {
+            position: absolute;
+            padding: {
+                top: 4px;
+                left: 4px;
+            }
+            opacity: 0.4;
+        }
+        .iconclear {
+            position: absolute;
+            padding-top: 4px;
+            right: 4.5rem;
+        }
+        .searchCancel {
+            font: {
+                size: $font-size-x;
+                weight: 300; 
+            }
+            margin-left: 10px;
+        }
+    } 
 </style>
