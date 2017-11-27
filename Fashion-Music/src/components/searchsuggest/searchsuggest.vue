@@ -1,24 +1,26 @@
 <template>
-    <scroll class="suggest" :data="results" 
-            :pullup="pullup" @scrollToEnd="searchMore"
-            ref="suggest" :before-scroll="beforeScroll"
-            @beforeScroll="resultScroll"
-            :refreshTime="refreshTime">
-        <ul class="suggest-list">
-            <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
-                <div class="suggest-icon">
-                    <!-- <img :class="type_singer">
-                    <img :class="type_singer" src="../../base/searchbox/singer.svg"> -->
-                    <img src="../../base/searchbox/song.svg" width="20" height="20">
-                </div>
-                <div class="suggest-name">
-                    <p class="suggest-text" v-html="resultName(result)"></p>
-                </div>
-            </li>
-            <loading v-show="hasMore" title=""></loading>
-        </ul>
-        <no-result v-show="!hasMore && !results.length" title="您需要的东西正光速运送"></no-result>
-    </scroll>
+    <transition name="Suggest">
+        <scroll class="suggest" :data="results" 
+                :pullup="pullup" @scrollToEnd="searchMore"
+                ref="suggest" :before-scroll="beforeScroll"
+                @beforeScroll="resultScroll"
+                :refreshTime="refreshTime">
+            <ul class="suggest-list">
+                <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
+                    <div class="suggest-icon">
+                        <!-- <img :class="type_singer">
+                        <img :class="type_singer" src="../../base/searchbox/singer.svg"> -->
+                        <img src="../../base/searchbox/song.svg" width="22" height="22">
+                    </div>
+                    <div class="suggest-name">
+                        <p class="suggest-text" v-html="resultName(result)"></p>
+                    </div>
+                </li>
+                <loading v-show="hasMore" title="正在请求......"></loading>
+            </ul>
+            <no-result v-show="!hasMore && !results.length" title="您需要的东西正光速运送"></no-result>
+        </scroll>
+    </transition>
 </template>
 
 <script>
@@ -64,6 +66,9 @@
             }
         },
         methods: {
+            // Loading () {
+            //     return !results.length ? 'loading-container' : ''
+            // },
             type_singer () {
                 if (result.type === Type_Singer) {
                     // 判断结果是歌曲或者歌手 并添加相应样式
@@ -181,20 +186,23 @@
     .suggest {
         height: 100%;
         overflow: hidden;
+        margin-top: $height-small-ss;
+        background: $background-color-list;
         .suggest-list {
             padding-left: $height-big;
             margin-top: $height-small-ss;
             overflow: hidden;
-                .suggest-item {
+            .suggest-item {
                 display: flex;
                 height: $height-big;
                 line-height: $height-big;
                 .suggest-icon {
-                    flex: 0 0 40px;      
+                    flex: 0 0 40px;     
+                    margin: auto;
                 }
                 .suggest-name {
                     flex: 1;
-                    font-size: 14px;
+                    font-size: $font-size-b;
                     color: rgba(7, 17, 27, 0.7);
                     overflow: hidden;
                     .suggest-text { 
@@ -205,12 +213,19 @@
                     }
                 }
             }
+            @include loadingStyle;
         }
     }
-    .icon-singer {
-        background-image: '../../base/searchbox/singer.svg'
+    .Suggest-enter-active, .Suggest-leave-active {
+        transition: all 0.1s;
     }
-    .icon-song {
-        background-image: '../../base/searchbox/song.svg'
+    .Suggest-enter, .Suggest-leave-to {
+        transform: translate3d(50%, 50%, 0);
     }
+    // .icon-singer {
+    //     background-image: '../../base/searchbox/singer.svg'
+    // }
+    // .icon-song {
+    //     background-image: '../../base/searchbox/song.svg'
+    // }
 </style>

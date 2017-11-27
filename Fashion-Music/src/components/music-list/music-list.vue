@@ -205,7 +205,9 @@
         /* overflow: hidden; */
     }
     .songList-wrapper {
-        padding: 20px 30px;
+        /* padding: 20px 30px; */
+        margin-top: 20px;
+        width: 100%;
     }
     .layer {
         position: relative;

@@ -1,7 +1,7 @@
 <template>
     <transition name="Recommend">
         <div class="recommend" ref="recommend">
-            <Scroll class="recommend-content" :data="discLists" ref="scroll">
+            <scroll class="recommend-content" :data="discLists" ref="scroll">
                 <div class="scroll-wrapper">
                     <div v-if="recommends.length" class="slider-wrapper">
                         <slider>
@@ -30,13 +30,15 @@
                 <div>
                     <loading class="loading-wrapper" v-show="!discLists.length"></loading>
                 </div>
-            </Scroll>
+            </scroll>
             <router-view></router-view>
         </div>
     </transition>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/mixin.scss';
+    @import '../../sass/style.scss';
     .Recommend-enter-active, .Recommend-leave-active {
         transition: all 0.1s 
     }
@@ -46,61 +48,60 @@
     .recommend {
         position: fixed;
         width: 100%;
-        top: 88px;
+        top: 6.5rem;
         bottom: 0;
         overflow: hidden;
-    }
-    .recommend-content {
-        height: 100%;
-    }
-    .scroll-wrapper {
-        overflow: hidden;
-    }
-    .slider-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-    }
-    .list-title {
-        height: 52px;
-        line-height: 52px;
-        text-align: center;
-        font-size: 16px;
-        color: #a60000;
-    }
-    .discList {
-        display: flex;
-        box-sizing: border-box;
-        align-items: center;
-        padding: 0 20px 20px 20px;
-        overflow: hidden;
-    }
-    .list-icon {
-        flex: 0 0 60px;
-        width: 60px;
-        padding-right: 20px;
-    }
-    .list-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex: 1;
-        line-height: 20px;
-        overflow: hidden;
-        font-size: 12px;
-    }
-    .name {
-        margin-bottom: 10px;
-        color: #3f7e5f;
-    }
-    .desc {
-        color: #5ca2bc;
-    }
-    .loading-wrapper {
-        position: absolute;
-        width: 100%;
-        top: 50%;
-    }
+        .recommend-content {
+            height: 100%;
+            .scroll-wrapper {
+                overflow: hidden;
+                .slider-wrapper {
+                    position: relative;
+                    width: 100%;
+                }
+                .recommend-list {
+                    .list-title {
+                        height: $height-big-xx;
+                        line-height: $height-big-xx;
+                        text-align: center;
+                        font-size: $font-size-b;
+                        color: #a60000;
+                    }
+                    ul {
+                        .discList {
+                            display: flex;
+                            box-sizing: border-box;
+                            align-items: center;
+                            padding: 0 20px 20px;
+                            overflow: hidden;
+                            .list-icon {
+                                flex: 0 0 60px;
+                                width: 60px;
+                                padding-right: $height-small;
+                            }
+                            .list-text {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                flex: 1;
+                                line-height: $height-small;
+                                overflow: hidden;
+                                font-size: 12px;
+                                .name {
+                                    margin-bottom: 10px;
+                                    color: $color-text-name;
+                                }
+                                .desc {
+                                    color: $color-text-desc;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            @include loadingStyle;
+        }
+    }  
 </style>
 
 <script>

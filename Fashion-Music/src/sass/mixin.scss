@@ -9,25 +9,21 @@
         }
 
         @mixin loadingStyle {
-            .loading-container {
-                position: absolute;
-                width: 100%;
-                top: 50%;
-                transform: translateY(-50%);
-            }
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
         }
         @mixin lineFlow ($width) {
-            .lineFlow {
-                width: $width;
-                /*！文本超出宽度的时候省略号*/
-                /*white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;*/
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
+            width: $width;
+            /*！文本超出宽度的时候省略号*/
+            /*white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;*/
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         @mixin inputNoneBorder {

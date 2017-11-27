@@ -120,8 +120,9 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     @import '../player/play-icon_font/iconfont.css';
+    @import '../../sass/style.scss';
     .userFade-enter-active, .userFade-leave-active {
         transition: all 0.1s
     }
@@ -129,6 +130,29 @@
         transform: translateY(100%);
     }
     .usercenter {
+        // background: $background-color-list;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* .usercenter {
         position: fixed;
         width: 100%;
         top: 88px;
@@ -182,5 +206,5 @@
     }
     .scroll > div {
         margin-left: -20rem;
-    }
+    } */
 </style>

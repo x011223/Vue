@@ -1,6 +1,6 @@
 <template>
     <div class="my-header">
-        <h1 class="header-text">XuanRan Music</h1>
+        <h1 class="header-text"></h1>
     </div>
 </template>
 
@@ -15,7 +15,7 @@
         background-color: $background-color-theme;
         text-align: center;    
         .header-text {
-            font-size: 18px;
+            font-size: $font-size-x;
             display: inline-block;
             vertical-align: top;
             line-height: $line-height;     

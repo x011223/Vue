@@ -9,7 +9,7 @@
                     <div class="song-image">
                         <img v-lazy="song.image" width="36" height="36">
                     </div>                   
-                    <div class="song_content">
+                    <div class="song-content">
                         <h2 class="song-name">{{song.name}}</h2>
                         <p class="song-desc">{{getSongDesc(song)}}</p>
                     </div> 
@@ -56,16 +56,73 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     @import './rankfont/iconfont.css';
+    @import '../../sass/style.scss';
+    @import '../../sass/mixin.scss';
     li {
         list-style: none;
     }
-    .icon-song {
-        position: absolute;
-        right: 20px;
+    .song-list {
+        width: 100%;
+        background: $background-color-list;
+        ul {
+            .song {
+                .rankcss {
+                }
+                .song-image {
+                    padding-left: 1.2rem;
+                    margin-top: 0.8rem;
+                }
+                .song-content {
+                    display: flex;
+                    padding-left: 0.5rem;
+                    margin-top: 0.5rem;
+                    .song-name {
+                        flex: 1;
+                        font-weight: $font-weight-s;
+                        font-size: $font-size-b;
+                        color: $color-text-name;
+                        @include lineFlow($width: 240px);
+                    }
+                    .song-desc {
+                        position: absolute;
+                        padding-top: 1.9rem;
+                        font-weight: $font-weight-s;
+                        font-size: $font-size-n;
+                        color: $color-text-desc;
+                        @include lineFlow($width: 240px);
+                    }
+                }
+                .icon-song {
+                    position: absolute; 
+                    right: 20px;
+                    padding-left: 1.2rem;
+                    margin-top: 0.8rem;
+                }
+            }
+        }
     }
-    .rankcss {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* .rankcss {
         display: inline-block;
         width: 25px;
         text-align: center;
@@ -114,21 +171,5 @@
         vertical-align: top;
         margin-left: 12px;
     }
-    .song_content {
-        position: absolute;
-        display: inline-block;
-        margin-left: 16px;
-        text-overflow: ellipsis;
-    }
-    .song-name {
-        position: relative;
-        color: rgb(7, 17, 27);
-        margin-top: -4px;
-        font-size: 14px;
-    }    
-    .song-desc {
-        position: relative;
-        margin-top: 12px;
-        font-size: 8px;     
-    }
+ */
 </style>
