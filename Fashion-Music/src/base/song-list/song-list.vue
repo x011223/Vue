@@ -78,12 +78,38 @@
                     display: flex;
                     padding-left: 0.5rem;
                     margin-top: 0.5rem;
+                    .rankcss {
+                        display: inline-block;
+                        width: 25px;
+                        text-align: center;
+                        font-size: $font-size-x;
+                        border-right: 2px solid #51a8ff;
+                        border-radius: 10px;
+                        margin-top: 0.5rem;
+                        padding: {
+                            top: 4px;
+                            right: 12px;
+                        }
+                    }
+                    .icon0, .icon1, .icon2 {
+                        font-size: 32px;
+                        margin-top: 0.5rem;
+                    }
+                    .icon0 {
+                        color: #ffd700;
+                    }
+                    .icon1 {
+                        color: #c0c0c0;
+                    }
+                    .icon2 {
+                        color: #ff331e;
+                    }
                     .song-name {
                         flex: 1;
                         font-weight: $font-weight-s;
                         font-size: $font-size-b;
                         color: $color-text-name;
-                        @include lineFlow($width: 240px);
+                        @include lineFlow($width: 100%);
                     }
                     .song-desc {
                         position: absolute;
@@ -91,7 +117,7 @@
                         font-weight: $font-weight-s;
                         font-size: $font-size-n;
                         color: $color-text-desc;
-                        @include lineFlow($width: 240px);
+                        @include lineFlow($width: 100%);
                     }
                 }
                 .icon-song {
@@ -122,15 +148,7 @@
 
 
 
-    /* .rankcss {
-        display: inline-block;
-        width: 25px;
-        text-align: center;
-        border-right: 2px solid #51a8ff;
-        border-radius: 2px;
-        padding-top: 4px;
-        padding-right: 12px;
-    }
+    /* 
     .icon {
         display: inline-block;
         width: 25px;
@@ -151,18 +169,7 @@
         overflow: hidden;
         background: rgba(255, 255, 255, 0.3);
     }
-    .icon0, .icon1, .icon2 {
-        font-size: 32px;
-    }
-    .icon0 {
-        color: #ffd700;
-    }
-    .icon1 {
-        color: #c0c0c0;
-    }
-    .icon2 {
-        color: #ff331e;
-    }
+    
     .song-content {
         flex: 1;
     }

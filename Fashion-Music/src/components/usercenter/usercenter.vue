@@ -1,9 +1,6 @@
 <template>
     <transition name="userFade">
        <div class="usercenter" ref="userCenter">
-            <!-- <div class="user-back" @click="userBack">
-                <img src="./back.svg" width="24" height="24">
-            </div> -->
             <div class="user-switch">
                 <p class="switch-fav" @click.stop="showFav">我的最爱</p>
                 <p class="switch-play" @click.stop="showPlay">曾经鉴赏</p>
@@ -130,7 +127,47 @@
         transform: translateY(100%);
     }
     .usercenter {
-        // background: $background-color-list;
+        height: 100%;
+        overflow: hidden;
+        .user-switch {
+            display: flex;
+            text-align: center;
+            color: $color-text-title;
+            margin-top: 1.5rem;
+            font-size: $font-size-x;
+            .switch-fav {
+                flex: 1;
+            }
+            .switch-play {
+                flex: 1;
+            }   
+        }
+        .user-play {
+            text-align: center;
+            font-size: $font-size-b;
+            margin: 1rem 0;
+            color: $color-text-title;
+            .icon-bofang {
+                
+            }
+            .random-play {
+                font-weight: $font-weight-s;        
+            }
+        }
+        .user-list {
+            height: 100%;
+            overflow: hidden;
+            .favorite-list {
+                overflow: hidden;
+                height: 100%;
+                .list_1 {
+
+                }
+            }
+        }
+        .noresult {
+
+        }
     }
 
 

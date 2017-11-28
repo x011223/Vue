@@ -249,7 +249,9 @@
                 background: $background-color-title;
             }
         }
-        @include loadingStyle;
+        .loading-container {
+            @include loadingStyle;
+        }
     }  
 </style>
 

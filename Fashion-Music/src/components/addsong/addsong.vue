@@ -71,7 +71,7 @@
                 setTimeout(() => {
                     this.$refs.scroll_1.refresh()
                     this.$refs.scroll_2.refresh()
-                }, 200);   
+                }, 20);   
             },
             addHide () {
                 this.add_show = false
@@ -79,9 +79,9 @@
             playhistoryShow () {
                 this.showplayHistory = true
                 this.showSearchHistory = false
-                // setTimeout(() => {
-                //     this.$refs.scroll_1.refresh()
-                // }, 200);
+                setTimeout(() => {
+                    this.$refs.scroll_1.refresh()
+                }, 20);
             },
             searchhistoryShow () {
                 this.showplayHistory = false
@@ -110,7 +110,8 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .add_song-enter-active, .add_song-leave-active {
         transition: all 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
@@ -125,48 +126,87 @@
         top: 0;
         left: 0;
         background: #fff;
-    }
-    .add-header {
-        text-align: center;
-        height: 32px;  
-        margin-top: 8px;
-    }
-    .add-text {
-        font-size: 16px;
-    }
-    .add-close {
-        position: absolute;
-        display: inline-block;
-        right: 12px;
-        top: 9px;
-    }
-    .add-bottom {
-        height: 100%;
-    }
-    .serach-result {
-        margin-top: 1.5rem;
-    }
-    .history, .scroll {
-        height: 100%;
-    }
-    .history-text {
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-    .play-title, .search-title {
-        display: inline-block;
-        margin-top: 1.23rem;
-        padding: 4px 8px;
-        border: 1px solid #8080ff;
-        border-radius: 9px;
-    }
-    .play_history-list {
-        height: 100%;
-        overflow: hidden;
-    }
-    .search_history-list {
-        margin-left: 2rem;
-        height: 100%;
-        overflow: hidden;
-    }
+        .add-header {
+            text-align: center;
+            height: 32px;  
+            margin-top: 8px;
+            .add-text {
+                font-size: 16px;
+            }
+            .add-close {
+                position: absolute;
+                display: inline-block;
+                right: 12px;
+                top: 9px;
+            }
+        }
+        .add-bottom {
+            height: 100%;
+            .serach-result {
+                margin-top: 1.5rem;
+                height: 100%;
+            }
+            .history {
+                height: 100%;
+                overflow: hidden;
+                .history-text {
+                    text-align: center;
+                    margin-bottom: 1rem;
+                    .play-title, .search-title {
+                        display: inline-block;
+                        margin-top: 1.23rem;
+                        padding: 4px 8px;
+                        border: 1px solid #8080ff;
+                        border-radius: 9px;
+                        font-weight: $font-weight-s;
+                    }
+                }
+                .play_history-list {
+                    height: 100%;
+                    width: 100%;
+                    position: fixed;
+                    .scroll {
+                        height: 100%;
+                        bottom: 2px;
+                        overflow: hidden;
+                    }
+                }
+                .search_history-list {
+                    height: 100%;
+                    background: $background-color-list;
+                    .scroll {
+                        height: 100%;
+                        .liat_2 {
+                            padding: {
+                                left: 1.5rem;
+                                top: 0.5rem;
+                            }
+                            font-weight: $font-weight-s;
+                        }
+                    }
+                }
+            }
+        }
+    }  
+
+    // .history-text {
+    //                 text-align: center;
+    //                 margin-bottom: 1.5rem;
+    //             }
+    //             .play-title, .search-title {
+    //                 display: inline-block;
+    //                 margin-top: 1.23rem;
+    //                 padding: 4px 8px;
+    //                 border: 1px solid #8080ff;
+    //                 border-radius: 9px;
+    //             }
+    //             .play_history-list {
+    //                 height: 100%;
+    //                 overflow: hidden;
+    //             }
+    //             .search_history-list {
+    //                 margin-left: 2rem;
+    //                 height: 100%;
+    //                 overflow: hidden;
+    //             }
 </style>

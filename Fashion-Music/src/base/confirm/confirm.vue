@@ -52,7 +52,8 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .confirm {
         position: fixed;       
         left: 0;
@@ -60,36 +61,39 @@
         top: 0;
         bottom: 0;
         z-index: 998;
-        background: rgba(0, 0, 0, 0.3);
+        .confirm-wrapper { 
+            position: absolute;
+            top: 36%;
+            z-index: 999; 
+            width: 100%;
+            height: 200px;       
+            border-radius: 10px;
+            background: $background-color-warning;
+            .confirm-text {
+                text-align: center;
+                color: $color-text-confirm;
+                margin-top: 60px;
+            }
+            .btn-wrapper {
+                display: flex;       
+                height: 80px;
+                color: $color-text-confirm;
+                margin-top: 72px;
+                padding-top: 12px;
+                border-top: 1px solid #808080;
+                .btn-confirm {       
+                    padding-right: 80px;
+                }
+                .btn-cancel {
+                    flex: 1;
+                    padding-left: 80px;
+                }
+            }
+        }
     }
-    .confirm-wrapper { 
-        position: absolute;
-        top: 36%;
-        z-index: 999; 
-        width: 100%;
-        height: 200px;       
-        border-radius: 10px;
-        background: #333;
-    }
-    .confirm-text {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.5);
-    }
-    .btn-wrapper {
-        display: flex;       
-        height: 80px;
-        color: rgba(255, 255, 255, 0.3);
-        margin-top: 132px;
-        padding-top: 12px;
-        border-top: 1px solid #808080;
-    }
-    .btn-confirm {       
-        padding-right: 80px;
-    }
-    .btn-cancel {
-        flex: 1;
-        padding-left: 80px;
-    }
+    
+    
+   
     .confirm-enter-active,  {
         animation: confirm-fadein
     }

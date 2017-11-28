@@ -186,24 +186,23 @@
     .suggest {
         height: 100%;
         overflow: hidden;
-        margin-top: $height-small-ss;
         background: $background-color-list;
         .suggest-list {
             padding-left: $height-big;
-            margin-top: $height-small-ss;
-            overflow: hidden;
+            margin-top: -15rem;
             .suggest-item {
                 display: flex;
                 height: $height-big;
                 line-height: $height-big;
+                padding: 6px;
                 .suggest-icon {
                     flex: 0 0 40px;     
-                    margin: auto;
+                    margin-top: 4px;
                 }
                 .suggest-name {
                     flex: 1;
                     font-size: $font-size-b;
-                    color: rgba(7, 17, 27, 0.7);
+                    color: $color-text-name;
                     overflow: hidden;
                     .suggest-text { 
                         text-overflow: ellipsis;

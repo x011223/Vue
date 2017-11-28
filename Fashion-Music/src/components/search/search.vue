@@ -116,6 +116,7 @@
 
 <style lang="scss" scoped>
     @import '../../sass/style.scss';
+    @import '../../sass/mixin.scss';
     .Search-enter-active, .Search-leave-active {
         transition: all 0.1s 
     }
@@ -126,8 +127,11 @@
         list-style: none;
     }
     .search {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
         .hot-search-wrapper {
-            position: fixed;
+            position: absolute;
             top: 10rem;
             bottom: 0;
             width: 100%;
@@ -181,6 +185,7 @@
                                 size: $font-size-X;
                                 weight: $font-weight-s;
                             }
+                            @include lineFlow($width: 100%);
                         }
                         .icon-delete {
                             position: absolute;
@@ -198,12 +203,12 @@
             }
         }
         .search-result-wrapper {
-            position: relative;
-            overflow: hidden;
+            margin-top: $height-small;
+            position: absolute;
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            top: 10rem;
+            overflow: hidden;
+            bottom: 0;
         }
     }
 </style>

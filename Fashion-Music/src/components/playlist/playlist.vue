@@ -1,38 +1,41 @@
 <template>
     <transition name="playlist">
         <div class="playlist" v-show="playlistShow">
-            <div class="operator">
-                <div class="playmode iconfont">
-                    <i class="icon" :class="iconMode" @click="changeMode"></i>
-                    <span class="text">{{modeTEXT}}</span>
-                    <div class="operatorImg">
-                        <img src="./clear.svg" @click.stop="showConfirm" class="clear" width="22" height="22">
-                        <img src="./down.svg" @click.stop="hidePlayList" class="back" width="24" height="24">
+            <div class="fuceng"></div>
+            <div class="diceng">
+                <div class="operator">
+                    <div class="playmode iconfont">
+                        <i class="icon" :class="iconMode" @click="changeMode"></i>
+                        <span class="text">{{modeTEXT}}</span>
+                        <div class="operatorImg">
+                            <img src="./clear.svg" @click.stop="showConfirm" class="clear" width="22" height="22">
+                            <img src="./down.svg" @click.stop="hidePlayList" class="down" width="22" height="22">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="songlist">
-                <scroll class="list" ref="listContent" :data="sequenceList">
-                    <transition-group name="delete_song" tag="ul">
-                        <li :key="song.id" ref="listItem" v-for="(song, index) in sequenceList" @click.stop="selectSong(song, index)" class="songList iconfont">                       
-                            <span class="song-name">{{song.name}}</span>
-                            <div class="icons">
-                                <i class="iconplay" :class="currentIcon(song)"></i>
-                                <i :class="iconFav(song)" @click.stop="toggleFavorite(song)"></i>
-                                <img class="icon-delete" @click.stop="deleteSong(song)" src="./delete.svg" width="14" height="14">
-                            </div>
-                        </li>
-                    </transition-group>
-                </scroll>
-                <div class="addsong">
-                    <span class="add-text" @click="showAddSong">添加歌曲</span> 
+                <div class="songlist"> 
+                    <scroll class="list" ref="listContent" :data="sequenceList">
+                        <transition-group name="delete_song" tag="ul">
+                            <li :key="song.id" ref="listItem" v-for="(song, index) in sequenceList" @click.stop="selectSong(song, index)" class="songList iconfont">                       
+                                <span class="song-name">{{song.name}}</span>
+                                <div class="icons">
+                                    <i class="iconplay" :class="currentIcon(song)"></i>
+                                    <i :class="iconFav(song)" @click.stop="toggleFavorite(song)"></i>
+                                    <img class="icon-delete" @click.stop="deleteSong(song)" src="./delete.svg" width="14" height="14">
+                                </div>
+                            </li>
+                        </transition-group>
+                    </scroll>
+                    <div class="addsong">
+                        <span class="add-text" @click="showAddSong">添加歌曲</span> 
+                    </div>
+                </div>       
+                <div class="close" @click="hidePlayList">
+                    <p>关闭</p>
                 </div>
-            </div>       
-            <div class="close" @click="hidePlayList">
-                <p>关闭</p>
+                <confirm text="确定清空播放列表？" btnConfirm="清空" ref="confirm" @confirmConfirm="clearList"></confirm>
+                <add-song ref="Addsong"></add-song>
             </div>
-            <confirm text="确定清空播放列表？" btnConfirm="清空" ref="confirm" @confirmConfirm="clearList"></confirm>
-            <add-song ref="Addsong"></add-song>
         </div>       
     </transition>
 </template>
@@ -153,8 +156,9 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     @import '../player/play-icon_font/iconfont.css'; 
+    @import '../../sass/style.scss';
     * {
         margin: 0;
         padding: 0;
@@ -162,115 +166,126 @@
     .playlist {
         position: fixed;
         width: 100%;
+        top: 0;
         bottom: 0;
         left: 0;
-        right: 0;
         z-index: 200;
-        background: #f0f0f0;
+        .fuceng {
+            background: $background-color-fuceng;
+        }
+        .diceng {
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            bottom: 0;
+            .operator {       
+                height: 40px;
+                line-height: 40px;
+                padding-left: 12px;
+                background: #f0f0f0;
+                border-bottom: 1px solid #8080c0;
+                .iconfont {
+                    color: #5e5e5e;
+                }
+                .playmode {        
+                    position: relative;
+                    .icon {
+                        display: inline-block;
+                        position: absolute;
+                        line-height: 40px;
+                    }
+                    .text {
+                        display: inline-block;
+                        position: absolute;
+                        font-size: $font-size-b;
+                        left: $height-big-x;
+                        line-height: $height-big-x;
+                    }
+                    .operatorImg {
+                        position: absolute;
+                        padding-top: 0.5rem;
+                        right: 20px;
+                        .clear {
+                            display: inline-block;
+                            position: absolute;
+                            right: 1.5rem;
+                        } 
+                        .down {
+                            display: inline-block;
+                            position: absolute;
+                            right: 0;
+                        } 
+                    }
+                }
+            }
+            .songlist { 
+                background: #f0f0f0;
+                .list {
+                    height: 240px;
+                    overflow: hidden;
+                    max-height: 333px;
+                    .songList {
+                        height: 30px;
+                        left: 24px;
+                        position: relative;
+                        overflow: hidden;
+                        .icons {
+                            display: inline-block;
+                            position: absolute;
+                            right: 40px;
+                            .iconplay {
+                                left: 8px;
+                                width: 12px;
+                            } 
+                            .icon-zanting, .icon-fav_off, .icon-fav_on {
+                                font-size: 16px;
+                                color: $color-text-title;
+                            }
+                            .icon-delete {
+                                display: inline-block;
+                            }
+                        }
+                        .song-name {
+                            font-size: 16px;
+                            color: $color-text-name;
+                            right: 0;
+                        }
+                    }
+                }
+                .addsong {
+                    position: relative;
+                    height: 40px;
+                    line-height: 40px;
+                    bottom: 4px;     
+                    font-size: 16px;
+                    text-align: center; 
+                    .add-text {
+                        padding: 4px 12px;
+                        border: 1px solid #aeaeae;
+                        border-radius: 60px;
+                        color: #ababab;
+                    }         
+                }    
+            }
+            .close {
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 20px;
+                background: $background-color-title-dark;
+            }
+        }
+    }                 
+    .playlist-enter-active, .playlist-leave-active {
+        transition: all 0.1s ease-in
     }
-    .operator {       
-        height: 40px;
-        line-height: 40px;
-        padding-left: 12px;
-        border-bottom: 1px solid #8080c0;
-    }
-    .playmode {        
-        position: relative;
-    }
-    .playmode > .icon {
-        display: inline-block;
-        position: absolute;
-        line-height: 40px;
-    }
-    .playmode > .text {
-        display: inline-block;
-        position: absolute;
-        font-size: 16px;
-        left: 42px;
-        line-height: 40px;
-    }
-    .playmode > .clear {
-        display: inline-block;
-        position: absolute;
-        right: 0;
-    }
-    .operatorImg {
-        position: absolute;
-        top: 0;
-        right: 20px;
-    }
-    .songlist {
-        height: 240px;
-        overflow: hidden;
-        background: #f0f0f0;
-    }
-    .list {
-        height: 200px;
-        overflow: hidden;
+    .playlist-enter, .playlist-leave-to {
+        transform: translate3d(0, 100%, 0)
     }
     .delete_song-enter-active, .delete_song-leave-active {
         transition: all 0.1s linear;
     }
     .delete_song-enter, .delete_song-leave-to {
         transform: translateY(-1000%)
-    }
-    .songList {
-        height: 30px;
-        left: 24px;
-        position: relative;
-        overflow: hidden;
-    }
-    .iconplay {
-        left: 8px;
-        width: 12px;
-    }
-    .icons {
-        display: inline-block;
-        position: absolute;
-        right: 40px;
-    }
-    .iconfont {
-        color: #5e5e5e;
-    }
-    .song-name {
-        font-size: 16px;
-        color: rgba(7, 17, 27, 0.5);
-        right: 0;
-    }
-    .icon-zanting {
-        font-size: 16px;
-    }
-    .icon-fav_off, .icon-fav_on {
-        font-size: 16px;
-    }
-    .icon-delete {
-        display: inline-block;
-    }
-    .addsong {
-        position: relative;
-        height: 40px;
-        line-height: 40px;
-        bottom: 4px;     
-        font-size: 16px;
-        text-align: center;       
-    }
-    .add-text {
-        padding: 4px 12px;
-        border: 1px solid #aeaeae;
-        border-radius: 60px;
-        color: #ababab;
-    }
-    .close {
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        font-size: 20px;
-        background: #0080ff;
-    }
-    .playlist-enter-active, .playlist-leave-active {
-        transition: all 0.1s ease-in
-    }
-    .playlist-enter, .playlist-leave-to {
-        transform: translate3d(0, 100%, 0)
     }
 </style>

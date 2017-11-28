@@ -37,7 +37,7 @@
         transition: all 0.3s linear
     }
     .searchlist-enter, .searchlist-leave-to {
-        transform: translateX(100%)
+        transform: translateX(110%)
     }
     .search-history {
         display: flex;

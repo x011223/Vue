@@ -4,7 +4,7 @@
             <scroll :data="topList" class="toplist" ref="topList">
                 <ul>
                     <li v-for="rankItem in topList" class="item" @click="showTopList(rankItem)">
-                        <div icon>
+                        <div class="icon">
                             <img v-lazy="rankItem.picUrl" width="100" height="100">
                         </div>               
                         <ul class="songlist">
@@ -15,7 +15,7 @@
                         </ul>
                     </li>
                 </ul>
-                <loading v-show="!topList.length"></loading>
+                <loading v-show="!topList.length" class="loading"></loading>
             </scroll>
             <router-view></router-view>
         </div>
@@ -71,7 +71,9 @@
     }   
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
+    @import '../../sass/mixin.scss';
     .Rank-enter-active, .Rank-leave-active {
         transition: all 0.1s 
     }
@@ -83,42 +85,45 @@
         width: 100%;
         top: 88px;
         bottom: 0;
-    }
-    .toplist {
-        height: 100%;
-        overflow: hidden;
-    }
-    .item {
-        display: flex;
-        margin: 0 20px;
-        padding-top: 20px;
-        height: 100px;
-    }
-    .item:last-child {
-        padding-bottom: 20px;
-    }
-    .icon {
-        flex: 0 0 100px;
-        width: 100px;
-        height: 100px;
-    }
-    .songlist {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 20px;
-        height: 100px;
-        overflow: hidden;
-        background: #333;
-        color: rgba(255, 205, 49, 0.5);
-        font-size: 12px;
-    }
-    .song {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        line-height: 26px;
+        .toplist {
+            height: 100%;
+            overflow: hidden;
+            .item {
+                display: flex;
+                margin: 0 20px;
+                padding-top: 20px;
+                height: 100px;
+                &:last-child {
+                    padding-bottom: 20px;
+                }
+                .icon {
+                    flex: 0 0 100px;
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            .songlist {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 20px;
+                height: 100px;
+                overflow: hidden;
+                background: #333;
+                color: rgba(255, 205, 49, 0.5);
+                font-size: 12px;
+                .song {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    line-height: 26px;
+                }
+            }
+        }
+        .loading {
+            @include loadingStyle;
+        }
     }
 </style>
 
