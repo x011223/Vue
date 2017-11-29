@@ -11,15 +11,38 @@
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .slider {
         min-height: 1px;
-    }
-    .slider-group {
-        position: relative;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+        .slider-group {
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .dots {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 12px;
+            text-align: center;
+            font-size: 0;
+            .dot {
+                display: inline-block;
+                margin: 0 4px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #cccccc;
+            }
+            .active {
+                width: 20px;
+                border-radius: 5px;
+                background: #d00000;
+            }
+        }
+    }   
+    // 通过DOM操作添加
     .slider-item {
         float: left;
         box-sizing: border-box;
@@ -35,27 +58,6 @@
     .slider-item img {
         display: block;
         width: 100%;
-    }
-    .dots {
-        position: absolute;
-        right: 0;
-        left: 0;
-        bottom: 12px;
-        text-align: center;
-        font-size: 0;
-    }
-    .dot {
-        display: inline-block;
-        margin: 0 4px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #cccccc;
-    }
-    .dots .active {
-        width: 20px;
-        border-radius: 5px;
-        background: #d00000;
     }
 </style>
 

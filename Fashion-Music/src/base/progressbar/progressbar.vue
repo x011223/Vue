@@ -78,38 +78,39 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .play-progress {
         height: 30px;
-    }
-    .progress-bar {
-        position: relative;
-        top: 13px;
-        height: 4px;
-        background: rgba(0, 0, 0, 0.3);
-    }
-    .progress {
-        position: absolute;
-        height: 100%;
-        background: #ffcd32;
-    }
-    .pro-btn_wrapper {
-        position: absolute;
-        left: -8px;
-        top: -13px;
-        width: 30px;
-        height: 30px;
-    }
-    .pro-btn {
-        position: relative;
-        top: 7px;
-        left: 7px;
-        box-sizing: border-box;
-        width: 16px;
-        height: 16px;
-        border: 3px solid #fff;
-        border-radius: 50%;
-        background: #ffcd32;
+        .progress-bar {
+            position: relative;
+            top: 13px;
+            height: 4px;
+            background: $background-color-fuceng;
+            .progress {
+                position: absolute;
+                height: 100%;
+                background: $color-text-title-dark;
+            }
+            .pro-btn_wrapper {
+                position: absolute;
+                left: -8px;
+                top: -13px;
+                width: $height-big;
+                height: $height-big;
+                .pro-btn {
+                    position: relative;
+                    top: 7px;
+                    left: 7px;
+                    box-sizing: border-box;
+                    width: $height-small-s;
+                    height: $height-small-s;
+                    border: 3px solid $background-color-compare;
+                    border-radius: 50%;
+                    background: $color-text-title-dark;
+                }
+            }
+        }
     }
 </style>
 

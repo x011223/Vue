@@ -177,7 +177,7 @@
             position: absolute;
             height: 50%;
             width: 100%;
-            bottom: 0;
+            margin-top: 82%;
             .operator {       
                 height: 40px;
                 line-height: 40px;

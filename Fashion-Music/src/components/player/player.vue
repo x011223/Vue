@@ -36,7 +36,7 @@
                                    :class="{'lyricCurrent' : currentLyricLine === index}" 
                                    ref="lyricText" 
                                    v-for="(line, index) in currentLyric.lines"
-                                   @click="JumpPlay(line.time)">{{line.txt}}</p>
+                                   @click.stop="JumpPlay(line.time)">{{line.txt}}</p>
                             </div>
                         </div>
                     </scroll>
@@ -399,13 +399,17 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     @import './play-icon_font/iconfont.css';
+    @import '../../sass/style.scss';
     .top_in-enter-active, .top_in-leave-active {
         transition: all 0.1s cubic-bezier(0.37, -0.67, 0.48, 1.48)
     }
     .top_in-enter, .top_in-leave-to {
         transform: translateY(100%)
+    }
+    i {
+        font-style: normal;
     }
     .main-player {
         position: fixed;
@@ -414,183 +418,183 @@
         top: 0;
         bottom: 0;
         z-index: 150;
-        background: #909090;
-    }
-    .bac-image {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.6;
-        filter: blur(20px);
-    }
-    .player-top {
-        position: relative;
-        margin-bottom: 25px;
-    }
-    .player-back {
-        position: absolute;
-        top: 0;
-        left: 6px;
-        z-index: 50;
-    }
-    .icon-back {
-        display: block;
-        padding: 9px;
-        font-size: 18px;
-        color: #e9e9e9;
-        transform: rotate(-90deg);
-    }
-    .player-Song_name {
-        width: 70%;
-        margin: 0 auto;
-        line-height: 40px;
-        text-align: center;
-        font-size: 16px;
-        color: #ffffff;
-    }
-    .player-Singer_name {
-        line-height: 20px;
-        text-align: center;
-        font-size: 12px;
-        color: #808080;
-    }
-    .player-middle {
-        position: fixed;
-        width: 100%;
-        top: 80px;
-        bottom: 170px;
-        white-space: nowrap;
-        font-size: 0;
-    }
-    .middle-l {
-        display: inline-block;
-        vertical-align: top;
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-top: 80%;
-    }
-    .cd-wrapper {
-        position: absolute;
-        left: 10%;
-        top: 0;
-        width: 80%;
-        height: 100%;
-    }
-    .cd {
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        border: 10px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-    }
-    .cd img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
-    .ly-wrapper {
-        width: 80%;
-        margin: 30px auto 0 auto;
-        overflow: hidden;
-        text-align: center;
-    }
-    .cd-lyric {
-        height: 20px;
-        line-height: 20px;
-        font-size: 14px;
-        /* color: rgba(255, 255, 255, 0.5); */
-        color: #fff;
-    }
-    .middle-r {
-        display: inline-block;
-        vertical-align: top;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    .lyric-wrapper {
-        width: 80%;
-        margin: 0 auto;
-        overflow: hidden;
-        text-align: center;
-    }
-    .lyric-text {
-        line-height: 32px;
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 14px;
-    }
-    .lyricCurrent {
-        color: #fff;
-    }
-    .player-bottom {
-        position: absolute;
-        bottom: 50px;
-        width: 100%;
-    }
-    .dot-wrapper {
-        text-align: center;
-        font-size: 0;
-    }
-    .dot {
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0 4px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-    }
-    .dotActive {
-        width: 20px;
-        border-radius: 5px;
-        background: rgba(255, 255, 255, 0.8);
-    }
-    .player-progress {
-        display: flex;
-        align-items: center;
-        width: 80%;
-        margin: 0px auto;
-        padding: 10px 0;
-    }
-    .play-time {
-        color: #fff;
-        font-size: 12px;
-        flex: 0 0 30px;
-        line-height: 30px;
-        width: 30px;
-    }
-    .play-timeL {
-        text-align: left;
-    }
-    .play-timeR {
-        text-align: right;
-    }
-    .progress-wrapper {
-        flex: 1;
-    }
-    .operators {
-        display: flex;
-        align-items: center;
-    }
-    .operator {
-        flex: 1;
-    }
-    .operator-left {
-        text-align: right;
-    }
-    .operator-center {
-        padding: 0 20px;
-        text-align: center;
-    }
-    .operator-right {
-        text-align: left;
+        background: $background-color-player;
+        .bac-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(20px);
+        }
+        .player-top {
+            position: relative;
+            margin-bottom: 25px;
+            .player-back {
+                position: absolute;
+                top: 0;
+                left: 6px;
+                z-index: 50;
+                .icon-back {
+                    display: block;
+                    padding: 9px;
+                    font-size: $font-size-x;
+                    color: $background-color-theme;
+                    // 使返回图标旋转90度
+                    transform: rotate(-90deg);
+                }
+            }
+            .player-Song_name {
+                width: 70%;
+                margin: 0 auto;
+                line-height: $height-big-x;
+                text-align: center;
+                font-size: $font-size-x;
+                color: $background-color-warning;
+            }
+            .player-Singer_name {
+                line-height: 20px;
+                text-align: center;
+                font-size: 12px;
+                color: #808080;
+            }
+        }
+        .player-middle {
+            position: fixed;
+            width: 100%;
+            top: 80px;
+            bottom: 170px;
+            white-space: nowrap;
+            font-size: 0;
+            .middle-l {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-top: 80%;
+                .cd-wrapper {
+                    position: absolute;
+                    left: 10%;
+                    top: 0;
+                    width: 80%;
+                    height: 100%;
+                    .cd {
+                        width: 100%;
+                        height: 100%;
+                        box-sizing: border-box;
+                        border: 10px solid $background-color-title;
+                        border-radius: 50%;
+                        img {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                        }
+                    }
+                }   
+                .ly-wrapper {
+                    width: 80%;
+                    margin: 30px auto 0;
+                    overflow: hidden;
+                    text-align: center;
+                    .cd-lyric {
+                        height: $height-small;
+                        line-height: $height-small;
+                        font-size: $font-size-b;
+                        color: $background-color-compare;
+                    }
+                }
+            }
+            .middle-r {
+                display: inline-block;
+                vertical-align: top;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                .lyric-wrapper {
+                    width: 80%;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    text-align: center;
+                    .lyric-text {
+                        line-height: 32px;
+                        color: $background-color-title-dark;
+                        font-size: $font-size-b;
+                    }
+                    .lyricCurrent {
+                        color: $background-color-compare;
+                    }
+                }
+            }
+        }
+        .player-bottom {
+            position: absolute;
+            bottom: $height-big-xx;
+            width: 100%;
+            .dot-wrapper {
+                text-align: center;
+                font-size: 0;
+                .dot {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0 4px;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: $background-color-title-dark;
+                }
+                .dotActive {
+                    width: 20px;
+                    border-radius: 5px;
+                    background: $background-color-theme;
+                }
+            }
+            .player-progress {
+                display: flex;
+                align-items: center;
+                width: 80%;
+                margin: 0px auto;
+                padding: 10px 0;
+                .play-time {
+                    color: #fff;
+                    font-size: 12px;
+                    flex: 0 0 30px;
+                    line-height: $height-big;
+                    width: $height-big;
+                }
+                .play-timeL {
+                    text-align: left;
+                }
+                .play-timeR {
+                    text-align: right;
+                }
+                .progress-wrapper {
+                    flex: 1;
+                }
+            }
+            .operators {
+                display: flex;
+                align-items: center;
+                .operator {
+                    flex: 1;
+                }
+                .operator-left {
+                    text-align: right;
+                }
+                .operator-center {
+                    padding: 0 20px;
+                    text-align: center;
+                }
+                .operator-right {
+                    text-align: left;
+                }
+            }
+        }
     }
     .mainPlayer-enter-active, .mainPlayer-leave-active {
         transition: all 0.1s;
@@ -609,31 +613,43 @@
         width: 100%;
         height: 60px;
         background: #909090;
-    }
-    .mini-icon {
-        flex: 0 0 40px;
-        width: 40px;
-        padding: 0 10px 0 20px;
-    }
-    .mini-icon img {
-        border-radius: 50%;
-    }
-    .mini-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex: 1;
-        line-height: 20px;
-        overflow: hidden;
-    }
-    .mini-Song_name {
-        margin-bottom: 2px;
-        font-size: 14px;
-        color: #bcbcbc;
-    }
-    .mini-Singer_name {
-        font-size: 10px;
-        color: rgba(195, 195, 195, 0.4);
+        .mini-icon {
+            flex: 0 0 40px;
+            width: 40px;
+            padding: 0 10px 0 20px;
+            img {
+                border-radius: 50%;
+            }
+        }    
+        .mini-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            line-height: 20px;
+            overflow: hidden;
+            .mini-Song_name {
+                margin-bottom: 2px;
+                font-size: 14px;
+                color: #bcbcbc;
+            }
+            .mini-Singer_name {
+                font-size: 10px;
+                color: rgba(195, 195, 195, 0.4);
+            }
+        }
+        .control-progress {
+            .operator {
+                flex: 1;
+            }
+            .operator-center {
+                padding: 0 20px;
+                text-align: center;
+            }
+        }
+        .control-list {
+            margin-right: 24px;
+        }
     }
     .player-top, .player-bottom {
         transition: all 0.1s;
@@ -642,9 +658,7 @@
         transition: all 0.1s; 
         opacity: 0;
     }
-    .control-list {
-        margin-right: 24px;
-    }
+
     /* cd旋转效果 */
     .play {
         animation: rotate 20s linear infinite;

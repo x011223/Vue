@@ -17,9 +17,9 @@
         @mixin lineFlow ($width) {
             width: $width;
             /*！文本超出宽度的时候省略号*/
-            /*white-space: nowrap;
+            white-space: nowrap;
             text-overflow: ellipsis;
-            overflow: hidden;*/
+            overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;

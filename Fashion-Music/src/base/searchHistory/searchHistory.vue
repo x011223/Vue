@@ -32,30 +32,32 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .searchlist-enter-active, .searchlist-leave-active {
         transition: all 0.3s linear
     }
     .searchlist-enter, .searchlist-leave-to {
         transform: translateX(110%)
     }
-    .search-history {
-        display: flex;
-        align-items: center;
-        height: 32px;
-    }
-    .history {
-        flex: 1;
-        /* display: flex; */
-        position: relative;
-    }
-    .icon-delete {
-        position: absolute;
-        right: 40px;
-        padding-top: 4px;
-    }
-    .history-content {
-        display: flex;
+    .search-list {
+        .search-history {
+            display: flex;
+            align-items: center;
+            height: $height-big;
+            .history-content {
+                display: flex;
+                .history {
+                    flex: 1;
+                    position: relative;
+                }
+                .icon-delete {
+                    position: absolute;
+                    right: $height-big-x;
+                    padding-top: 4px;
+                }
+            }
+        }
     }
 </style>
 

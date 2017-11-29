@@ -97,7 +97,7 @@
         .searchCancel {
             font: {
                 size: $font-size-x;
-                weight: 300; 
+                weight: $font-weight-s; 
             }
             margin-left: 10px;
         }

@@ -9,22 +9,12 @@
                 <i class="icon-bofang"></i>
                 <span class="random-play">随机播放全部</span>
             </div>
-            <div class="user-list" ref="userList">
-                <div ref="FavList" class="favorite-list"  v-show="showFavList">
-                    <scroll ref="scroll" class="scroll" :data="favoritelist">
-                        <div>
-                            <song-list class="list_1" :songs="favoritelist" @select="selectSong"></song-list>
-                        </div>
-                    </scroll>
-                </div>      
-                <div ref="PlayList" class="play-list" v-show="showPlayList"> 
-                    <scroll ref="scroll" class="scroll" :data="searchHistory"> 
-                        <div>                  
-                            <song-list class="list_1" :songs="playHistory" @select="selectSong"></song-list>
-                        </div>  
-                    </scroll>
-                </div>   
-            </div>
+            <scroll ref="scroll" class="fav-list" :data="favoritelist" v-show="showFavList">
+                <song-list class="list_1" :songs="favoritelist" @select="selectSong"></song-list>
+            </scroll>
+            <scroll ref="scroll" class="play-list" :data="searchHistory" v-show="showPlayList">                      
+                <song-list class="list_1" :songs="playHistory" @select="selectSong"></song-list>            
+            </scroll>
             <div class="noresult" v-show="whoNoresult">
                 <no-result :title="noresult_content"></no-result>
             </div>
@@ -56,12 +46,14 @@
         },
         methods: {
             handlePlaylist (playlist) {
-                this.$refs.scroll.refresh()
                 let UserBottom = playlist.length > 0 ? '60px' : ''
-                this.$refs.userList.style.bottom = UserBottom
+                this.$refs.scroll.$el.style.bottom = UserBottom
                 this.$refs.scroll.refresh()
             },
             randomplay () {
+                if (!this.playHistory.length || !this.favoritelist.length) {
+                    return 
+                }
                 let list = this.showFavList ? this.favoritelist : this.playHistory
                 list = list.map((song) => {
                     return new Song(song)
@@ -73,12 +65,17 @@
             showFav () {
                 this.showFavList = true
                 this.showPlayList = false
-                this.$refs.scroll.refresh()
+                setTimeout(() => {
+                    this.$refs.scroll.refresh()
+                }, 300)
+                
             },
             showPlay () {
                 this.showFavList = false
                 this.showPlayList = true
-                this.$refs.scroll.refresh()
+                setTimeout(() => {
+                    this.$refs.scroll.refresh()
+                }, 300)
             },
             userBack () {
                 this.$router.back()
@@ -128,7 +125,8 @@
     }
     .usercenter {
         height: 100%;
-        overflow: hidden;
+        width: 100%;
+        position: absolute;
         .user-switch {
             display: flex;
             text-align: center;
@@ -154,19 +152,17 @@
                 font-weight: $font-weight-s;        
             }
         }
-        .user-list {
+        .fav-list {
+            position: absolute;
+            width: 100%;
             height: 100%;
             overflow: hidden;
-            .favorite-list {
-                overflow: hidden;
-                height: 100%;
-                .list_1 {
-
-                }
-            }
         }
-        .noresult {
-
+        .play-list {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
     }
 

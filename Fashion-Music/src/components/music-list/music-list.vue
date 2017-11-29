@@ -155,7 +155,8 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .music-list {
         position: fixed;
         z-index: 100;
@@ -163,90 +164,88 @@
         left: 0;
         bottom: 0;
         right: 0;
-    }
-    .back {
-        position: absolute;
-        top: 0;
-        left: 3px;
-        z-index: 50;
-    }
-    .icon-back {
-        display: block;
-        padding: 12px;
-        font-size: 12px;
-    }
-    .title {
-        position: absolute;
-        top: 0;
-        left: 10%;
-        z-index: 40;
-        width: 80%;
-        text-align: center;
-        height: 40px;
-        line-height: 40px;
-        font-size: 12px;
-        color: #eeeeee;
-    }
-    .bg-image {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-top: 70%;
-        transform-origin: top;
-        background-size: cover;
-        background-image: no-repeat;
-    }
-    .songs {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        background: rgb(255, 255, 255);
-        /* overflow: hidden; */
-    }
-    .songList-wrapper {
-        /* padding: 20px 30px; */
-        margin-top: 20px;
-        width: 100%;
-    }
-    .layer {
-        position: relative;
-        height: 100%;
-        background: rgb(255, 255, 255);
-    }
-    .loading {
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .play-wrapper {
-        position: absolute;
-        bottom: 20px;
-        z-index: 50;
-        width: 100%;
-    }
-    .btn_play {
-        box-sizing: border-box;
-        width: 160px;
-        padding: 7px 0;
-        margin: 0 auto;
-        text-align: center;
-        border-radius: 100px;
-        font-size: 0;
-        border: 1px solid rgb(254, 224, 18);
-    }
-    .play-icon {
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 8px;
-        font-size: 16px;
-    }
-    .play-text {
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 16px;
-        color: #ffff00;
+        .back {
+            position: absolute;
+            top: 0;
+            left: 3px;
+            z-index: 50;
+            .icon-back {
+                display: block;
+                padding: 12px;
+                font-size: 12px;
+            }
+        }
+        .title {
+            position: absolute;
+            top: 0;
+            left: 10%;
+            z-index: 40;
+            width: 80%;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+            color: $background-color-title;
+        }
+        .bg-image {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 70%;
+            transform-origin: top;
+            background-size: cover;
+            background-image: no-repeat;
+            .play-wrapper {
+                position: absolute;
+                bottom: 20px;
+                z-index: 50;
+                width: 100%;               
+                .btn_play {
+                    box-sizing: border-box;
+                    width: 160px;
+                    padding: 7px 0;
+                    margin: 0 auto;
+                    text-align: center;
+                    border-radius: 100px;
+                    font-size: 0;
+                    border: 1px solid rgb(254, 224, 18);
+                    .play-icon {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 8px;
+                        font-size: 16px;
+                    }
+                    .play-text {
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 16px;
+                        color: #ffff00;
+                    }
+                }
+            }
+        }
+        .layer {
+            position: relative;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+        .songs {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background: rgb(255, 255, 255);
+            .songList-wrapper {
+                margin-top: $height-small;
+                width: 100%;
+            }
+            .loading {
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
     }
 </style>
 

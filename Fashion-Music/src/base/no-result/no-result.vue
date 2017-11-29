@@ -18,20 +18,21 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../sass/style.scss';
     .no-result {
         text-align: center;
         padding: 25%;
-    }
-    .logo-noresult {
-        position: relative;
-        margin: 0 auto 20px;
-    }
-    .text-noresult {
-        position: relative;
-        font-size: 16px;
-        font-weight: 700;
-        color: rgba(7, 7, 7, 0.4);
-    }
+        .logo-noresult {
+            position: relative;
+            margin: 0 auto 20px;
+        }
+        .text-noresult {
+            position: relative;
+            font-size: $height-small-s;
+            font-weight: $font-weight-b;
+            color: $color-text-medium;
+        }
+    } 
 </style>
 
