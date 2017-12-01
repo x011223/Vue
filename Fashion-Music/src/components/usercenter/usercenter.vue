@@ -9,10 +9,10 @@
                 <i class="icon-bofang"></i>
                 <span class="random-play">随机播放全部</span>
             </div>
-            <scroll ref="scroll" class="fav-list" :data="favoritelist" v-show="showFavList">
+            <scroll ref="scroll" :refreshTime="refreshTime" class="fav-list" :data="favoritelist" v-show="showFavList">
                 <song-list class="list_1" :songs="favoritelist" @select="selectSong"></song-list>
             </scroll>
-            <scroll ref="scroll" class="play-list" :data="searchHistory" v-show="showPlayList">                      
+            <scroll ref="scroll" :refreshTime="refreshTime" class="play-list" :data="searchHistory" v-show="showPlayList">                      
                 <song-list class="list_1" :songs="playHistory" @select="selectSong"></song-list>            
             </scroll>
             <div class="noresult" v-show="whoNoresult">
@@ -37,6 +37,7 @@
             return {
                 showFavList: true,
                 showPlayList: false,
+                refreshTime: 220,
             }
         },
         components: {
@@ -124,9 +125,10 @@
         transform: translateY(100%);
     }
     .usercenter {
-        height: 100%;
         width: 100%;
-        position: absolute;
+        position: relative;
+        top: 0;
+        bottom: 0;
         .user-switch {
             display: flex;
             text-align: center;
@@ -153,15 +155,18 @@
             }
         }
         .fav-list {
-            position: absolute;
+            position: fixed;
+            top: 12rem;
+            bottom: 2px;
             width: 100%;
-            height: 100%;
             overflow: hidden;
+            position: 0;
         }
         .play-list {
-            position: absolute;
+            position: fixed;
+            top: 12rem;
+            bottom: 2px;
             width: 100%;
-            height: 100%;
             overflow: hidden;
         }
     }

@@ -580,6 +580,7 @@
             .operators {
                 display: flex;
                 align-items: center;
+                color: #f4ea2a;
                 .operator {
                     flex: 1;
                 }

@@ -17,20 +17,12 @@
                             <h3 class="play-title" :class="{'active': showplayHistory === true}" @click.stop="playhistoryShow">播放记录</h3>
                             <h3 class="search-title" :class="{'active': showSearchHistory === true}" @click.stop="searchhistoryShow">搜索记录</h3>
                         </div>
-                        <div class="play_history-list"  v-show="showplayHistory">
-                            <scroll :refreshTime="refreshTime" ref="scroll_1" class="scroll" :data="playHistory">
-                                <div>
-                                    <song-list class="list_1" :songs="playHistory" @select="selectSong"></song-list>
-                                </div>
-                            </scroll>
-                        </div>      
-                        <div class="search_history-list" v-show="showSearchHistory"> 
-                            <scroll :refreshTime="refreshTime" ref="scroll_2" class="scroll" :data="searchHistory"> 
-                                <div>                  
-                                    <search-history class="liat_2" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory" :searches="searchHistory"></search-history>
-                                </div>  
-                            </scroll>
-                        </div>   
+                        <scroll :refreshTime="refreshTime" ref="scroll" class="scroll" :data="playHistory" v-show="showplayHistory">
+                            <song-list class="list_1" :songs="playHistory" @select="selectSong"></song-list>
+                        </scroll>
+                        <scroll :refreshTime="refreshTime" ref="scroll" class="scroll" :data="searchHistory" v-show="showSearchHistory"> 
+                            <search-history class="list_2" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory" :searches="searchHistory"></search-history>
+                        </scroll>
                     </div>                  
                 </div>
             </div>
@@ -68,27 +60,23 @@
         methods: {
             addShow () {
                 this.add_show = true
-                setTimeout(() => {
-                    this.$refs.scroll_1.refresh()
-                    this.$refs.scroll_2.refresh()
-                }, 20);   
+                // setTimeout(() => {
+                    this.$refs.scroll.refresh()
+                // }, 220);   
             },
             addHide () {
                 this.add_show = false
+                // setTimeout(() => {
+                    this.$refs.scroll.refresh()
+                // }, 220);   
             },
             playhistoryShow () {
                 this.showplayHistory = true
                 this.showSearchHistory = false
-                setTimeout(() => {
-                    this.$refs.scroll_1.refresh()
-                }, 20);
             },
             searchhistoryShow () {
                 this.showplayHistory = false
-                this.showSearchHistory = true
-                setTimeout(() => {
-                    this.$refs.scroll_2.refresh()
-                }, 200);                
+                this.showSearchHistory = true           
             },
             selectSong (song, index) {
                 if (index !== 0) {
@@ -161,28 +149,20 @@
                         font-weight: $font-weight-s;
                     }
                 }
-                .play_history-list {
+                .scroll {
+                    osition: fixed;
                     height: 100%;
-                    width: 100%;
-                    position: fixed;
-                    .scroll {
-                        height: 100%;
-                        bottom: 2px;
-                        overflow: hidden;
-                    }
+                    bottom: 2px;
+                    overflow: hidden;
                 }
-                .search_history-list {
+                .scroll {
                     height: 100%;
-                    background: $background-color-list;
-                    .scroll {
-                        height: 100%;
-                        .liat_2 {
-                            padding: {
-                                left: 1.5rem;
-                                top: 0.5rem;
-                            }
-                            font-weight: $font-weight-s;
+                    .list_2 {
+                        padding: {
+                            left: 1.5rem;
+                            top: 0.5rem;
                         }
+                        font-weight: $font-weight-s;
                     }
                 }
             }

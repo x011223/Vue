@@ -5,13 +5,15 @@
                 <div class="rankcss iconfont" v-show="rankStyle">
                     <span :class="getRankStyle(index)">{{getRankText(index)}}</span>
                 </div>
-                <div class="song-image">
-                    <img v-lazy="song.image" width="36" height="36">
-                </div>                   
-                <div class="song-text">
-                    <h2 class="song-name">{{song.name}}</h2>
-                    <p class="song-desc">{{getSongDesc(song)}}</p>
-                </div>                
+                <div class="song-content">  
+                    <div class="song-image">
+                        <img v-lazy="song.image" width="36" height="36">
+                    </div>                   
+                    <div class="song-text">
+                        <h2 class="song-name">{{song.name}}</h2>
+                        <p class="song-desc">{{getSongDesc(song)}}</p>
+                    </div> 
+                </div>            
             </li>
         </ul>
     </div>
@@ -71,46 +73,47 @@
                     display: inline-block;
                     width: 25px;
                     vertical-align: top;
-                    font-size: $font-size-x;
+                    text-align: center;
+                    font-size: $font-size-X;
                     margin-left: 2rem;
+                    color: rgb(169, 169, 169);
                 }
-                .song-image {
-                    padding-left: 1.5rem;
+                .song-content {
                     display: inline-block;
-                }
-                .song-text {
-                    position: absolute;
-                    left: 12rem;
-                    margin-top: -2.7rem;               
-                    flex-direction: column;
-                    display: flex;
-                    margin-left: -3rem;
-                    .song-name {
-                        flex: 1;
-                        align-items: center;
-                        font: {
-                            size: $font-size-b;
-                            weight: $font-weight-s;
+                    .song-image {
+                        padding-left: 32px;
+                        display: inline-block;
+                        vertical-align: top;
+                    }               
+                    .song-text {
+                        margin: {
+                            top: -0.2rem; 
+                            left: 1rem;   
+                        }           
+                        flex-direction: column;
+                        display: flex;
+                        display: inline-block;
+                        .song-name {
+                            flex: 1;
+                            font: {
+                                size: $font-size-b;
+                                weight: $font-weight-s;
+                            }
+                            color: $color-text-name;
+                            padding: {
+                                bottom: 0.5rem;
+                            }
+                            @include lineFlow($width: 195px);
                         }
-                        color: $color-text-name;
-                        padding-bottom: 0.7rem;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        @include lineFlow($width: 100%);
-                    }
-                    .song-desc {
-                        font: {
-                            size: $font-size-n;
-                            weight: $font-weight-s;
-                            color: $color-text-desc;                                          
+                        .song-desc {
+                            font: {
+                                size: $font-size-n;
+                                weight: $font-weight-s;
+                                color: $color-text-desc;                                          
+                            }
+                            @include lineFlow($width: 195px);             
                         }
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        @include lineFlow($width: 100%);             
                     }
-                    
                 }
                 .icon0, .icon1, .icon2 {
                     font-size: 32px;
