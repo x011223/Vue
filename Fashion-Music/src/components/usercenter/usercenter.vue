@@ -157,10 +157,9 @@
         .fav-list {
             position: fixed;
             top: 12rem;
-            bottom: 2px;
+            bottom: 0;
             width: 100%;
             overflow: hidden;
-            position: 0;
         }
         .play-list {
             position: fixed;
@@ -170,79 +169,4 @@
             overflow: hidden;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* .usercenter {
-        position: fixed;
-        width: 100%;
-        top: 88px;
-        bottom: 0;
-        text-align: center;
-        background: #408080;
-    }
-    .user-switch {
-        display: flex;
-    }
-    .switch-fav, .switch-play {
-        position: absolute;
-        top: 1rem;
-    }
-    .switch-fav {
-        flex: 1;       
-        left: 7rem;
-    }
-    .switch-play {
-        right: 7rem;
-    }
-    .user-play {
-        position: absolute;
-        top: 3.5rem;
-        left: 5rem;
-        border: 1px solid #ff0000;
-        border-radius: 16px;
-        padding: 4px 12px;
-        margin: 4px auto;
-        width: 180px;
-    }
-    .icon-bofang {
-        font-size: 18px;
-    }
-    .random-play {
-        font-size: 18px;
-    }
-    .user-list {
-        overflow: hidden;
-        height: 100%;
-        width: 100%;
-        top: 5rem;
-    }
-    .favorite-list, .play-list, .scroll {       
-        position: fixed;
-        overflow: hidden;
-        top: 13.5rem;
-        left: 0;
-        height: 100%;
-        width: 100%
-    }
-    .scroll > div {
-        margin-left: -20rem;
-    } */
 </style>

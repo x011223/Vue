@@ -236,7 +236,7 @@
             width: 100%;
             background: rgb(255, 255, 255);
             .songList-wrapper {
-                margin-top: $height-small;
+                // margin-top: $height-small;
                 width: 100%;
             }
             .loading {

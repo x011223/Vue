@@ -65,7 +65,9 @@
     .song-list {
         width: 100%;
         background: $background-color-list;
+        
         ul {
+            margin-bottom: -1rem;
             .song {
                 height: $height-big-xx;
                 padding-top: 1rem;

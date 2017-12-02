@@ -113,6 +113,7 @@
         width: 100%;
         top: 0;
         left: 0;
+        bottom: 0;
         background: #fff;
         .add-header {
             text-align: center;
@@ -168,25 +169,4 @@
             }
         }
     }  
-
-    // .history-text {
-    //                 text-align: center;
-    //                 margin-bottom: 1.5rem;
-    //             }
-    //             .play-title, .search-title {
-    //                 display: inline-block;
-    //                 margin-top: 1.23rem;
-    //                 padding: 4px 8px;
-    //                 border: 1px solid #8080ff;
-    //                 border-radius: 9px;
-    //             }
-    //             .play_history-list {
-    //                 height: 100%;
-    //                 overflow: hidden;
-    //             }
-    //             .search_history-list {
-    //                 margin-left: 2rem;
-    //                 height: 100%;
-    //                 overflow: hidden;
-    //             }
 </style>
