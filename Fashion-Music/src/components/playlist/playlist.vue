@@ -1,9 +1,9 @@
 <template>
     <transition name="playlist">
-        <div class="playlist" v-show="playlistShow">
-            <div class="fuceng"></div>
+        <div class="playlist" v-show="playlistShow" @click="hidePlayList">
+            <!-- <div class="fuceng" @click.stop="hidePlayList"></div> -->
             <div class="diceng">
-                <div class="operator">
+                <div class="operator" @click.stop>
                     <div class="playmode iconfont">
                         <i class="icon" :class="iconMode" @click="changeMode"></i>
                         <span class="text">{{modeTEXT}}</span>
@@ -26,13 +26,10 @@
                             </li>
                         </transition-group>
                     </scroll>
-                    <div class="addsong">
+                    <div class="addsong" @click.stop>
                         <span class="add-text" @click="showAddSong">添加歌曲</span> 
                     </div>
                 </div>       
-                <div class="close" @click="hidePlayList">
-                    <p>关闭</p>
-                </div>
                 <confirm text="确定清空播放列表？" btnConfirm="清空" ref="confirm" @confirmConfirm="clearList"></confirm>
                 <add-song ref="Addsong"></add-song>
             </div>
@@ -167,17 +164,15 @@
         position: fixed;
         width: 100%;
         top: 0;
-        bottom: 0;
-        left: 0;
+        bottom: 60px;
         z-index: 200;
-        .fuceng {
-            background: $background-color-fuceng;
-        }
+        background: $background-color-fuceng;
         .diceng {
             position: absolute;
-            height: 50%;
+            left: 0;
+            bottom: 0;
+            max-height: 330px;
             width: 100%;
-            margin-top: 82%;
             .operator {       
                 height: 40px;
                 line-height: 40px;
@@ -208,7 +203,7 @@
                         .clear {
                             display: inline-block;
                             position: absolute;
-                            right: 1.5rem;
+                            right: 2.5rem;
                         } 
                         .down {
                             display: inline-block;
@@ -220,15 +215,17 @@
             }
             .songlist { 
                 background: #f0f0f0;
+                margin-bottom: 2rem;
                 .list {
                     height: 240px;
                     overflow: hidden;
-                    max-height: 333px;
+                    max-height: 360px;
+                    background: $background-color-list;
                     .songList {
                         height: 30px;
                         left: 24px;
                         position: relative;
-                        overflow: hidden;
+                        overflow: hidden;               
                         .icons {
                             display: inline-block;
                             position: absolute;
@@ -256,9 +253,11 @@
                     position: relative;
                     height: 40px;
                     line-height: 40px;
-                    bottom: 4px;     
+                    margin-bottom: -1rem;    
                     font-size: 16px;
+                    padding-top: 0.5rem;
                     text-align: center; 
+                    background: $background-color-compare;
                     .add-text {
                         padding: 4px 12px;
                         border: 1px solid #aeaeae;
@@ -266,13 +265,6 @@
                         color: #ababab;
                     }         
                 }    
-            }
-            .close {
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                font-size: 20px;
-                background: $background-color-title-dark;
             }
         }
     }                 

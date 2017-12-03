@@ -1,9 +1,9 @@
 <template>
     <transition name="add_song">
-        <div class="add-song" v-show="add_show">
+        <div class="add-song" v-show="add_show" @click.stop>
             <div class="add-header">
                 <h1 class="add-text">添加歌曲到播放列表</h1>
-                <img class="add-close" @click.stop="addHide" src="./close.svg" width="20" height="20">
+                <img class="add-close" @click.stop.prevent="addHide" src="./close.svg" width="20" height="20">
             </div>
             <div class="search-box">
                 <search-box ref="searchBox" placeholder="寻找好听的歌曲" @inputText="onTextChange"></search-box>
@@ -155,6 +155,13 @@
                     height: 100%;
                     bottom: 2px;
                     overflow: hidden;
+                    .list_1 {
+                        padding: {
+                            left: 1.5rem;
+                            top: 0.5rem;
+                        }
+                        font-weight: $font-weight-s;
+                    }
                 }
                 .scroll {
                     height: 100%;
