@@ -118,7 +118,7 @@
     @import '../../sass/style.scss';
     @import '../../sass/mixin.scss';
     .Search-enter-active, .Search-leave-active {
-        transition: all 0.1s 
+        transition: all 0.3s 
     }
     .Search-enter, .Search-leave-to {
         transform: translateX(100%)

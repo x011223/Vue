@@ -8,17 +8,15 @@
             <ul class="suggest-list">
                 <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
                     <div class="suggest-icon">
-                        <!-- <img :class="type_singer">
-                        <img :class="type_singer" src="../../base/searchbox/singer.svg"> -->
                         <img src="../../base/searchbox/song.svg" width="22" height="22">
                     </div>
                     <div class="suggest-name">
                         <p class="suggest-text" v-html="resultName(result)"></p>
                     </div>
                 </li>
-                <loading v-show="hasMore" title="正在请求......"></loading>
+                <loading v-show="hasMore" title="正在请求......" class="loading"></loading>
             </ul>
-            <no-result v-show="!hasMore && !results.length" title="您需要的东西正光速运送"></no-result>
+            <no-result v-show="!hasMore && !results.length" title="您需要的东西正光速运送" class="no-result"></no-result>
         </scroll>
     </transition>
 </template>
@@ -184,47 +182,32 @@
     @import '../../sass/style.scss';
     @import '../../sass/mixin.scss';
     .suggest {
-        height: 100%;
         overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute; 
         background: $background-color-list;
         .suggest-list {
-            padding-left: $height-big;
-            margin-top: -15rem;
+            overflow: hidden;
+            margin: {
+                left: 2rem;
+                top: 1rem;
+            }
             .suggest-item {
-                display: flex;
-                height: $height-big;
-                line-height: $height-big;
-                padding: 6px;
                 .suggest-icon {
-                    flex: 0 0 40px;     
-                    margin-top: 4px;
+                    margin-top: 1px;
                 }
-                .suggest-name {
-                    flex: 1;
-                    font-size: $font-size-b;
+                .suggest-text {
+                    position: relative;
+                    left: 2.5rem;
+                    top: -1.5rem;
                     color: $color-text-name;
-                    overflow: hidden;
-                    .suggest-text { 
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        font-size: $font-size-b;
-                        white-space: nowrap;
-                    }
+                    @include lineFlow ($width: 100%);
                 }
             }
+        }
+        .loading {
             @include loadingStyle;
         }
     }
-    .Suggest-enter-active, .Suggest-leave-active {
-        transition: all 0.1s;
-    }
-    .Suggest-enter, .Suggest-leave-to {
-        transform: translate3d(50%, 50%, 0);
-    }
-    // .icon-singer {
-    //     background-image: '../../base/searchbox/singer.svg'
-    // }
-    // .icon-song {
-    //     background-image: '../../base/searchbox/song.svg'
-    // }
 </style>

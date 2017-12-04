@@ -9,7 +9,7 @@
 
 <style lang="scss" scoped>
     .Singer-enter-active, .Singer-leave-active {
-        transition: all 0.1s 
+        transition: all 0.3s 
     }
     .Singer-enter, .Singer-leave-to {
         transform: translateX(-100%)

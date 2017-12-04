@@ -40,7 +40,7 @@
     @import '../../sass/mixin.scss';
     @import '../../sass/style.scss';
     .Recommend-enter-active, .Recommend-leave-active {
-        transition: all 0.1s 
+        transition: all 0.3s 
     }
     .Recommend-enter, .Recommend-leave-to {
         transform: translateX(-100%)
@@ -90,9 +90,11 @@
                                 .name {
                                     margin-bottom: 10px;
                                     color: $color-text-name;
+                                    @include lineFlow ($width: 100%);
                                 }
                                 .desc {
                                     color: $color-text-desc;
+                                    @include lineFlow ($width: 100%);
                                 }
                             }
                         }

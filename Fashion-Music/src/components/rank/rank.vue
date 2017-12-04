@@ -75,7 +75,7 @@
     @import '../../sass/style.scss';
     @import '../../sass/mixin.scss';
     .Rank-enter-active, .Rank-leave-active {
-        transition: all 0.1s 
+        transition: all 0.3s 
     }
     .Rank-enter, .Rank-leave-to {
         transform: translateX(100%)

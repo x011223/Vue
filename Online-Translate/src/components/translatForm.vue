@@ -7,9 +7,7 @@
 				<option value="en">English</option>
 				<option value="ru">Russian</option>
 				<option value="de">German</option>
-				<!-- <option value="English">English</option> -->
 			</select>
-			<!-- <input type="submit" value="翻译" >	 -->
 			<button type="submit" value="翻译" class="btn btn-info form-control btn1">翻译</button>
 		</form>
 	</div>
@@ -26,7 +24,6 @@
 		},
 		methods:{
 			forSubmit:function(e){
-				// alert(this.textToTranslate);
 				this.$emit("formSubmit",this.textToTranslate,this.Language);
 				e.preventDefault();
 			}

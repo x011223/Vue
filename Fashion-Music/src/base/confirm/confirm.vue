@@ -1,6 +1,6 @@
 <template>
     <transition name="confirm">
-        <div class="confirm" v-show="confrimFlag">
+        <div class="confirm" v-show="confrimFlag" @click.stop>
             <div class="confirm-wrapper">
                 <div class="confirm-text">{{text}}</div>
                 <div class="btn-wrapper">                
@@ -91,9 +91,6 @@
             }
         }
     }
-    
-    
-   
     .confirm-enter-active,  {
         animation: confirm-fadein
     }

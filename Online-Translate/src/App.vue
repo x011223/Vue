@@ -24,12 +24,14 @@ export default {
     TranslateOutPut
   },
   methods:{
-  	TranslateText:function (text,Language) {
-  		// alert(text);
-  		this.$http.get('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20171014T050948Z.ac12059e75e63456.843a5f29d14870bda2fc702f05409093567259a3&lang='+Language + '&text=' + text).then(response=>{
-  			this.TranslatedText = response.body.text[0];
-  		})
-  	}
+  	  TranslateText:function (text,Language) {
+          if (!this.TranslatedText) {
+            return
+          }
+          this.$http.get('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20171014T050948Z.ac12059e75e63456.843a5f29d14870bda2fc702f05409093567259a3&lang='+Language + '&text=' + text).then(response=>{
+            this.TranslatedText = response.body.text[0];
+          })
+      }
   }
 }
 </script>

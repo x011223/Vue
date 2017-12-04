@@ -119,7 +119,7 @@
     @import '../player/play-icon_font/iconfont.css';
     @import '../../sass/style.scss';
     .userFade-enter-active, .userFade-leave-active {
-        transition: all 0.1s
+        transition: all 0.3s
     }
     .userFade-enter, .userFade-leave-to {
         transform: translateY(100%);
