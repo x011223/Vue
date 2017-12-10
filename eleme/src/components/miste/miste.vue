@@ -6,10 +6,15 @@
                 <div class="header-address-tianqi"></div>
             </div>
             <div class="header-search">
-                <search-box></search-box>
+                <router-link to="search">
+                    <search-box ref="searchBox"></search-box>
+                </router-link>
             </div>
             <div class="header-list"></div>
         </div>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
     </div>
 </template>
 
@@ -18,6 +23,11 @@
     export default {
         components: {
             SearchBox,
+        },
+        methods: {
+            // searchShow () {
+            //     this.$router.push('search')
+            // }
         }
     }
 </script>

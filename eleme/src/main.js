@@ -8,6 +8,8 @@ import Discover from './components/discover/discover'
 import Order from './components/order/order'
 import Profile from './components/profile/profile'
 import LogIn from './components/login/login'
+import Search from './components/search/search'
+import About from './components/about/about'
 
 //引入路由
 import VueRouter from 'vue-router'
@@ -21,11 +23,16 @@ const routes = [
     { path: '/order', component: Order},
     { path: '/profile', component: Profile},
     { path: '/login', component: LogIn},
+    { path: '/search', component: Search},
+    { path: '/about', component: About},
 ]
 const router = new VueRouter({
     //不能写成 Router
     routes // （缩写）相当于 routes: routes
 })
+// router.push('miste')
+
+import store from './store'
 
 Vue.config.productionTip = false
 

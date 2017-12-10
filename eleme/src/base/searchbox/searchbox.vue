@@ -1,11 +1,12 @@
 <template>
     <div id="searchbox">
         <span class="search-icon"></span>
-        <input class="search-box" v-model="searchText" :placeholder="placeholder" @click="showSearch">
+        <input class="search-box" v-model="searchText" :placeholder="placeholder">
     </div>
 </template>
 
 <script>
+    import { mapGetters, mapMutations} from 'vuex'
     export default {
         data () {
             return {
@@ -19,15 +20,13 @@
             }
         },
         methods: {
-            showSearch () {
-                this.$emit('showSearch')
-            }
+
         },
         created () {
             this.$watch('searchText', () => {
                 this.$enit('Search', searchText)
             })
-        }
+        },
     }
 </script>
 
@@ -38,7 +37,7 @@
     #searchbox {
         height: 36px;
         position: relative;
-        background: $background-color-theme;
+        // background: $background-color-theme;
         .search-icon {
             display: inline-block;
             width: 8px;
