@@ -41,7 +41,6 @@
             showMsg () {
                 this.showPassword = false
                 this.showMessage = true
-                console.log(typeof parseInt(this.phoneNumber))
             },
             showPass () {
                 this.showPassword = true

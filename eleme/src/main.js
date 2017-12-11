@@ -21,7 +21,9 @@ const routes = [
     { path: '/miste', component: Miste},
     { path: '/discover', component: Discover},
     { path: '/order', component: Order},
-    { path: '/profile', component: Profile},
+    { path: '/profile', component: Profile, children: [
+       { path: '/share', component: Order}
+    ]},
     { path: '/login', component: LogIn},
     { path: '/search', component: Search},
     { path: '/about', component: About},

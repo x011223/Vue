@@ -1,5 +1,6 @@
 
-
+        @import './_font';
+        @import './_color';
         @mixin I {
             i {
                 font-style: normal;
@@ -11,4 +12,14 @@
             flex-direction: column;  
             text-align: center;
             justify-content: space-between;
+        }
+
+        @mixin iconTo {
+            .icon-to {
+                font-size: 1.5rem;
+                position: absolute;
+                right: .5rem;
+                color: $background-color-theme;
+                background: $color-text-title;
+            } 
         }

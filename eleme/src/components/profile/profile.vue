@@ -24,37 +24,53 @@
                     <i class="icon-gold"></i>
                     <span class="profile-middle-text">金币</span>
                 </div>   
-            </div>
-            
+            </div>            
         </div>
         <div class="profile-bottom">
-            <div class="bottom-add iconfont">
+            <div class="bottom-dizhi iconfont">
                 <i class="icon-address"></i>
                 <span>我的地址</span>
-                <img src="../../assets/img/back.svg">
+                <i class="icon-to"></i>
             </div>
-            <div class="bottom-add iconfont">
-                <i class="icon-gold"></i>
-                <span>金币商城</span>
-                <img src="../../assets/img/back.svg">
-                <i class="icon-count"></i>
-                <span>分享拿5元现金</span>
-                <img src="../../assets/img/back.svg">
+            <div class="bottom-huodong iconfont">
+                <div class="huodong1">
+                    <i class="icon-gold"></i>
+                    <span>金币商城</span>
+                    <i class="icon-to"></i>
+                </div>
+                <div class="huodong2">
+                    <i class="icon-count"></i>
+                    <span>分享拿5元现金</span>
+                    <i class="icon-to"></i>
+                </div>
             </div>
-            <div class="bottom-add iconfont">
-                <i class="icon-kefu"></i>
-                <span>我的客服</span>
-                <img src="../../assets/img/back.svg">
-                <i class="icon-logo"></i>
-                <span>下载饿了么APP</span>
-                <img src="../../assets/img/back.svg">
+            <div class="bottom-fuwu iconfont">
+                <div class="fuwu1">
+                    <i class="icon-kefu"></i>
+                    <span>我的客服</span>
+                    <i class="icon-to"></i>
+                </div>
+                <div class="fuwu2">
+                    <i class="icon-logo"></i>
+                    <span><a href="https://h5.faas.ele.me/download/">下载饿了么APP</a></span>
+                    <i class="icon-to"></i>
+                </div>
             </div>
         </div>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
     </div>
 </template>
 
 <script>
     export default {
+        data () {
+            return {
+                isOrder: false,
+                title: "推荐有奖",
+            }
+        },
         methods: {
             back () {
                 this.$router.back()
@@ -74,7 +90,6 @@
     #profile {
         @include I;
         white-space: nowrap;
-        background: $color-text-title;
         .profile-top {        
             text-align: center;
             height: 2.5rem;
@@ -170,6 +185,81 @@
                 .icon-gold {
                     color: gold;
                     background: $color-text-title;
+                }
+            }
+        }
+        .profile-bottom {
+            @mixin lineAuto {
+                @include iconTo;
+                position: relative;
+                margin-top: 1rem;
+                background: $color-text-title;
+            }
+            span {
+                font: {
+                    size: 1rem;
+                    weight: $font-weight-h;
+                }
+                color: $color-text-theme;
+                background: $color-text-title;
+                a {
+                    text-decoration: none;
+                    color: $color-text-theme;
+                    background: $color-text-title;
+                }
+            }
+            .iconfont {
+                font-size: 1.25rem;
+                padding-left: 1rem;
+            }
+            .bottom-dizhi {
+                @include lineAuto;
+                height: 2.5rem;
+                line-height: 2.5rem;
+                .icon-address {
+                    color: $background-color-theme;
+                    background: $color-text-title;
+                }              
+            }
+            .bottom-huodong {
+                @include lineAuto;
+                .huodong1, .huodong2 {
+                    background: $color-text-title;
+                    height: 2.5rem;
+                    line-height: 2.5rem;
+                }
+                .huodong1 {
+                    .icon-gold {
+                        color: gold;
+                        background: $color-text-title;
+                    }
+                }
+                .huodong2 {
+                    .icon-count {
+                        color: #ff8000;
+                        background: $color-text-title;
+                    }
+                }
+            }
+            .bottom-fuwu {
+                @include lineAuto;
+                .fuwu1, .fuwu2 {
+                    @include iconTo;
+                    background: $color-text-title;
+                    height: 2.5rem;
+                    line-height: 2.5rem;
+                }
+                .fuwu1 {
+                    .icon-kefu {
+                        color: $background-color-theme;
+                        background: $color-text-title;
+                    }
+                }
+                .fuwu2 {
+                    .icon-logo {
+                        color: $background-color-theme;
+                        background: $color-text-title;
+                    }
                 }
             }
         }
