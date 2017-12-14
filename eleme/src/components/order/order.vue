@@ -2,7 +2,7 @@
     <div id="order">
         <div class="order-header">
             <img class="order-header-back" @click="back" src="../../assets/img/back.svg">
-            <span class="order-header-title" :title="title"></span>
+            <span class="order-header-title" v-html="title"></span>
         </div>
         <div class="order-content">
             <img class="order-content-img" src="//fuss10.elemecdn.com/f/18/9fb04779371b5b162b41032baf5f3gif.gif">
