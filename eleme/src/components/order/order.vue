@@ -8,7 +8,7 @@
             <img class="order-content-img" src="//fuss10.elemecdn.com/f/18/9fb04779371b5b162b41032baf5f3gif.gif">
             <h3 class="order-content-title" v-show="isOrder">请登录后查看外卖订单</h3>
             <h3 class="order-content-title" v-show="!isOrder">你还没登录哦</h3>
-            <h5 v-show="!isOrder">登录后邀请好友可活动奖励</h5>
+            <h5 v-show="!isOrder">登录后邀请好友可领取奖励</h5>
             <router-link to="login" class="order-content-login">
                 <span class="order-content-login-text">立即登录</span>
             </router-link>
@@ -21,11 +21,18 @@
 
 <script>
     export default {
-        data () {
-            return {
-                isOrder: true,
-                title: '我的'
-            }
+        // data () {
+        //     return {
+        //         isOrder: true,
+        //         title: '我的'
+        //     }
+        // },
+        props: {
+            isOrder: {
+                type: Boolean,
+                default: true  
+            },
+            title: '我的'
         },
         methods: {
             back () {
@@ -43,6 +50,7 @@
     @import '../../assets/scss/font';
     @import '../../assets/scss/style';
     #order {
+        z-index: 10;
         background: $background-color-order;
         .order-header { 
             display: flex;

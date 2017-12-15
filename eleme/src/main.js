@@ -20,9 +20,9 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/miste', component: Miste},
     { path: '/discover', component: Discover},
-    { path: '/order', component: Order},
+    { path: '/order', component: Order, },
     { path: '/profile', component: Profile, children: [
-       { path: '/share', component: Order}
+       { path: '/profile/order', component: Order, }
     ]},
     { path: '/login', component: LogIn},
     { path: '/search', component: Search},
@@ -32,7 +32,7 @@ const router = new VueRouter({
     //不能写成 Router
     routes // （缩写）相当于 routes: routes
 })
-// router.push('miste')
+router.push('miste')
 
 import store from './store'
 

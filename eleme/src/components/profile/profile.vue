@@ -40,7 +40,7 @@
                 </div>
                 <div class="huodong2">
                     <i class="icon-count"></i>
-                    <span @click="share">分享拿5元现金</span>
+                    <span>分享拿5元现金</span>
                     <!-- <span><router-link to="share">分享拿5元现金</router-link></span>                   -->
                     <i class="icon-to"></i>
                 </div>
@@ -58,33 +58,20 @@
                 </div>
             </div>
         </div>
-        <share class="share" v-show="shareFlag"></share>
-        <keep-alive>
+        <!-- <keep-alive>
             <router-view></router-view>
-        </keep-alive>
+        </keep-alive> -->
     </div>
 </template>
 
 <script>
-    import Share from '../order/order'
     export default {
-        components: {
-            Share,
-        },
-        data () {
-            return {
-                shareFlag: false,
-            }
-        },
         methods: {
             back () {
                 this.$router.back()
             },
             logIn () {
                 this.$router.push('login')
-            },
-            share () {
-                this.shareFlag = true
             },
         }
     }
@@ -275,7 +262,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            bottom: 0;
+            bottom: 3rem;
             right: 0;
         }
     }
