@@ -1,8 +1,6 @@
 <template>
     <div id="app">
         <header-nav></header-nav>
-        <p @click="showLogTip">登录</p>
-        <!-- <log-tip v-show="TipFlag"></log-tip> -->
         <router-view></router-view>
     </div>   
 </template>

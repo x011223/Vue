@@ -20,7 +20,7 @@
 
 <style lang="scss" scoped>
     @import '../../assets/sass/style';
-    @mixin tabItem {
+    @mixin tabItem {  
         .tabItem {
             height: $height-headernav;
             line-height: $height-headernav;
@@ -31,6 +31,10 @@
     }
     $height-headernav: 3rem;
     #headerNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         width: 100%;
         border-bottom: 1px solid rgba(7, 17, 27, 0.5);
         .headertab {
