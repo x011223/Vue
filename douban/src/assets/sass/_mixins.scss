@@ -1,0 +1,25 @@
+
+
+        @mixin TextFlow {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow:ellipsis; 
+        }
+
+        @mixin A {
+            margin-bottom: 1rem;
+            .list-top {
+                display: flex;
+                padding: 0 .75rem;
+                .list-top-title {
+                    flex: 1;
+                    font: {
+                        size: $font-size-f;
+                        weight: $font-weight-m;
+                    }
+                }
+                .list-top-more {
+                    color: $color-theme;
+                }
+            }
+        }

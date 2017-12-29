@@ -3,10 +3,10 @@
         <ul class="listItem">
             <li v-for="(listItem, index ) in List">
                 <a :href="listItem.alt" class="listItem-img">
-                    <img :src="listItem.images.small" :alt="listItem.alt">
+                    <img v-lazy="isMovie ? listItem.images.small : listItem.cover.url" :alt="listItem.alt">
                 </a>
                 <span class="listItem-name" v-html="listItem.original_title"></span>
-                <span class="listItem-score" v-html="listItem.rating.average"></span>
+                <span class="listItem-score" v-html="listItem.rating.average > 0 ? listItem.rating.average : '暂无评分'"></span>
             </li>
         </ul>
     </div>
@@ -18,26 +18,23 @@
             List: {
                 type: Array,
                 default: []
+            },
+            isMovie: {
+                type: Boolean,
+                default: ''
             }
-        },
-        data () {
-            return {
-                List: [],
-            }
-            
-        },
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+    @import '../../assets/sass/_mixins.scss';
     $height-img: 145px;
     $width-img: 100px;
     #listView {
-        position: absolute;
+        // position: absolute;
         display: flex;
-        top: 2rem;
-        left: 0;
-        right: 0;
+        margin-top: 1rem;
         .listItem {
             flex-direction: columns;
             overflow: hidden;
@@ -45,7 +42,8 @@
             li {
                 list-style: none;
                 flex-direction: columns;
-                padding: 0 .75rem;
+                padding: 0 .53rem;
+                text-align: center;
                 .listItem-img {
                     img {
                         width: $width-img;
@@ -54,15 +52,13 @@
                 }
                 .listItem-name {
                     display: block;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow:ellipsis; 
-                    width: $width-img;
+                    @include TextFlow;
+                    max-width: $width-img;
                 }
                 .listItem-score {
                     text-align: center;
-                    width: $width-img;
-                    margin: 0 auto;
+                    @include TextFlow;
+                    max-width: $width-img;
                 }
             }
         }

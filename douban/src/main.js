@@ -6,6 +6,11 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+    loading: require('./assets/img/douban.png'),
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
