@@ -17,7 +17,7 @@
  
     export default {
         components: {
-            ListView
+            ListView,
         },
         data () {
             return {
@@ -46,7 +46,23 @@
 </script>
 
 <style lang="scss" scoped>
+    @mixin H2 {
+        h2 {
+            font: {
+                size: 1rem;
+                weight: 300;
+            }
+            margin-top: 1rem;
+        }   
+    }
     #books {
         overflow: hidden;
+        padding: 0 1rem;
+        .list-fiction {
+            @include H2;
+        }
+        .list-unfiction {
+            @include H2;
+        }
     }
 </style>

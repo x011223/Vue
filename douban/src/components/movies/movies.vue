@@ -4,7 +4,7 @@
         <div class="list-hotMovies">
             <div class="list-top">
                 <span class="list-top-title">影院热映</span>
-                <span class="list-top-more">更多</span>
+                <router-link class="list-top-more" to="moreHot">更多</router-link>
             </div>
             <div class="list-content">
                 <list-view :List="HotMovies" :isMovie="true"></list-view>
@@ -30,9 +30,10 @@
                 <list-view :List="Top250" :isMovie="true"></list-view>
             </div>
         </div>
-        <!-- <div class="instersts">
+        <div class="instersts">
             <p>发现好电影</p>
-        </div> -->
+        </div>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -40,6 +41,8 @@
     import ListView from '../../base/listview/listview'
     import { getHoteMovies, getFreeStream, getComingSoon, getTop250 } from '../../api/movie'
     import { getquanxian } from '../../api/quanxian'
+
+    const Count = 8
 
     export default {
         components: {
@@ -58,29 +61,30 @@
         methods: {
             //  获得 影院热映 列表
             _getHotMovies () {
-                getHoteMovies().then((res) => {       
+                getHoteMovies(Count).then((res) => {       
                     this.HotMovies = res.subjects   
                 })
             },
             // 获得 即将上映 列表
             _getComingSoon () {
-                getComingSoon().then((res) => {
+                getComingSoon(Count).then((res) => {
                     this.ComingSoonMovies = res.subjects
-                    console.log(this.ComingSoonMovies)
                 })
             },
             // 获得口碑榜 列表
             _getTop250 () {
-                getTop250().then((res) => {
+                getTop250(Count).then((res) => {
                     this.Top250 = res.subjects
-                    console.log(this.Top250)
                 })
+            },
+            moreHot () {
+                this.$router.push(
+                    { path: '/moreHot' }
+                )
             }
         },
         created () {
             this._getHotMovies()
-            // this._getquanxian()
-            // this._getFreeStream()
             this._getComingSoon()
             this._getTop250()
         }

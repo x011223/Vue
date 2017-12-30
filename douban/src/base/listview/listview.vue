@@ -12,7 +12,7 @@
     </div>
 </template>
 
-<script>
+<script> 
     export default {
         props: {
             List: {
@@ -32,16 +32,14 @@
     $height-img: 145px;
     $width-img: 100px;
     #listView {
-        // position: absolute;
         display: flex;
         margin-top: 1rem;
         .listItem {
-            flex-direction: columns;
+            flex: 1;
             overflow: hidden;
             display: flex;
             li {
                 list-style: none;
-                flex-direction: columns;
                 padding: 0 .53rem;
                 text-align: center;
                 .listItem-img {
