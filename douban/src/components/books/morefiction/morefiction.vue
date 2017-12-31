@@ -1,13 +1,13 @@
 <template>
-    <div id="moremovies">
-        <h1>影院热映</h1>
-        <list-view :List="HotMovies" :isMovie="true" :isMore="true"></list-view>
+    <div id="morebooks">
+        <h1>虚幻类</h1>
+        <list-view :List="listFiction" :isMovie="false" :isMore="true"></list-view>
     </div>
 </template>
 
 <script>
     import ListView from '../../../base/listview/listview'
-    import { getHoteMovies } from '../../../api/movie'
+    import {  getFiction } from '../../../api/books'
 
     const Count = 99
     export default {
@@ -16,18 +16,18 @@
         },
         data () {
             return {
-                HotMovies: [],
+                listFiction: [],
             }
         },
         methods: {
-            _getHotMovies () {
-                getHoteMovies(Count).then((res) => {       
-                    this.HotMovies = res.subjects   
+            _getFiction () {
+                getFiction(Count).then((res) => {
+                    this.listFiction = res.subject_collection_items
                 })
             },
         },
         created () {
-            this._getHotMovies()
+            this._getFiction()
         }
     }
 </script>
@@ -42,4 +42,3 @@
         }
     }
 </style>
-

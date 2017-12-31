@@ -7,14 +7,14 @@
                 <router-link class="list-top-more" to="moreHot">更多</router-link>
             </div>
             <div class="list-content">
-                <list-view :List="HotMovies" :isMovie="true"></list-view>
+                <list-view :List="HotMovies" :isMovie="true" :isMore="false"></list-view>
             </div>
         </div>
         <!-- 即将上映 列表 -->
         <div class="list-comingMovies">
             <div class="list-top">
                 <span class="list-top-title">即将上映</span>
-                <span class="list-top-more">更多</span>
+                <router-link class="list-top-more" to="moreComing">更多</router-link>
             </div>
             <div class="list-content">
                 <list-view :List="ComingSoonMovies" :isMovie="true"></list-view>
@@ -24,7 +24,7 @@
         <div class="list-Top250">
             <div class="list-top">
                 <span class="list-top-title">口碑榜</span>
-                <span class="list-top-more">更多</span>
+                <router-link class="list-top-more" to="moreTop">更多</router-link>
             </div>
             <div class="list-content">
                 <list-view :List="Top250" :isMovie="true"></list-view>
@@ -40,9 +40,8 @@
 <script>
     import ListView from '../../base/listview/listview'
     import { getHoteMovies, getFreeStream, getComingSoon, getTop250 } from '../../api/movie'
-    import { getquanxian } from '../../api/quanxian'
 
-    const Count = 8
+    const Count = 9
 
     export default {
         components: {
@@ -77,11 +76,6 @@
                     this.Top250 = res.subjects
                 })
             },
-            moreHot () {
-                this.$router.push(
-                    { path: '/moreHot' }
-                )
-            }
         },
         created () {
             this._getHotMovies()
@@ -100,19 +94,13 @@
         left: 0;
         right: 0;  
         .list-hotMovies {
-            @include A;
-            // .list-content {
-            //     overflow: hidden;
-            // }
+            @include listLine;
         }
         .list-comingMovies {
-            @include A;
-            // .list-content {
-            //     overflow: hidden;
-            // }
+            @include listLine;
         }
         .list-Top250 {
-            @include A;
+            @include listLine;
         }
     }
 </style>

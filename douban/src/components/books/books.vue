@@ -1,11 +1,17 @@
 <template>
     <div id="books">
         <div class="list-fiction">
-            <h2>最受关注图书 | 虚构类</h2>
+            <div class="list-top">
+                <h2 class="list-top-title">最受关注图书 | 虚构类</h2>
+                <router-link class="list-top-more" to="moreFiction">更多</router-link>
+            </div>
             <list-view :List="listFiction" :isMovie="false"></list-view>
         </div>
         <div class="list-unfiction">
-            <h2>最受关注图书 | 非虚构类</h2>
+            <div class="list-top">
+                <h2 class="list-top-title">最受关注图书 | 虚构类</h2>
+                <router-link class="list-top-more" to="moreUnFiction">更多</router-link>
+            </div>
             <list-view :List="listUnFiction" :isMovie="false"></list-view>
         </div>
     </div>
@@ -46,23 +52,28 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '../../assets/sass/style';
+    @import '../../assets/sass/mixins';
     @mixin H2 {
         h2 {
             font: {
                 size: 1rem;
                 weight: 300;
             }
-            margin-top: 1rem;
         }   
     }
     #books {
-        overflow: hidden;
-        padding: 0 1rem;
+        position: relative;
+        top: 1rem;
+        left: 0;
+        right: 0; 
         .list-fiction {
             @include H2;
+            @include listLine;
         }
         .list-unfiction {
             @include H2;
+            @include listLine;
         }
     }
 </style>
