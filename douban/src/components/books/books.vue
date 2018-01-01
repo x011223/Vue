@@ -5,14 +5,14 @@
                 <h2 class="list-top-title">最受关注图书 | 虚构类</h2>
                 <router-link class="list-top-more" to="moreFiction">更多</router-link>
             </div>
-            <list-view :List="listFiction" :isMovie="false"></list-view>
+            <list-view :List="listFiction" :isMore="false"></list-view>
         </div>
         <div class="list-unfiction">
             <div class="list-top">
                 <h2 class="list-top-title">最受关注图书 | 虚构类</h2>
                 <router-link class="list-top-more" to="moreUnFiction">更多</router-link>
             </div>
-            <list-view :List="listUnFiction" :isMovie="false"></list-view>
+            <list-view :List="listUnFiction" :isMore="false"></list-view>
         </div>
     </div>
 </template>

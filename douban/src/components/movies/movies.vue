@@ -7,39 +7,37 @@
                 <router-link class="list-top-more" to="moreHot">更多</router-link>
             </div>
             <div class="list-content">
-                <list-view :List="HotMovies" :isMovie="true" :isMore="false"></list-view>
+                <list-view :List="HotMovies" :isMore="false"></list-view>
             </div>
         </div>
-        <!-- 即将上映 列表 -->
-        <div class="list-comingMovies">
+        <div class="list-freeMovies">
             <div class="list-top">
-                <span class="list-top-title">即将上映</span>
-                <router-link class="list-top-more" to="moreComing">更多</router-link>
+                <span class="list-top-title">免费在线观影</span>
+                <router-link class="list-top-more" to="moreFree">更多</router-link>
             </div>
             <div class="list-content">
-                <list-view :List="ComingSoonMovies" :isMovie="true"></list-view>
+                <list-view :List="FreeMovies" :isMore="false"></list-view>
             </div>
         </div>
-        <!-- 口碑榜 列表 -->
-        <div class="list-Top250">
+        <div class="list-newMovies">
             <div class="list-top">
-                <span class="list-top-title">口碑榜</span>
-                <router-link class="list-top-more" to="moreTop">更多</router-link>
+                <span class="list-top-title">新片速递</span>
+                <router-link class="list-top-more" to="moreNew">更多</router-link>
             </div>
             <div class="list-content">
-                <list-view :List="Top250" :isMovie="true"></list-view>
+                <list-view :List="NewMovies" :isMore="false"></list-view>
             </div>
         </div>
         <div class="instersts">
             <p>发现好电影</p>
         </div>
-        <router-view></router-view>
+        <router-view></router-view>    
     </div>
 </template>
 
 <script>
     import ListView from '../../base/listview/listview'
-    import { getHoteMovies, getFreeStream, getComingSoon, getTop250 } from '../../api/movie'
+    import { getHotMovies, getFreeMovies, getNewMovies } from '../../api/movie'
 
     const Count = 9
 
@@ -52,35 +50,35 @@
                 // 影院热映
                 HotMovies: [],
                 // 免费在线观影
-                FreeOnlineMovies: [],
-                ComingSoonMovies: [],
-                Top250: [],
+                FreeMovies: [],
+                // 新片速递
+                NewMovies: [],
             }
         },
         methods: {
             //  获得 影院热映 列表
             _getHotMovies () {
-                getHoteMovies(Count).then((res) => {       
-                    this.HotMovies = res.subjects   
+                getHotMovies(Count).then((res) => {       
+                    this.HotMovies = res.subject_collection_items   
                 })
             },
-            // 获得 即将上映 列表
-            _getComingSoon () {
-                getComingSoon(Count).then((res) => {
-                    this.ComingSoonMovies = res.subjects
+            _getFreeMovies () {
+                getFreeMovies(Count).then((res) => {
+                    this.FreeMovies = res.subject_collection_items
                 })
             },
-            // 获得口碑榜 列表
-            _getTop250 () {
-                getTop250(Count).then((res) => {
-                    this.Top250 = res.subjects
+            _getNewMovies () {
+                getNewMovies(Count).then((res) => {
+                    this.NewMovies = res.subject_collection_items
                 })
-            },
+            }
         },
         created () {
             this._getHotMovies()
-            this._getComingSoon()
-            this._getTop250()
+            // this._getComingSoon()
+            // this._getTop250()
+            this._getFreeMovies()
+            this._getNewMovies()
         }
     }
 </script>
@@ -96,10 +94,10 @@
         .list-hotMovies {
             @include listLine;
         }
-        .list-comingMovies {
+        .list-freeMovies {
             @include listLine;
         }
-        .list-Top250 {
+        .list-newMovies {
             @include listLine;
         }
     }

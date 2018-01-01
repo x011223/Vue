@@ -1,7 +1,7 @@
 <template>
     <div id="moremovies">
         <h1>榜单250</h1>
-        <list-view :List="ComingSoonMovies" :isMovie="true" :isMore="true"></list-view>
+        <list-view :List="NewMovies" :isMovie="true" :isMore="true"></list-view>
     </div>
 </template>
 
@@ -17,19 +17,19 @@
         },
         data () {
             return {
-                ComingSoonMovies: [],
+                NewMovies: [],
             }
         },
         methods: {
-            _getComingSoon () {
-                getComingSoon(Count).then((res) => {       
-                    this.ComingSoonMovies = res.subjects   
-                    console.log(this.Top250)
+            _getNewMovies () {
+                getNewMovies(Count).then((res) => {       
+                    this.NewMovies = res.subjects   
+                    console.log(this.NewMovies)
                 })
             },
         },
         created () {
-            this._getComingSoon()
+            this._getNewMovies()
         }
     }
 </script>

@@ -7,7 +7,7 @@
 
 <script>
     import ListView from '../../../base/listview/listview'
-    import { getHoteMovies } from '../../../api/movie'
+    import { getHotMovies } from '../../../api/movie'
 
     const Count = 99
     export default {
@@ -21,8 +21,8 @@
         },
         methods: {
             _getHotMovies () {
-                getHoteMovies(Count).then((res) => {       
-                    this.HotMovies = res.subjects   
+                getHotMovies(Count).then((res) => {       
+                    this.HotMovies = res.subject_collection_items   
                 })
             },
         },

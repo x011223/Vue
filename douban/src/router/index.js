@@ -4,8 +4,8 @@ import Router from 'vue-router'
 import Main from '@/components/main/main'
 import Movies from '@/components/movies/movies'
     import MoreHot from '@/components/movies/morehot/morehot'
-    import MoreComing from '@/components/movies/morecoming/morecoming'
-    import MoreTop from '@/components/movies/moretop/moretop'
+    import MoreFree from '@/components/movies/morefree/morefree'
+    import MoreNew from '@/components/movies/morenew/morenew'
 import Books from '@/components/books/books'
     import MoreFiction from '@/components/books/morefiction/morefiction'
     import MoreUnFiction from '@/components/books/moreunfiction/moreunfiction'
@@ -19,8 +19,8 @@ export default new Router({
         { path: '/main', component: Main },
         { path: '/movies', component: Movies },
             { path: '/moreHot', component: MoreHot },
-            { path: '/moreComing', component: MoreComing },
-            { path: '/moreTop', component: MoreTop },
+            { path: '/moreFree', component: MoreFree },
+            { path: '/moreNew', component: MoreNew },
         { path: '/books', component: Books },
             { path: '/moreFiction', component: MoreFiction },
             { path: '/moreUnFiction', component: MoreUnFiction },

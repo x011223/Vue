@@ -1,13 +1,13 @@
 <template>
     <div id="moremovies">
         <h1>榜单250</h1>
-        <list-view :List="Top250" :isMovie="true" :isMore="true"></list-view>
+        <list-view :List="FreeMovies" :isMore="true"></list-view>
     </div>
 </template>
 
 <script>
     import ListView from '../../../base/listview/listview'
-    import { getTop250 } from '../../../api/movie'
+    import { getFreeMovies } from '../../../api/movie'
 
     const Count = 99
     export default {
@@ -16,19 +16,19 @@
         },
         data () {
             return {
-                Top250: [],
+                FreeMovies: [],
             }
         },
         methods: {
-            _getTop250 () {
-                getTop250(Count).then((res) => {       
-                    this.Top250 = res.subjects   
+            _getFreeMovies () {
+                getFreeMovies(Count).then((res) => {       
+                    this.FreeMovies = res.subjects   
                     console.log(this.Top250)
                 })
             },
         },
         created () {
-            this._getTop250()
+            this._getFreeMovies()
         }
     }
 </script>

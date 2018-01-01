@@ -2,11 +2,11 @@
     <div id="listView">
         <ul :class="this.isMore ? 'listItemMore' : 'listItemLess'">
             <li v-for="(listItem, index ) in List">
-                <a :href="listItem.alt" class="listItem-img">
-                    <img v-lazy="isMovie ? listItem.images.small : listItem.cover.url" :alt="listItem.alt">
+                <a :href="listItem.url" class="listItem-img">
+                    <img v-lazy="listItem.cover.url" :alt="listItem.alt">
                 </a>
-                <span class="listItem-name" v-html="listItem.original_title"></span>
-                <span class="listItem-score" v-html="listItem.rating.average > 0 ? listItem.rating.average : '暂无评分'"></span>
+                <span class="listItem-name" v-html="listItem.title"></span>
+                <span class="listItem-score" v-html="itemScore(listItem)"></span>
             </li>
         </ul>
     </div>
@@ -19,15 +19,25 @@
                 type: Array,
                 default: []
             },
-            isMovie: {
-                type: Boolean,
-                default: ''
-            },
+            // isMovie: {
+            //     type: Boolean,
+            //     default: ''
+            // },
             isMore: {
                 type: Boolean,
                 default: false
             }
         }, 
+        methods: {
+            itemScore (listItem) {
+                if (!listItem.rating || listItem.rating.value < 0) {
+                    return '暂无评分'
+                }
+                if (listItem.rating.value > 0) {
+                    return listItem.rating.value
+                }           
+            }
+        }
     }
 </script>
 
