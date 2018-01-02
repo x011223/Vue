@@ -29,7 +29,6 @@
             return {
                 listFiction: [],
                 listUnFiction: [],
-                ImgUrl: ''
             }
         },
         methods: {

@@ -6,6 +6,8 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import store from './store'
+
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
     loading: require('./assets/img/douban.png'),
@@ -15,6 +17,7 @@ Vue.use(VueLazyload, {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

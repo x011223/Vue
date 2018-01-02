@@ -19,10 +19,6 @@
                 type: Array,
                 default: []
             },
-            // isMovie: {
-            //     type: Boolean,
-            //     default: ''
-            // },
             isMore: {
                 type: Boolean,
                 default: false

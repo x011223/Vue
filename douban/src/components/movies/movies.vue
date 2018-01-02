@@ -38,6 +38,7 @@
 <script>
     import ListView from '../../base/listview/listview'
     import { getHotMovies, getFreeMovies, getNewMovies } from '../../api/movie'
+    import { mapGetters, mapMutations } from 'vuex'
 
     const Count = 9
 
@@ -45,40 +46,63 @@
         components: {
             ListView
         },
+        // data () {
+        //     return {
+        //         // 影院热映
+        //         HotMovies: [],
+        //         // 免费在线观影
+        //         FreeMovies: [],
+        //         // 新片速递
+        //         NewMovies: [],
+        //     }
+        // },
         data () {
-            return {
-                // 影院热映
-                HotMovies: [],
-                // 免费在线观影
-                FreeMovies: [],
-                // 新片速递
-                NewMovies: [],
-            }
+             return {
+                 listHot: [],
+                 listFree: [],
+                 listNew: [],
+             }   
         },
         methods: {
             //  获得 影院热映 列表
             _getHotMovies () {
-                getHotMovies(Count).then((res) => {       
-                    this.HotMovies = res.subject_collection_items   
+                getHotMovies(Count).then((res) => {     
+                    // this.HotMovies = res.subject_collection_items 
+                    this.listHot = res.subject_collection_items  
+                    this.getHotMovies(this.listHot)
                 })
             },
             _getFreeMovies () {
                 getFreeMovies(Count).then((res) => {
-                    this.FreeMovies = res.subject_collection_items
+                    // this.FreeMovies = res.subject_collection_items
+                    this.listFree = res.subject_collection_items
+                    this.getFreeMovies(this.listFree)
                 })
             },
             _getNewMovies () {
                 getNewMovies(Count).then((res) => {
-                    this.NewMovies = res.subject_collection_items
+                    // this.NewMovies = res.subject_collection_items
+                    this.listNew = res.subject_collection_items
+                    this.getNewMovies(this.listNew)
                 })
-            }
+            },
+            ...mapMutations({
+                getHotMovies: 'get_HotMovies',
+                getFreeMovies: 'get_FreeMovies',
+                getNewMovies: 'get_NewMovies',
+            })
         },
         created () {
             this._getHotMovies()
-            // this._getComingSoon()
-            // this._getTop250()
             this._getFreeMovies()
             this._getNewMovies()
+        },
+        computed: {
+            ...mapGetters ([
+                'HotMovies',
+                'FreeMovies',
+                'NewMovies',
+            ])
         }
     }
 </script>
