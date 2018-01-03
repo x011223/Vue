@@ -8,9 +8,12 @@
             // 新片速递
             NewMovies: [],
             // 虚幻类图书
-            listFiction: [],
+            FictionBooks: [],
             // 非虚幻类图书
-            listUnFiction: [],
+            UnFictionBooks: [],
+            // 主页热门文章
+            RecommendFeed: [],
+            isMore: false,
         }
 
         export default state

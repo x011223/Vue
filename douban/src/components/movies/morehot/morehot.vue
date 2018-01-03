@@ -1,31 +1,16 @@
 <template>
     <div id="moremovies">
         <h1>影院热映</h1>
-        <list-view :List="HotMovies" :isMovie="true" :isMore="true"></list-view>
+        <list-view :List="HotMovies" :isMore="true"></list-view>
     </div>
 </template>
 
 <script>
-    import ListView from '../../../base/listview/listview'
-    import { getHotMovies } from '../../../api/movie'
+    import { ListMixin } from '../../../assets/js/mixins'
 
     const Count = 99
     export default {
-        components: {
-            ListView,
-        },
-        data () {
-            return {
-                HotMovies: [],
-            }
-        },
-        methods: {
-            _getHotMovies () {
-                getHotMovies(Count).then((res) => {       
-                    this.HotMovies = res.subject_collection_items   
-                })
-            },
-        },
+        mixins: [ ListMixin ],
         created () {
             this._getHotMovies()
         }

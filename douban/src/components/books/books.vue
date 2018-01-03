@@ -3,45 +3,38 @@
         <div class="list-fiction">
             <div class="list-top">
                 <h2 class="list-top-title">最受关注图书 | 虚构类</h2>
-                <router-link class="list-top-more" to="moreFiction">更多</router-link>
+                <span class="list-top-more" @click="moreFiction">更多</span>
             </div>
-            <list-view :List="listFiction" :isMore="false"></list-view>
+            <list-view :List="FictionBooks" :isMore="false"></list-view>
         </div>
         <div class="list-unfiction">
             <div class="list-top">
                 <h2 class="list-top-title">最受关注图书 | 虚构类</h2>
-                <router-link class="list-top-more" to="moreUnFiction">更多</router-link>
+                <span class="list-top-more" @click="moreUnFiction">更多</span>
             </div>
-            <list-view :List="listUnFiction" :isMore="false"></list-view>
+            <list-view :List="UnFictionBooks" :isMore="false"></list-view>
         </div>
     </div>
 </template>
 
 <script>
-    import ListView from '../../base/listview/listview'
-    import { getFiction, getUnFiction } from '../../api/books'
- 
+    import { ListMixin } from '../../assets/js/mixins'
+    import {asdd} from '../../api/books'
     export default {
-        components: {
-            ListView,
-        },
-        data () {
-            return {
-                listFiction: [],
-                listUnFiction: [],
-            }
-        },
+        mixins: [ ListMixin ],
         methods: {
-            _getFiction () {
-                getFiction().then((res) => {
-                    this.listFiction = res.subject_collection_items
-                })
+            moreFiction () {
+                this.setIsMore(true)
+                this.$router.push(
+                    { path: '/moreFiction' }
+                )
             },
-            _getUnFiction () {
-                getUnFiction().then((res) => {
-                    this.listUnFiction = res.subject_collection_items
-                })
-            }
+            moreUnFiction () {
+                this.setIsMore(true)
+                this.$router.push(
+                    { path: '/moreUnFiction'}
+                )
+            },         
         },
         created () {
             this._getFiction()

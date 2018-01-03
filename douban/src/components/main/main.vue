@@ -15,7 +15,7 @@
             </span>
         </div>
         <div class="main-recommend">
-            <li v-for="(item, index) in listRecommend" class="list-item">
+            <li v-for="(item, index) in RecommendFeed" class="list-item">
                 <div class="list-item-above">
                     <div class="above-text">
                         <h2 v-html="item.title" class="item-title"></h2>
@@ -34,23 +34,12 @@
 </template>
 
 <script>
-    import { getRecommend } from '../../api/main'
+    import { ListMixin } from '../../assets/js/mixins'
 
     const Count = 99
 
     export default {
-        data () {
-            return {
-                listRecommend: [],
-            }
-        },
-        methods: {
-            _getRecommend () {
-                getRecommend(Count).then((res) => {
-                    this.listRecommend = res.recommend_feeds
-                })
-            }
-        },
+        mixins: [ ListMixin ],
         created () {
             this._getRecommend()
         }

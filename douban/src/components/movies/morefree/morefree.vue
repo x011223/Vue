@@ -6,27 +6,11 @@
 </template>
 
 <script>
-    import ListView from '../../../base/listview/listview'
-    import { getFreeMovies } from '../../../api/movie'
+    import { ListMixin } from '../../../assets/js/mixins'
 
     const Count = 99
     export default {
-        components: {
-            ListView,
-        },
-        data () {
-            return {
-                FreeMovies: [],
-            }
-        },
-        methods: {
-            _getFreeMovies () {
-                getFreeMovies(Count).then((res) => {       
-                    this.FreeMovies = res.subjects   
-                    console.log(this.Top250)
-                })
-            },
-        },
+        mixins: [ ListMixin ],
         created () {
             this._getFreeMovies()
         }

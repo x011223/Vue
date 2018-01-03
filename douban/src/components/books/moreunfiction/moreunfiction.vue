@@ -1,31 +1,16 @@
 <template>
     <div id="morebooks">
         <h1>非虚幻类</h1>
-        <list-view :List="listUnFiction" :isMovie="false" :isMore="true"></list-view>
+        <list-view :List="UnFictionBooks" :isMore="true"></list-view>
     </div>
 </template>
 
 <script>
-    import ListView from '../../../base/listview/listview'
-    import {  getUnFiction } from '../../../api/books'
+    import { ListMixin } from '../../../assets/js/mixins'
 
     const Count = 99
     export default {
-        components: {
-            ListView,
-        },
-        data () {
-            return {
-                listUnFiction: [],
-            }
-        },
-        methods: {
-            _getUnFiction () {
-                getUnFiction(Count).then((res) => {
-                    this.listUnFiction = res.subject_collection_items
-                })
-            }
-        },
+        mixins: [ ListMixin ],
         created () {
             this._getUnFiction()
         }

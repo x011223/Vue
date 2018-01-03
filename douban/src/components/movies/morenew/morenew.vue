@@ -6,28 +6,11 @@
 </template>
 
 <script>
-    import ListView from '../../../base/listview/listview'
-    import { getTop250 } from '../../../api/movie'
-    import {  getComingSoon } from '../../../api/movie'
+    import { ListMixin } from '../../../assets/js/mixins'
 
     const Count = 99
     export default {
-        components: {
-            ListView,
-        },
-        data () {
-            return {
-                NewMovies: [],
-            }
-        },
-        methods: {
-            _getNewMovies () {
-                getNewMovies(Count).then((res) => {       
-                    this.NewMovies = res.subjects   
-                    console.log(this.NewMovies)
-                })
-            },
-        },
+        mixins: [ ListMixin ],
         created () {
             this._getNewMovies()
         }
