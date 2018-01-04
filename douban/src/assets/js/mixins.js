@@ -1,13 +1,17 @@
 
 
         import ListView from '../../base/listview/listview'
+        import InBottom from '../../base/inbottom/inbottom'
+
         import { mapGetters, mapMutations } from 'vuex'
         import { getHotMovies, getFreeMovies, getNewMovies } from '../../api/movie'
-        import { getFiction, getUnFiction } from '../../api/books'
+        import { getFiction, getUnFiction, getBookStore } from '../../api/books'
+        
         import { getRecommend } from '../../api/main'
         export const ListMixin = {
             components: {
-                ListView
+                ListView,
+                InBottom,
             },
             data () {
                  return {
@@ -17,6 +21,8 @@
                     listRecommend: [],
                     listFiction: [],
                     listUnFiction: [],
+                    listBookStore: [],
+                    storeHead: []
                  }   
             },
             methods: {
@@ -71,6 +77,15 @@
                     })
                     this.setIsMore(false)
                 },
+                _getBookStore () {
+                    getBookStore(this.Count).then((res) => {
+                        this.listBookStore = res.subject_collection_items
+                        this.storeHead = res.header
+                        console.log(this.listBookStore)
+                        console.log(this.storeHead)
+                    })
+                    this.setIsMore(false)
+                },
                 ...mapMutations({
                     getHotMovies: 'get_HotMovies',
                     getFreeMovies: 'get_FreeMovies',
@@ -81,14 +96,6 @@
                     setIsMore: 'set_IsMore'
                 })
             },
-            // created () {
-            //     this._getHotMovies()
-            //     this._getFreeMovies()
-            //     this._getNewMovies()
-            //     this._getRecommend()
-            //     this._getFiction()
-            //     this._getUnFiction()
-            // },
             computed: {
                 Count () {
                     return this.isMore ? 69 : 9

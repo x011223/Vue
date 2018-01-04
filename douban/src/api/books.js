@@ -21,3 +21,12 @@
             }
             return jsonp(url, data)
         }
+
+        // 获取  豆瓣书店 新书 列表 
+        export function getBookStore (Count) {
+            const url = 'https://m.douban.com/rexxar/api/v2/subject_collection/market_product_book_mobile_web/items'
+            const data = {
+                count: Count
+            }
+            return jsonp(url, data)
+        }

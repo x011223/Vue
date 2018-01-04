@@ -1,5 +1,6 @@
 
 
+        $border-browsing: 1px solid #ccc;
         @mixin TextFlow {
             overflow: hidden;
             white-space: nowrap;
@@ -10,7 +11,7 @@
         @mixin listLine {
             margin-bottom: .5rem;
             padding-bottom: .5rem;
-            border-bottom: 1px solid rgba(19, 255, 58, 0.685);
+            // border-bottom: 1px solid rgba(19, 255, 58, 0.685);
             .list-top {
                 display: flex;
                 padding: 0 .75rem;
@@ -28,4 +29,82 @@
                     text-decoration: none;
                 }
             }
+        }
+
+        @mixin MovA {
+            a {
+                text-decoration: none;
+                display: inline-block;
+                padding: .53rem 1rem;
+                margin-bottom: .33rem;
+                border: 1px solid #00bdbd;
+            }
+        }
+
+        @mixin BtnA {
+            a {
+                display: flex;
+                width: 100%;
+                height: 1.67rem;
+                line-height: 1.67rem;
+                border: none;
+                color: $color-theme;
+                border-bottom: $border-browsing;
+                span {
+                    margin: 0;
+                    padding: 0;
+                    display: block;
+                    flex: 1;
+                    float: right;
+                }
+                span:last-child {
+                    display: inline-block;
+                    text-align: right;
+                    margin-right: 1.53rem;
+                    color: #ccc;
+                }
+            }  
+            a:first-child {
+                border-top: $border-browsing;
+            }
+        }
+
+        @mixin Browsing {
+            overflow: hidden;
+            margin: 0 1rem;
+            .browsing-title {
+                display: block;
+                margin: 1rem 0;
+                // margin: 0 1rem;
+            }
+            .browsing-btn {
+                display: flex;
+                width: 100%;
+                // margin: 0;
+                // padding: 0;
+                .btn-left {
+                    flex: 1;
+                    border-right: $border-browsing;
+                    @include MovA;
+                    @include BtnA;       
+                }
+                .btn-right {
+                    flex: 1;
+                    @include MovA;
+                    @include BtnA;
+                    a {
+                        span {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        @mixin FontStore {
+            font: {
+                size: $font-size-s;
+                weight: $font-weight-m;
+            }
+            color: #ccc;
         }
