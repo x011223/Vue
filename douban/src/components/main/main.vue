@@ -1,5 +1,5 @@
 <template>
-    <div id="main">
+    <div id="main" ref="Main" @touchstart.prevent="touchstart" @touchmove.prevent="touchenter" @touchend="touchleave">
         <div class="main-nav">
             <span>
                 <router-link class="main-nav-text" to="moreHot">影院热映</router-link>
@@ -13,9 +13,27 @@
             <span>
                 <router-link class="main-nav-text" to="moreHot">使用豆瓣APP</router-link>
             </span>
+        </div>       
+        <div class="main-recommend" ref="Recommend">
+            <li v-for="(item, index) in RecommendFeed" class="list-item" ref="Item">
+                <div class="list-item-above">
+                    <div class="above-text">
+                        <h2 v-html="item.title" class="item-title"></h2>
+                        <p v-html="item.target.desc" class="item-desc"></p>
+                    </div>
+                    <img :class="item.target.cover_url ? 'aboveImg' : ''" :src="item.target.cover_url" alt="">
+                </div>
+                <div class="list-item-bottom">
+                    <span v-html="'by ' + item.target.author.name" class="item-authorname"></span>
+                    <span v-html="item.source_cn" class="item-source"></span>
+                </div>             
+            </li>
         </div>
-        <div class="main-recommend">
-            <li v-for="(item, index) in RecommendFeed" class="list-item">
+        <div class="recommend-before" v-if="moreFlag">
+            <div class="recommend-date">
+                <span v-html="this.recommendDate"></span>
+            </div>
+            <li v-for="(item, index) in this.ArrayRecommend" class="list-item">
                 <div class="list-item-above">
                     <div class="above-text">
                         <h2 v-html="item.title" class="item-title"></h2>
@@ -35,14 +53,65 @@
 
 <script>
     import { ListMixin } from '../../assets/js/mixins'
-
+    import { getRecommendBefore } from '../../api/main'
     const Count = 99
 
     export default {
         mixins: [ ListMixin ],
+        data () {
+            return {
+                moreFlag: false,
+                recommendBefore: [],
+                arrayRecommend: [],
+                list: [],
+                deltaY: 0,
+            }
+        },
+        methods: {
+            touchstart (e) {
+                this.touch.initiated = true
+                const touch = e.touches[0]
+                this.touch.startY = touch.pageY
+            },
+            touchenter (e) {
+                if (!this.touch.initiated) {
+                    return
+                }
+                const touch = e.touches[0]
+                this.deltaY = touch.pageY - this.touch.startY    
+                // let recommendBottom = window.getComputedStyle(this.$refs.Recommend, ":last-child").bottom 
+                //                   + window.getComputedStyle(this.$refs.Recommend, ":last-child").top
+                // console.log(window.getComputedStyle(this.$refs.Recommend, ":last-child").bottom)
+            },
+            touchleave (e) {      
+                if (this.deltaY < -180) {
+                    clearTimeout(timer)
+                    let timer = setTimeout(() => {
+                        getRecommendBefore(this.recommendDate).then((res) => {
+                            this.recommendBefore = res.recommend_feeds
+                            this.getRecommendBefore(this.recommendBefore)
+                            this.arrayRecommend = this.arrayRecommend.concat(this.RecommendBefore)
+                            console.log(this.arrayRecommend)
+                            this.recommendDate = res.date
+                            this.setRecommendDate(this.recommendDate)
+                            this.getArrayRecommend(this.arrayRecommend)  
+                            console.log(this.RecommendDate)   
+                            return
+                        })   
+                        // return                       
+                    }, 1000)
+                    // return
+                } else {
+                    return
+                }  
+                this.moreFlag = true      
+                this.touch.initiated = false        
+            }
+        },
         created () {
-            this._getRecommend()
-        }
+            this._getRecommend()   
+            this.touch = {}
+        },
     };
 </script>
 
@@ -50,9 +119,9 @@
     @import '../../assets/sass/style';
     @import '../../assets/sass/mixins';
     @mixin Span {
-        width: 90%;
         text-align: center;
-        margin: 1.67rem auto 0;
+        margin: 1.67rem 1rem;
+        overflow: hidden;
         span {             
             float: left;
             width: 50%;
@@ -74,21 +143,9 @@
             }
         }
     }
-    #main {
-        width: 100%;
-        .main-nav {
-            @include Span;          
-        }
-        .main-recommend {
-            position: absolute;
-            top: 13rem;
-            left: 0;
-            right: 0;
-            width: 100%;
-            list-style: none;
-            .list-item {
+    @mixin RecommendItem {
+        .list-item {
                 margin: 0 1rem 1.67rem;
-                overflow: hidden;
                 padding-bottom: 1rem;
                 border-bottom: 1px solid #dbdbdb;
                 .list-item-above {
@@ -97,7 +154,6 @@
                     .aboveImg {
                         width: 5.7rem;
                         height: 5.7rem;
-                        // padding-left: .63rem;
                     }
                     .above-text {
                         flex: 1;
@@ -153,6 +209,29 @@
                         }
                     }
                 }
+            }
+    }
+    #main {
+        width: 100%;
+        .main-nav {
+            @include Span;          
+        }
+        .main-recommend {
+            // margin-top: 1rem;
+            list-style: none;
+            @include RecommendItem;
+        }
+        .recommend-before {
+            .recommend-date {
+                margin-top: -.5rem;
+                padding-bottom: 1rem;
+                text-align: center;
+                border-bottom: $border-browsing;
+            }
+            list-style: none;
+            @include RecommendItem;
+            .list-item {
+                margin-top: 1rem;
             }
         }
     }

@@ -14,6 +14,10 @@
             // 主页热门文章
             RecommendFeed: [],
             isMore: false,
+            StoreHeader: [],
+            RecommendDate: '',
+            RecommendBefore: [],
+            ArrayRecommend: [],
         }
 
         export default state

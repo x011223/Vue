@@ -24,10 +24,10 @@
                 <img v-lazy="'https://img1.doubanio.com/view/freyr_page_photo/raw/public/2337.jpg'" alt="" class="header-img">
                 <div class="header-text">
                     <div class="text-above">
-                        <span v-html="storeHead.title" class="above-title"></span>
-                        <span v-html="'￥' + storeHead.price" class="above-price"></span>
+                        <span v-html="storeHeader.title" class="above-title"></span>
+                        <span v-html="'￥' + storeHeader.price" class="above-price"></span>
                     </div>
-                    <span v-html="storeHead.info" class="text-bottom"></span>
+                    <span v-html="storeHeader.info" class="text-bottom"></span>
                 </div>
             </div>
             <div class="store-list">

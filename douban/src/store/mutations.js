@@ -22,7 +22,19 @@
             },
             [types.set_IsMore] (state, isMore) {
                 state.isMore = isMore
-            }
+            },
+            [types.get_StoreHeader] (state, StoreHeader) {
+                state.StoreHeader = StoreHeader
+            },
+            [types.set_RecommendDate] (state, RecommendDate) {
+                state.RecommendDate = RecommendDate
+            },
+            [types.get_ArrayRecommend] (state, ArrayRecommend) {
+                state.ArrayRecommend = ArrayRecommend
+            },
+            [types.get_RecommendBefore] (state, RecommendBefore) {
+                state.RecommendBefore = RecommendBefore
+            },
         }
 
         export default mutations

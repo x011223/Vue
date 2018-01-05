@@ -7,7 +7,7 @@
         import { getHotMovies, getFreeMovies, getNewMovies } from '../../api/movie'
         import { getFiction, getUnFiction, getBookStore } from '../../api/books'
         
-        import { getRecommend } from '../../api/main'
+        import { getRecommend, setRecommendDate } from '../../api/main'
         export const ListMixin = {
             components: {
                 ListView,
@@ -22,11 +22,12 @@
                     listFiction: [],
                     listUnFiction: [],
                     listBookStore: [],
-                    storeHead: []
+                    storeHeader: [],
+                    recommendDate: '',
                  }   
             },
             methods: {
-                //  获得 影院热映 列表
+                //  影院热映 列表
                 _getHotMovies () {
                     getHotMovies(this.Count).then((res) => {  
                         // this.HotMovies = res.subject_collection_items 
@@ -55,9 +56,14 @@
                 },
                 // 主页 热门文章
                 _getRecommend () {
-                    getRecommend(this.Count).then((res) => {
+                    getRecommend().then((res) => {
                         this.listRecommend = res.recommend_feeds
                         this.getRecommend(this.listRecommend)
+                        this.recommendDate = res.date   
+                        this.setRecommendDate(this.recommendDate)
+                        // getRecommendBefore(this.recommendDate).then(() => {
+                        //     console.log(res.recommend_feeds)
+                        // })             
                     })
                     this.setIsMore(false)
                 },
@@ -80,9 +86,7 @@
                 _getBookStore () {
                     getBookStore(this.Count).then((res) => {
                         this.listBookStore = res.subject_collection_items
-                        this.storeHead = res.header
-                        console.log(this.listBookStore)
-                        console.log(this.storeHead)
+                        this.storeHeader = res.header
                     })
                     this.setIsMore(false)
                 },
@@ -93,7 +97,11 @@
                     getRecommend: 'get_RecommendFeed',
                     getFiction: 'get_FictionBooks',
                     getUnFiction: 'get_UnFictionBooks',
-                    setIsMore: 'set_IsMore'
+                    setIsMore: 'set_IsMore',
+                    getStoreHeader: 'get_StoreHeader',
+                    setRecommendDate: 'set_RecommendDate',
+                    getArrayRecommend: 'get_ArrayRecommend',
+                    getRecommendBefore: 'get_RecommendBefore',
                 })
             },
             computed: {
@@ -108,6 +116,10 @@
                     'FictionBooks',
                     'RecommendFeed',
                     'isMore',
+                    'StoreHeader',
+                    'RecommendDate',
+                    'RecommendBefore',
+                    'ArrayRecommend',
                 ]),           
             }
         }
