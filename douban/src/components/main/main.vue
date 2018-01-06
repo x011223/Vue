@@ -31,7 +31,7 @@
         </div>
         <div class="recommend-before" v-if="moreFlag">
             <div class="recommend-date">
-                <span v-html="this.recommendDate"></span>
+                <span v-html="this.listDate"></span>
             </div>
             <li v-for="(item, index) in this.ArrayRecommend" class="list-item">
                 <div class="list-item-above">
@@ -54,7 +54,6 @@
 <script>
     import { ListMixin } from '../../assets/js/mixins'
     import { getRecommendBefore } from '../../api/main'
-    const Count = 99
 
     export default {
         mixins: [ ListMixin ],
@@ -65,6 +64,7 @@
                 arrayRecommend: [],
                 list: [],
                 deltaY: 0,
+                listDate: [],
             }
         },
         methods: {
@@ -91,11 +91,12 @@
                             this.recommendBefore = res.recommend_feeds
                             this.getRecommendBefore(this.recommendBefore)
                             this.arrayRecommend = this.arrayRecommend.concat(this.RecommendBefore)
-                            console.log(this.arrayRecommend)
                             this.recommendDate = res.date
+                            this.listDate.push(this.recommendDate)
+                            console.log(this.recommendDate) 
+                            console.log(this.listDate)
                             this.setRecommendDate(this.recommendDate)
-                            this.getArrayRecommend(this.arrayRecommend)  
-                            console.log(this.RecommendDate)   
+                            this.getArrayRecommend(this.arrayRecommend)                               
                             return
                         })   
                         // return                       

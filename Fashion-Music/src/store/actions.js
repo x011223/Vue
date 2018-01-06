@@ -13,7 +13,8 @@
         })
     }
     // 播放选择的歌曲
-    export const selectPlay = function ({commit, state}, {list, index}) {       
+    export const selectPlay = function ({commit, state}, {list, index}) {   
+        // console.log(list) 
         commit(types.Set_Sequence_List, list)
         if (state.playmode === playMode.random) {
             let randomList = shuffle(list)

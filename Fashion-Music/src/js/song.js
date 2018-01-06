@@ -1,7 +1,9 @@
 
+    import {getSongVkey} from '../api/singer'
     import {getLyrics} from '../api/lyric'
     import {ERR_OK} from '../api/config'
     import {Base64} from 'js-base64'
+
     export default class Song {
         constructor({id, mid, singer, name, album, duration, image, url}) {
             this.id = id
@@ -41,7 +43,9 @@
             album: musicData.albumname,
             duration: musicData.interval,
             image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-            url: `https://dl.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=66`
+            // url: `https://dl.stream.qqmusic.qq.com/${musicData.songid}.m4a?vkey=${getSongVkey(musicData.mid).then((res) => {
+            //     return res.data.items["0"].vkey
+            // })}&guid=6520805900&uin=0fromtag=66`
         })
     }
 
