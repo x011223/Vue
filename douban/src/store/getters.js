@@ -11,5 +11,5 @@
         export const RecommendDate = state => state.RecommendDate
         export const RecommendBefore = state => state.RecommendBefore
         export const ArrayRecommend = state => state.ArrayRecommend
-        // export const RecommendBefore = state => state.RecommendBefore
-        // export const RecommendBefore = state => state.RecommendBefore
+        export const Movie = state => state.Movie
+        export const Book = state => state.Book

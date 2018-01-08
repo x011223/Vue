@@ -90,7 +90,6 @@
                     list: this.songs,
                     index
                 })
-                console.log(this.songs)
             },
             scroll (pos) {
                 // 得到实时滚动的距离

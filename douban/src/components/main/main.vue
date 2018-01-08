@@ -52,6 +52,7 @@
 </template>
 
 <script>
+    // https://m.douban.com/rexxar/api/v2/gallery/topic_selections
     import { ListMixin } from '../../assets/js/mixins'
     import { getRecommendBefore } from '../../api/main'
 
@@ -213,6 +214,8 @@
             }
     }
     #main {
+        position: fixed;
+        top: 3rem;
         width: 100%;
         .main-nav {
             @include Span;          

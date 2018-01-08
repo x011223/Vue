@@ -13,11 +13,20 @@
             UnFictionBooks: [],
             // 主页热门文章
             RecommendFeed: [],
+            // 是否有更多
             isMore: false,
+            // 豆瓣 书城 第一条
             StoreHeader: [],
+            // 主页 热门 时间
             RecommendDate: '',
+            // 主页 往日 文章
             RecommendBefore: [],
+            // 主页 热门 文章汇总 列表
             ArrayRecommend: [],
+            // 电影
+            Movie: {},
+            // 图书
+            Book: {},
         }
 
         export default state

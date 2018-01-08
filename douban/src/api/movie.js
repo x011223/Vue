@@ -12,6 +12,7 @@
             return jsonp(url, data)
         }
 
+        // 获取 免费在线 列表
         export function getFreeMovies (Count) {
             const url = 'https://m.douban.com/rexxar/api/v2/subject_collection/movie_free_stream/items'
             const data = {
@@ -20,6 +21,7 @@
             return jsonp(url, data)
         }
 
+        // 获取 新片速递 列表
         export function getNewMovies (Count) {
             const url = 'https://m.douban.com/rexxar/api/v2/subject_collection/movie_latest/items'
             const data = {

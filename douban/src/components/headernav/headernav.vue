@@ -31,16 +31,18 @@
     }
     $height-headernav: 3rem;
     #headerNav {
-        position: relative;
-        top: 0;
-        left: 0;
-        right: 0;
+        position: relative;        
         width: 100%;
         border-bottom: 1px solid rgba(7, 17, 27, 0.5);
         .headertab {
             display: flex;
             color: $color-theme;
             @include tabItem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
             .itemMain {
                 font: {
                     size: $font-size-X;

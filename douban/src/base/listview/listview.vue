@@ -1,7 +1,7 @@
 <template>
     <div id="listView">
         <ul :class="this.isMore ? 'listItemMore' : 'listItemLess'">
-            <li v-for="(listItem, index ) in List">
+            <li v-for="(listItem, index ) in List" @click="toListItem(listItem)">
                 <a :href="listItem.url" class="listItem-img">
                     <img v-lazy="listItem.cover.url" :alt="listItem.alt">
                 </a>
@@ -9,10 +9,12 @@
                 <span class="listItem-score" v-html="itemScore(listItem)"></span>
             </li>
         </ul>
+        <router-view></router-view>
     </div>
 </template>
 
 <script> 
+    import { mapMutations, mapGetters } from "vuex";
     export default {
         props: {
             List: {
@@ -25,6 +27,7 @@
             }
         }, 
         methods: {
+            // 显示 电影 或者 图书 评分
             itemScore (listItem) {
                 if (!listItem.rating || listItem.rating.value < 0) {
                     return '暂无评分'
@@ -32,7 +35,40 @@
                 if (listItem.rating.value > 0) {
                     return listItem.rating.value
                 }           
-            }
+            },
+            // 点击 某个电影 或者 图书， 转到相应详情页面
+            toListItem (listItem) {
+                if (listItem.type === "movie") {
+                    if (this.isMore) {
+                        this.$router.push(
+                            { path: `/moreHot/${listItem.id}` }
+                        )
+                    } else {
+                        this.$router.push(
+                            { path: `/movies/${listItem.id}` }
+                        )
+                    }
+                    this.setMovie(listItem)
+                } else {
+                    if (this.isMore) {
+                        this.$router.push(
+                            { path: `${listItem.id}` }
+                        )
+                    }
+                    this.setBook(listItem)
+                    console.log(this.Book)
+                }
+            },
+            ...mapMutations ({
+                setMovie: 'set_Movie',
+                setBook: 'set_Book',
+            })
+        },
+        computed: {
+            ...mapGetters ([
+                'Movie',
+                'Book'
+            ])
         }
     }
 </script>
@@ -42,7 +78,6 @@
     $height-img: 145px;
     $width-img: 100px;
     #listView {
-        // display: flex;
         margin-top: 1rem;
         margin-left: 1rem;
         .listItemLess {

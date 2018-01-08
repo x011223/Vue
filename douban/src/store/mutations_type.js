@@ -11,3 +11,5 @@
         export const set_RecommendDate = 'set_RecommendDate'
         export const get_RecommendBefore = 'get_RecommendBefore'
         export const get_ArrayRecommend = 'get_ArrayRecommend'
+        export const set_Movie = 'set_Movie'
+        export const set_Book = 'set_Book'

@@ -2,13 +2,13 @@
     <div id="moremovies">
         <h1>影院热映</h1>
         <list-view :List="HotMovies" :isMore="true"></list-view>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     import { ListMixin } from '../../../assets/js/mixins'
 
-    const Count = 99
     export default {
         mixins: [ ListMixin ],
         created () {

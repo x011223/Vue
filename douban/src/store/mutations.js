@@ -35,6 +35,12 @@
             [types.get_RecommendBefore] (state, RecommendBefore) {
                 state.RecommendBefore = RecommendBefore
             },
+            [types.set_Movie] (state, Movie) {
+                state.Movie = Movie
+            },
+            [types.set_Book] (state, Book) {
+                state.Book = Book
+            }
         }
 
         export default mutations

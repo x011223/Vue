@@ -38,13 +38,7 @@
             },
             selectSong(song, index) {
                 // 点击时 分发事件
-                getSongVkey(song.mid).then((res) => {
-                    const vkey = res.data.items["0"].vkey
-                    const url = `https://dl.stream.qqmusic.qq.com/C400${song.mid}.m4a?vkey=${vkey}&guid=6520805900&uin=0&fromtag=66`
-                    song = Object.assign({}, song, {url: url})      
-                    this.$emit('select', song, index)    
-                })      
-                
+                this.$emit('select', song, index)           
             },
             getRankStyle (index) {
                 if (index < 3) {

@@ -5,6 +5,8 @@
     import {playMode} from '../js/config'
     import {saveSearch, deleteSearch, clearHistory, savePlay, saveFavorite, deleteFavorite} from '../js/cache'
 
+    import {getSongVkey} from '../api/singer'
+
 
     // 查找列表中是否存在歌曲
     function findIndex (list, song) {
@@ -14,18 +16,23 @@
     }
     // 播放选择的歌曲
     export const selectPlay = function ({commit, state}, {list, index}) {   
-        // console.log(list) 
-        commit(types.Set_Sequence_List, list)
-        if (state.playmode === playMode.random) {
-            let randomList = shuffle(list)
-            commit(types.Set_Play_List, randomList)
-            index = findIndex(randomList, list[index])
-        } else {
-            commit(types.Set_Play_List, list)
-        }
-        commit(types.Set_Full_Screen, true)
-        commit(types.Set_Playing_State, true)
-        commit(types.Set_Current_Index, index)
+        // getSongVkey(list[index].mid).then((res) => {
+        //     const vkey = res.data.items["0"].vkey
+        //     console.log(vkey)
+        //     const url = `https://dl.stream.qqmusic.qq.com/C400${list[index].mid}.m4a?vkey=${vkey}&guid=6520805900&uin=0&fromtag=66`
+        //     list[index] = Object.assign({}, list[index], {url: url}) 
+            commit(types.Set_Sequence_List, list)
+            if (state.playmode === playMode.random) {
+                let randomList = shuffle(list)
+                commit(types.Set_Play_List, randomList)
+                index = findIndex(randomList, list[index])
+            } else {
+                commit(types.Set_Play_List, list)
+            }
+            commit(types.Set_Full_Screen, true)
+            commit(types.Set_Playing_State, true)
+            commit(types.Set_Current_Index, index)        
+        // }) 
     }
     // 点击随机播放全部
     export const randomPlay = function ({commit, state}, {list, index}) {

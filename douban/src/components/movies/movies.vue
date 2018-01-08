@@ -65,7 +65,7 @@
                 this.$router.push(
                     { path: '/moreNew'}
                 )
-            },
+            }, 
         },
         created () {
             this._getHotMovies()
@@ -79,10 +79,8 @@
     @import '../../assets/sass/style';
     @import '../../assets/sass/mixins';
     #movies {
-        position: relative;
-        top: 1rem;
-        left: 0;
-        right: 0;  
+        position: fixed;
+        top: 3rem;
         .list-hotMovies {
             @include listLine;
         }
