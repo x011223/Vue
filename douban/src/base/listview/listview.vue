@@ -1,9 +1,9 @@
 <template>
     <div id="listView">
         <ul :class="this.isMore ? 'listItemMore' : 'listItemLess'">
-            <li v-for="(listItem, index ) in List" @click="toListItem(listItem)">
+            <li v-for="(listItem, index ) in List" @click.stop.prevent="toListItem(listItem)">
                 <a :href="listItem.url" class="listItem-img">
-                    <img v-lazy="listItem.cover.url" :alt="listItem.alt">
+                    <img v-lazy="listItem.cover.url" alt="">
                 </a>
                 <span class="listItem-name" v-html="listItem.title"></span>
                 <span class="listItem-score" v-html="itemScore(listItem)"></span>
@@ -14,8 +14,17 @@
 </template>
 
 <script> 
-    import { mapMutations, mapGetters } from "vuex";
+    import { mapMutations, mapGetters } from "vuex"
+    import { getMovieItem } from '../../api/movie'
+    import { getBookItem } from '../../api/books'
+
     export default {
+        data () {
+            return {
+                movieItem: [],
+                bookItem: [],
+            }
+        },
         props: {
             List: {
                 type: Array,
@@ -39,24 +48,24 @@
             // 点击 某个电影 或者 图书， 转到相应详情页面
             toListItem (listItem) {
                 if (listItem.type === "movie") {
-                    if (this.isMore) {
+                    getMovieItem(listItem.id).then((res) => {
+                        this.movieItem = res
                         this.$router.push(
-                            { path: `/moreHot/${listItem.id}` }
+                            { path: `/movies/${this.movieItem.id}` }
                         )
-                    } else {
+                        this.setMovie(this.movieItem)
+                        console.log(this.Movie)
+                    })                
+                }
+                if (listItem.type === "book") {
+                    getBookItem(listItem.id).then((res) => {
+                        this.bookItem = res
                         this.$router.push(
-                            { path: `/movies/${listItem.id}` }
+                            { path: `${this.bookItem.id}` }
                         )
-                    }
-                    this.setMovie(listItem)
-                } else {
-                    if (this.isMore) {
-                        this.$router.push(
-                            { path: `${listItem.id}` }
-                        )
-                    }
-                    this.setBook(listItem)
-                    console.log(this.Book)
+                        this.setBook(this.bookItem)
+                        console.log(this.Book)
+                    })     
                 }
             },
             ...mapMutations ({
@@ -67,7 +76,7 @@
         computed: {
             ...mapGetters ([
                 'Movie',
-                'Book'
+                'Book',
             ])
         }
     }

@@ -29,3 +29,11 @@
             }
             return jsonp(url, data)
         }
+
+        export function getMovieItem (id) {
+            const url = `https://api.douban.com/v2/movie/subject/${id}`
+            const data = {
+                
+            }
+            return jsonp(url, data)
+        }

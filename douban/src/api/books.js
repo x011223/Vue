@@ -30,3 +30,11 @@
             }
             return jsonp(url, data)
         }
+
+        export function getBookItem (id) {
+            const url = `https://api.douban.com/v2/book/${id}`
+            const data = {
+
+            }
+            return jsonp(url, data)
+        }

@@ -8,7 +8,6 @@
 <script>
     import { ListMixin } from '../../../assets/js/mixins'
 
-    const Count = 99
     export default {
         mixins: [ ListMixin ],
         created () {
