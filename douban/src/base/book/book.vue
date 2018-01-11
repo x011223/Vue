@@ -1,29 +1,28 @@
 <template>
-    <div id="movie">
-        <span class="movie-title" v-html="this.Movie.title"></span>
-        <div class="movie-content">
+    <div id="book">
+        <span v-html="this.Book.title" class="book-title"></span>
+        <div class="book-content">
             <div class="content-desc">
                 <div class="desc-score">
-                    <span class="score" v-html="this.Movie.rating.average"></span>
-                    <span class="comment" v-html="this.Movie.ratings_count + '人评价'"></span>
+                    <span class="score" v-html="this.Book.rating.average"></span>
+                    <span class="comment" v-html="this.Book.rating.numRaters + '人评价'"></span>
                 </div>
                 <div class="desc-text">
-                    <span v-html="this.Movie.year + '年 / ' +
-                                  this.Movie.countries[0] + ' / ' +
-                                  this.Movie.directors[0].name + '(导演)' + ' / ' + 
-                                  this.Movie.genres[0] + ' / ' + 
-                                  this.Movie.genres[1] + ' / ' +
-                                  this.Movie.casts[0].name + ' / ' + 
-                                  this.Movie.casts[1].name + ' / ' + 
-                                  this.Movie.casts[2].name" class="text">
+                    <span v-html="this.Book.author[0] + ' / ' +
+                                  this.Book.translator + ' / ' +
+                                  this.Book.publisher + ' / ' + 
+                                  this.Book.pages + ' / ' + 
+                                  this.Book.binding + ' / ' +
+                                  this.Book.price + ' / ' +
+                                  this.Book.pubdate " class="text">
                     </span>
                 </div>
             </div>
             <div class="content-img">
-                <img :src="this.Movie.images.small" alt="" width="105" height="160">
+                <img :src="this.Book.images.medium" alt="">
             </div>
         </div>
-        <div class="movie-operator">
+        <div class="book-operator">
             <div class="operator-above">
                 <span class="operator-want">
                     <span class="want-text">
@@ -42,9 +41,9 @@
                 </span>
             </span>
         </div>
-        <div class="movie-desc">
-            <span v-html="this.Movie.title + '的剧情简介'" class="title"></span>
-            <span v-html="this.Movie.summary" class="desc">展开</span>
+        <div class="book-desc">
+            <span v-html="this.Book.title + '的内容简介'" class="title"></span>
+            <span v-html="this.Book.summary" class="desc">展开</span>
         </div>
     </div>
 </template>
@@ -54,7 +53,7 @@
     export default {
         computed: {
             ...mapGetters ([
-                'Movie'
+                'Book'
             ])
         },
     }
@@ -63,18 +62,18 @@
 <style lang="scss" scoped>
     @import '../../assets/sass/style';
     @import '../../assets/sass/mixins';
-    #movie  {
+    #book {
         @include MovieAndBookItemPosition;
-        .movie-title {
+        .book-title {
             @include MovieAndBookItemTitle;
         }
-        .movie-content {
+        .book-content {
             @include MovieAndBookItemContent;
         }
-        .movie-operator {
+        .book-operator {
             @include MovieAndBookItemOperator;
         }
-        .movie-desc {
+        .book-desc {
             @include MovieAndBookItemDesc;
         }
     }

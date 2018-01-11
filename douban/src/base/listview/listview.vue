@@ -54,14 +54,13 @@
                             { path: `/movies/${this.movieItem.id}` }
                         )
                         this.setMovie(this.movieItem)
-                        console.log(this.Movie)
                     })                
-                }
+                }   else
                 if (listItem.type === "book") {
                     getBookItem(listItem.id).then((res) => {
                         this.bookItem = res
                         this.$router.push(
-                            { path: `${this.bookItem.id}` }
+                            { path: `/books/${this.bookItem.id}` }
                         )
                         this.setBook(this.bookItem)
                         console.log(this.Book)
