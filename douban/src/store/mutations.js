@@ -40,7 +40,25 @@
             },
             [types.set_Book] (state, Book) {
                 state.Book = Book
-            }
+            },
+            [types.set_GroupOfMovie] (state, GroupOfMovie) {
+                state.GroupOfMovie = GroupOfMovie
+            },
+            [types.set_GroupOfBook] (state, GroupOfBook) {
+                state.GroupOfBook = GroupOfBook
+            },
+            [types.set_GroupOfMusic] (state, GroupOfMusic) {
+                state.GroupOfMusic = GroupOfMusic
+            },
+            [types.set_GroupOfNew] (state, GroupOfNew) {
+                state.GroupOfNew = GroupOfNew
+            },
+            [types.set_GroupOfSameCity] (state, GroupOfSameCity) {
+                state.GroupOfSameCity = GroupOfSameCity
+            },
+            [types.set_GroupOfWorkPlace] (state, GroupOfWorkPlace) {
+                state.GroupOfWorkPlace = GroupOfWorkPlace
+            },
         }
 
         export default mutations

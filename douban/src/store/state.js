@@ -27,6 +27,12 @@
             Movie: {},
             // 图书
             Book: {},
+            GroupOfMovie: {},
+            GroupOfMusic: {},
+            GroupOfBook: {},
+            GroupOfNew: {},
+            GroupOfSameCity: {},
+            GroupOfWorkPlace: {},
         }
 
         export default state

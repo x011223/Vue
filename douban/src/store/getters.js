@@ -13,3 +13,9 @@
         export const ArrayRecommend = state => state.ArrayRecommend
         export const Movie = state => state.Movie
         export const Book = state => state.Book
+        export const GroupOfBook = state => state.GroupOfBook
+        export const GroupOfMovie = state => state.GroupOfMovie
+        export const GroupOfMusic = state => state.GroupOfMusic
+        export const GroupOfNew = state => state.GroupOfNew
+        export const GroupOfSameCity = state => state.GroupOfSameCity
+        export const GroupOfWorkPlace = state => state.GroupOfWorkPlace
