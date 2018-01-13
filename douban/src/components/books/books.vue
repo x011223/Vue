@@ -44,7 +44,6 @@
 
 <script>
     import { ListMixin } from '../../assets/js/mixins'
-    import {asdd} from '../../api/books'
     export default {
         mixins: [ ListMixin ],
         data () {

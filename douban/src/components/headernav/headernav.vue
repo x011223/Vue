@@ -34,6 +34,7 @@
         position: relative;        
         width: 100%;
         border-bottom: 1px solid rgba(7, 17, 27, 0.5);
+        z-index: 20;
         .headertab {
             display: flex;
             color: $color-theme;
@@ -43,6 +44,7 @@
             left: 0;
             right: 0;
             overflow: hidden;
+            background: #fff;
             .itemMain {
                 font: {
                     size: $font-size-X;
