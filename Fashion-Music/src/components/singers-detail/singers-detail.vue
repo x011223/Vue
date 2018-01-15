@@ -47,12 +47,30 @@
                     }
                 })
             },
+            // debounce(fn,time){
+            //     let delay = time || 2000;
+            //     let timer;
+            //     return function(){
+            //         let th = this;
+            //         let args = arguments;
+            //         if (timer) {
+            //             clearTimeout(timer);
+            //         }
+            //         timer = setTimeout(function () {
+            //                 timer = null;
+            //                 fn.apply(th,args);
+            //         }, delay);
+            //     };
+            // },
             dealSongs (list) {
                 let ret = []
                 list.forEach((item) => {
                     let {musicData} = item
                     if (musicData.songid && musicData.albummid) {
-                        ret.push(creatSongs(musicData))
+                        // ret.push(creatSongs(musicData))
+                        // this.debounce(function () {
+                            creatSongs(musicData).then(res => ret.push(res))
+                        // }, 0)
                     }
                 }); 
                 return ret

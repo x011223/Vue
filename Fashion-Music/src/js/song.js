@@ -35,18 +35,25 @@
     }
     
     export function creatSongs (musicData) {
-        return new Song({
-            id: musicData.songid,
-            mid: musicData.songmid,
-            singer: filterSinger(musicData.singer),
-            name: musicData.songname,
-            album: musicData.albumname,
-            duration: musicData.interval,
-            image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-            // url: ``
+        return getSongVkey(musicData.songmid).then((res) => {
+            if (res.code === ERR_OK) {
+                // const vkey = res.data.items[0].vkey
+                const v = res.data.items["0"]
+                console.log(v.vkey)
+                return new Song({
+                    id: musicData.songid,
+                    mid: musicData.songmid,
+                    singer: filterSinger(musicData.singer),
+                    name: musicData.songname,
+                    album: musicData.albumname,
+                    duration: musicData.interval,
+                    image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
+                    // url: `https://dl.stream.qqmusic.qq.com/C400${musicData.songid}.m4a?vkey=${vkey}&guid=6520805900&uin=0&fromtag=66`
+                    url: `https://dl.stream.qqmusic.qq.com/${v.filename}?vkey=${v.vkey}&guid=3222376640&uin=0&fromtag=66`
+                })
+            }
         })
     }
-
     export function filterSinger (singer) {
         let ret = []
         if (!singer) {

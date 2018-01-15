@@ -46,7 +46,7 @@
             uin: 0,
             songmid: mid,
             filename: `C400${mid}.m4a`,
-            guid: '6520805900'
+            guid: '3222376640'
         });
     
         return jsonp(url, data);
