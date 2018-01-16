@@ -22,63 +22,16 @@
 </template>
 
 <script>
-    import { getGroups } from '../../api/group'
-    import { mapGetters, mapMutations } from 'vuex'
     import GroupItem from '../../base/groupitem/groupitem'
+    import { GroupMixin } from '../../assets/js/mixins'
     export default {
+        mixins: [ GroupMixin ],
         components: {
             GroupItem,
-        },
-        data () {
-            return {
-                groupOfMovie: {},
-                groupOfBook: {},
-                groupOfMusic: {},
-                groupOfNew: {},
-                groupOfSameCity: {},
-                groupOfWorkPlace: {},
-            }
-        },
-        methods: {
-            _getGroups () {
-                getGroups().then((res) => {
-                    this.groupOfMovie = res.rec_groups[0].classified_groups[0]
-                    this.groupOfBook = res.rec_groups[0].classified_groups[1]
-                    this.groupOfMusic = res.rec_groups[0].classified_groups[2]
-                    this.groupOfNew = res.rec_groups[0].classified_groups[3]
-                    this.groupOfSameCity = res.rec_groups[0].classified_groups[4]
-                    this.groupOfWorkPlace = res.rec_groups[0].classified_groups[5]
-                    console.log(res.rec_groups[0].classified_groups)
-                    this.setGroupOfMovie(this.groupOfMovie)
-                    this.setGroupOfBook(this.groupOfBook)
-                    this.setGroupOfMusic(this.groupOfMusic)
-                    this.setGroupOfNew(this.groupOfNew)
-                    this.setGroupOfSameCity(this.groupOfSameCity)
-                    this.setGroupOfWorkPlace(this.groupOfWorkPlace)
-                }) 
-            },
-            ...mapMutations ({
-                setGroupOfMovie: 'set_GroupOfMovie',
-                setGroupOfBook: 'set_GroupOfBook',
-                setGroupOfNew: 'set_GroupOfNew',
-                setGroupOfSameCity: 'set_GroupOfSameCity',
-                setGroupOfMusic: 'set_GroupOfMusic',
-                setGroupOfWorkPlace: 'set_GroupOfWorkPlace',
-            })
         },
         created () {
             this._getGroups()
         },
-        computed: {
-            ...mapGetters ([
-                'GroupOfMovie',
-                'GroupOfMusic',
-                'GroupOfBook',
-                'GroupOfNew',
-                'GroupOfSameCity',
-                'GroupOfWorkPlace',
-            ])
-        }
     }
 </script>
 
@@ -90,5 +43,18 @@
         top: 1.67rem;
         left: 0;
         right: 0;
+        .group-movie {
+            .group-more {
+                display: block;
+                text-align: center;
+                font: {
+                    size: $font-size-b;
+                    weight: $font-weight-b;
+                }
+                color: $color-theme;
+                padding-bottom: 1rem;
+                border-bottom: $border-browsing;
+            }
+        }
     }
 </style>

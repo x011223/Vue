@@ -60,10 +60,7 @@
                         this.listRecommend = res.recommend_feeds
                         this.getRecommend(this.listRecommend)
                         this.recommendDate = res.date   
-                        this.setRecommendDate(this.recommendDate)
-                        // getRecommendBefore(this.recommendDate).then(() => {
-                        //     console.log(res.recommend_feeds)
-                        // })             
+                        this.setRecommendDate(this.recommendDate)         
                     })
                     this.setIsMore(false)
                 },
@@ -121,5 +118,65 @@
                     'RecommendBefore',
                     'ArrayRecommend',
                 ]),           
+            }
+        }
+
+        import { getGroups, getTagGroups, getGroupItem } from '../../api/group'
+
+        export const GroupMixin = {
+            data () {
+                return {
+                    groupOfMovie: {},
+                    groupOfBook: {},
+                    groupOfMusic: {},
+                    groupOfNew: {},
+                    groupOfSameCity: {},
+                    groupOfWorkPlace: {},
+                    groupItem: {},
+                }
+            },
+            methods: {
+                _getGroups () {
+                    if (this.groupOfMovie === this.GroupOfMovie) {
+                        return
+                    }
+                    getGroups().then((res) => {
+                        this.groupOfMovie = res.rec_groups[0].classified_groups[0]
+                        this.groupOfBook = res.rec_groups[0].classified_groups[1]
+                        this.groupOfMusic = res.rec_groups[0].classified_groups[2]
+                        this.groupOfNew = res.rec_groups[0].classified_groups[3]
+                        this.groupOfSameCity = res.rec_groups[0].classified_groups[4]
+                        this.groupOfWorkPlace = res.rec_groups[0].classified_groups[5]
+                        this.setGroupOfMovie(this.groupOfMovie)
+                        this.setGroupOfBook(this.groupOfBook)
+                        this.setGroupOfMusic(this.groupOfMusic)
+                        this.setGroupOfNew(this.groupOfNew)
+                        this.setGroupOfSameCity(this.groupOfSameCity)
+                        this.setGroupOfWorkPlace(this.groupOfWorkPlace)
+                    }) 
+                },
+                ...mapMutations ({
+                    setGroupOfMovie: 'set_GroupOfMovie',
+                    setGroupOfBook: 'set_GroupOfBook',
+                    setGroupOfNew: 'set_GroupOfNew',
+                    setGroupOfSameCity: 'set_GroupOfSameCity',
+                    setGroupOfMusic: 'set_GroupOfMusic',
+                    setGroupOfWorkPlace: 'set_GroupOfWorkPlace',
+                    setGroupItem: 'set_GroupItem'
+                })
+            },
+            created () {
+                this._getGroups()
+            },
+            computed: {
+                ...mapGetters ([
+                    'GroupOfMovie',
+                    'GroupOfMusic',
+                    'GroupOfBook',
+                    'GroupOfNew',
+                    'GroupOfSameCity',
+                    'GroupOfWorkPlace',
+                    'GroupItem'
+                ])
             }
         }

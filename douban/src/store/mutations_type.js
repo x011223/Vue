@@ -19,3 +19,4 @@
         export const set_GroupOfSameCity = 'set_GroupOfSameCity'
         export const set_GroupOfMusic = 'set_GroupOfMusic'
         export const set_GroupOfWorkPlace = 'set_GroupOfWorkPlace'
+        export const set_GroupItem = 'set_GroupItem'

@@ -33,6 +33,7 @@
             GroupOfNew: {},
             GroupOfSameCity: {},
             GroupOfWorkPlace: {},
+            GroupItem: {},
         }
 
         export default state

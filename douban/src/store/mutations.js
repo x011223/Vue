@@ -59,6 +59,9 @@
             [types.set_GroupOfWorkPlace] (state, GroupOfWorkPlace) {
                 state.GroupOfWorkPlace = GroupOfWorkPlace
             },
+            [types.set_GroupItem] (state, GroupItem) {
+                state.GroupItem = GroupItem
+            },
         }
 
         export default mutations

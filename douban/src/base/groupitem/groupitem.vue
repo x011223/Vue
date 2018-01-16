@@ -2,27 +2,29 @@
     <div id="groups">
         <span class="group-name" v-html="Groups.name"></span>
         <ul class="group-groupItem">
-            <li class="item" v-for="item in Groups.groups">
+            <li class="item" v-for="item in Groups.groups" @click.stop="_toGroup(item.id)">
                 <div class="item-top">
-                    <!-- <div class="flex-left"> -->
-                        <img :src="item.avatar" alt="" class="item-img">
-                        <span v-html="item.name" class="item-name"></span>
-                    <!-- </div> -->
-                    <!-- <div class="flex-right"> -->
-                        <span v-html="item.member_count + '人'" class="item-members"></span>
-                    <!-- </div> -->
+                    <img :src="item.avatar" alt="" width="32" height="32" class="item-img">
+                    <span v-html="item.name" class="item-name"></span>
+                    <span v-html="item.member_count + '人'" class="item-members"></span>
                 </div>
                 <div class="item-down">
                     <span v-html="item.desc_abstract" class="down-desc"></span>
-                </div>
+                </div>     
             </li>
             <span v-html="'更多相关小组'" class="group-more"></span>
+            <!-- @click.stop="_getMore(Groups.name, item.id)" -->
         </ul>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+    import { getGroups, getTagGroups, getGroupItem } from '../../api/group'
+    import { GroupMixin } from '../../assets/js/mixins'
+
     export default {
+        mixins: [ GroupMixin ],
         props: {
             Groups: {
                 type: Object,
@@ -32,7 +34,26 @@
                 type: Boolean,
                 default: false
             }
-        }
+        },
+        methods:{
+            _toGroup (id) {
+                getGroupItem(id).then((res) => {
+                    this.groupItem = res
+                    this.setGroupItem(this.groupItem)
+                    this.$router.push(
+                        { path: `/groups/${this.GroupItem.id}` }
+                    )   
+                })             
+            }
+            // _getMore (name, id) {
+            //     getTagGroups(name, id, 25).then((res) => {
+            //         console.log(id)
+            //         this.$router.push(
+            //             { path:  `/books/${this.bookItem.id}` }
+            //         )
+            //     })
+            // },
+        },
     }
 </script>
 
@@ -53,8 +74,6 @@
             .item {
                 list-style: none;
                 margin-bottom: 1rem;
-                padding-bottom: 1rem;
-                border-bottom: $border-browsing;
                 @include FontStore;
                 .item-top {
                     display: flex;
@@ -80,18 +99,24 @@
                     }
                 }
                 .item-down {
+                    margin-bottom: .5rem;
+                    border-bottom: $border-browsing;
                     @include TextFlow;
+                    .down-desc {
+                        display: block;
+                        margin-bottom: .5rem;
+                    }
                 }
             }
             .group-more {
                 display: block;
                 text-align: center;
                 font: {
-                    size: $font-size-b;
+                    size: $font-size-f;
                     weight: $font-weight-b;
                 }
                 color: $color-theme;
-                padding-bottom: 1rem;
+                padding-bottom: .5rem;
                 border-bottom: $border-browsing;
             }
         }

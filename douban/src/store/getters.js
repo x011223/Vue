@@ -19,3 +19,4 @@
         export const GroupOfNew = state => state.GroupOfNew
         export const GroupOfSameCity = state => state.GroupOfSameCity
         export const GroupOfWorkPlace = state => state.GroupOfWorkPlace
+        export const GroupItem = state => state.GroupItem
