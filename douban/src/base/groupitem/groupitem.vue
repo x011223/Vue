@@ -12,8 +12,7 @@
                     <span v-html="item.desc_abstract" class="down-desc"></span>
                 </div>     
             </li>
-            <span v-html="'更多相关小组'" class="group-more"></span>
-            <!-- @click.stop="_getMore(Groups.name, item.id)" -->
+            <span v-html="'更多相关小组'" class="group-more" @click.stop="_getMore(Groups.name)"></span>
         </ul>
         <router-view></router-view>
     </div>
@@ -22,6 +21,7 @@
 <script>
     import { getGroups, getTagGroups, getGroupItem } from '../../api/group'
     import { GroupMixin } from '../../assets/js/mixins'
+    import { mapMutations, mapGetters } from 'vuex'
 
     export default {
         mixins: [ GroupMixin ],
@@ -44,15 +44,17 @@
                         { path: `/groups/${this.GroupItem.id}` }
                     )   
                 })             
-            }
-            // _getMore (name, id) {
-            //     getTagGroups(name, id, 25).then((res) => {
-            //         console.log(id)
-            //         this.$router.push(
-            //             { path:  `/books/${this.bookItem.id}` }
-            //         )
-            //     })
-            // },
+            },
+            _getMore (tag) {
+                getTagGroups(tag, 25).then((res) => {
+                    console.log(tag)
+                    this.listGroupMore = res
+                    this.setGroupMore(this.listGroupMore)
+                    this.$router.push(
+                        { path:  '/moreGroup' }
+                    )
+                })
+            },
         },
     }
 </script>
@@ -79,9 +81,9 @@
                     display: flex;
                     align-items: center;
                     margin-bottom: 1rem;
-                    .item-img {
+                    // .item-img {
                         
-                    }
+                    // }
                     .item-name {
                         width: 60%;
                         margin-left: 1rem;

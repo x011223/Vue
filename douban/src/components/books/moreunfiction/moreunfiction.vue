@@ -18,7 +18,9 @@
 </script>
 
 <style lang="scss" scoped>
-    #moremovies {
+    @import '../../../assets/sass/mixins';
+    #morebooks {
+        @include MovieAndBookItemPosition;
         h1 {
             font: {
                 size: 1rem;

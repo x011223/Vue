@@ -34,6 +34,7 @@
             GroupOfSameCity: {},
             GroupOfWorkPlace: {},
             GroupItem: {},
+            GroupMore: [],
         }
 
         export default state

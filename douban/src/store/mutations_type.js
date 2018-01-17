@@ -20,3 +20,4 @@
         export const set_GroupOfMusic = 'set_GroupOfMusic'
         export const set_GroupOfWorkPlace = 'set_GroupOfWorkPlace'
         export const set_GroupItem = 'set_GroupItem'
+        export const set_GroupMore = 'set_GroupMore'

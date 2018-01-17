@@ -63,7 +63,6 @@
                             { path: `/books/${this.bookItem.id}` }
                         )
                         this.setBook(this.bookItem)
-                        console.log(this.Book)
                     })     
                 }
             },

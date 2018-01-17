@@ -46,5 +46,6 @@ export default new Router({
         { path: '/groups', component: Groups, children: [
             { path: ':id', component: Group } 
         ] },
+            { path: '/moreGroup', component: ClassifyGroup },
     ]
 })

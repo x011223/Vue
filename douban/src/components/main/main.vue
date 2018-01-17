@@ -94,15 +94,11 @@
                             this.arrayRecommend = this.arrayRecommend.concat(this.RecommendBefore)
                             this.recommendDate = res.date
                             this.listDate.push(this.recommendDate)
-                            console.log(this.recommendDate) 
-                            console.log(this.listDate)
                             this.setRecommendDate(this.recommendDate)
                             this.getArrayRecommend(this.arrayRecommend)                               
                             return
-                        })   
-                        // return                       
+                        })                   
                     }, 1000)
-                    // return
                 } else {
                     return
                 }  

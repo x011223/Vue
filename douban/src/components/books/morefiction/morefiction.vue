@@ -20,7 +20,9 @@
 </script>
 
 <style lang="scss" scoped>
-    #moremovies {
+    @import '../../../assets/sass/mixins';
+    #morebooks {
+        @include MovieAndBookItemPosition;
         span {
             display: block;
             margin: 1rem 0 1rem;

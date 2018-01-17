@@ -13,7 +13,7 @@
 
         // 分类  按数量  获取小组
         export function getTagGroups (Tag, Count) {
-            const url = 'https://m.douban.com/rexxar/api/v2/group/rec_groups_by_tag'
+            const url = 'https://m.douban.com/rexxar/api/v2/group/rec_groups_by_tag?ck=&for_mobile=1'
             const data = {
                 tag: Tag,
                 count: Count,

@@ -81,6 +81,8 @@
     #movies {
         position: fixed;
         top: 3rem;
+        left: 0;
+        right: 0; 
         .list-hotMovies {
             @include listLine;
         }

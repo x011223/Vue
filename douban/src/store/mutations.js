@@ -62,6 +62,9 @@
             [types.set_GroupItem] (state, GroupItem) {
                 state.GroupItem = GroupItem
             },
+            [types.set_GroupMore] (state, GroupMore) {
+                state.GroupMore = GroupMore
+            },
         }
 
         export default mutations

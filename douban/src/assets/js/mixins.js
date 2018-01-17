@@ -60,7 +60,8 @@
                         this.listRecommend = res.recommend_feeds
                         this.getRecommend(this.listRecommend)
                         this.recommendDate = res.date   
-                        this.setRecommendDate(this.recommendDate)         
+                        this.setRecommendDate(this.recommendDate) 
+                        console.log(this.RecommendFeed)        
                     })
                     this.setIsMore(false)
                 },
@@ -133,6 +134,7 @@
                     groupOfSameCity: {},
                     groupOfWorkPlace: {},
                     groupItem: {},
+                    listGroupMore: {}
                 }
             },
             methods: {
@@ -162,7 +164,8 @@
                     setGroupOfSameCity: 'set_GroupOfSameCity',
                     setGroupOfMusic: 'set_GroupOfMusic',
                     setGroupOfWorkPlace: 'set_GroupOfWorkPlace',
-                    setGroupItem: 'set_GroupItem'
+                    setGroupItem: 'set_GroupItem',
+                    setGroupMore: 'set_GroupMore',
                 })
             },
             created () {
@@ -176,7 +179,8 @@
                     'GroupOfNew',
                     'GroupOfSameCity',
                     'GroupOfWorkPlace',
-                    'GroupItem'
+                    'GroupItem',
+                    'GroupMore'
                 ])
             }
         }
