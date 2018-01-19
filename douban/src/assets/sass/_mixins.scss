@@ -145,7 +145,7 @@
                 .operator-want {
                     display: inline-block;
                     flex: 1;
-                    margin-left: 1rem;
+                    margin-left: .67rem;
                     .want-text {
                         @include OperatorText;
                     }
@@ -160,7 +160,7 @@
             }
             .operator-open-inapp {
                 display: block;
-                margin: 2.33rem 0 0 1rem;
+                margin: 2.33rem .5rem;
                 $color-inapp: #42bd56;
                 .open-inapp-text {
                     padding: .53rem 4.87rem;
