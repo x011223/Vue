@@ -2,9 +2,9 @@
     <div class="song-list">
         <ul>
             <li @click="selectSong(song, index)" v-for="(song, index) in songs" class="song">
-                <div class="rankcss iconfont" v-show="rankStyle">
-                    <span :class="getRankStyle(index)">{{getRankText(index)}}</span>
-                </div>
+                <!-- <div class="rankcss iconfont" v-show="rankStyle">
+                    <span>{{getRankText(index)}}</span>
+                </div> -->
                 <div class="song-content">  
                     <div class="song-image">
                         <img v-lazy="song.image" width="36" height="36">
@@ -40,24 +40,24 @@
                 // 点击时 分发事件
                 this.$emit('select', song, index)           
             },
-            getRankStyle (index) {
-                if (index < 3) {
-                    return `icon${index}`
-                } else {
-                    return 'rankText'
-                }
-            },
-            getRankText(index) {
-                if (index > 2) {
-                    return index + 1
-                }
-            }
+            // getRankStyle (index) {
+            //     if (index < 3) {
+            //         return `icon${index}`
+            //     } else {
+            //         return 'rankText'
+            //     }
+            // },
+            // getRankText(index) {
+            //     if (index > 2) {
+            //         return index + 1
+            //     }
+            // }
         },
     }
 </script>
 
 <style lang="scss" scoped>
-    @import './rankfont/iconfont.css';
+    // @import './rankfont/iconfont.css';
     @import '../../sass/style.scss';
     @import '../../sass/mixin.scss';
     li {

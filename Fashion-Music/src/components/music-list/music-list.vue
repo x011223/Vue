@@ -1,13 +1,14 @@
 <template>
     <div class="music-list">
         <div class="back" @click="_back">
-            <img class="icon-back" src="./back.svg" width="16" height="16">
+            <!-- <img class="icon-back" src="./back.svg" width="16" height="16"> -->
+            <span class="icon-back">返回</span>
         </div>
         <h1 class="title" v-html="title"></h1>
         <div class="bg-image" :style="bgStyle" ref="bgImage">
             <div class="play-wrapper" ref="playWrapper">
                 <div class="btn_play" @click="randomPlayAll">
-                    <img src="./play.svg" class="play-icon" width="24" height="24">
+                    <!-- <img src="./play.svg" class="play-icon" width="24" height="24"> -->
                     <span class="play-text">随机播放全部</span>
                 </div>
             </div>

@@ -116,7 +116,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../player/play-icon_font/iconfont.css';
+    // @import '../player/play-icon_font/iconfont.css';
     @import '../../sass/style.scss';
     .userFade-enter-active, .userFade-leave-active {
         transition: all 0.3s

@@ -5,7 +5,8 @@
                 <li :key="history" class="search-history" v-for="history in searches" @click="search(history)">
                     <div class="history-content">
                         <span class="history">{{history}}</span>
-                        <img class="icon-delete" src="../../base/searchbox/delete.svg" width="16" height="16" @click.stop="deleteOne(history)">
+                        <!-- <img class="icon-delete" src="../../base/searchbox/delete.svg" width="16" height="16" @click.stop="deleteOne(history)"> -->
+                        <span>删除</span>
                     </div>
                 </li>                     
             <!-- </ul> -->

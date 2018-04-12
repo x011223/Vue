@@ -18,7 +18,8 @@
                     <div class="search-history" v-show="searchHistory.length">
                         <h1 class="history-title">
                             <span class="name">搜索历史</span>
-                            <img @click="showConfirm" class="icon-delete" src="../../base/searchbox/clear.svg" width="18" height="18">
+                            <!-- <img @click="showConfirm" class="icon-delete" src="../../base/searchbox/clear.svg" width="18" height="18"> -->
+                            <span @click="showConfirm" class="icon-delete">删除</span>
                         </h1>
                         <search-history class="history-content" :searches="searchHistory" @searchSelect="addSearchText" @deleteHistory="DeleteSearchHistory"></search-history>
                     </div>

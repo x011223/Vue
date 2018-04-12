@@ -8,7 +8,8 @@
             <ul class="suggest-list">
                 <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
                     <div class="suggest-icon">
-                        <img src="../../base/searchbox/song.svg" width="22" height="22">
+                        <!-- <img src="../../base/searchbox/song.svg" width="22" height="22"> -->
+                        <span>歌曲</span>
                     </div>
                     <div class="suggest-name">
                         <p class="suggest-text" v-html="resultName(result)"></p>
@@ -143,13 +144,18 @@
             },
             // 处理获得的歌曲
             _dealSongs (list) {
-                let ret = []
-                list.forEach((musicData) => {
+                let ret
+                list.forEach((item) => {
+                    let musicData = item
                     if (musicData.songid && musicData.albumid) {
-                        ret.push(creatSongs(musicData))
+                        // ret.push(creatSongs(musicData))
+                        creatSongs(musicData).then((res) => {
+                            ret.push(res)
+                            return ret
+                        })
                     }
                 })
-                return ret
+                // return ret
             },
             // 处理获得的结果
             _dealResult (data) {

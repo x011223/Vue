@@ -112,7 +112,7 @@
                 ]),
                 // 播放模式图标
                 iconMode () {
-                    return this.playmode === playMode.sequence ? 'icon-sequ' : this.playmode === playMode.loop ? 'icon-loop' : 'icon-random'
+                    return this.playmode === playMode.sequence ? '随机' : this.playmode === playMode.loop ? '单循' : '随机'
                 }
             },
         }

@@ -1,11 +1,13 @@
 <template>
     <div class="search-box">
         <div class="iconsearch iconfont">
-            <img src="./search.svg" width="24" height="24">
+            <!-- <img src="./search.svg" width="24" height="24"> -->
+            <span>搜索</span>
         </div>
         <input ref="inputBox" id="searchBox" v-model="inputText" :placeholder="placeholder" @click="cancelShow">
         <div class="iconclear" v-show="inputText" @click="boxClear">
-            <img src="./delete.svg" width="20" height="20">
+            <!-- <img src="./delete.svg" width="20" height="20"> -->
+            <span>删除</span>
         </div>
         <span class="searchCancel" v-show="isCancelShow || this.inputText" @click="cancelHide">取消</span>
     </div>

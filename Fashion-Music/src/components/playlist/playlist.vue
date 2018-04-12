@@ -8,8 +8,10 @@
                         <i class="icon" :class="iconMode" @click="changeMode"></i>
                         <span class="text">{{modeTEXT}}</span>
                         <div class="operatorImg">
-                            <img src="./clear.svg" @click.stop="showConfirm" class="clear" width="22" height="22">
-                            <img src="./down.svg" @click.stop="hidePlayList" class="down" width="22" height="22">
+                            <!-- <img src="./clear.svg" @click.stop="showConfirm" class="clear" width="22" height="22"> -->
+                            <span class="clear" @click.stop="showConfirm">清除</span>
+                            <!-- <img src="./down.svg" @click.stop="hidePlayList" class="down" width="22" height="22"> -->
+                            <span class="down" @click.stop="hidePlayList">下落</span>
                         </div>
                     </div>
                 </div>
@@ -21,7 +23,8 @@
                                 <div class="icons">
                                     <i class="iconplay" :class="currentIcon(song)"></i>
                                     <i :class="iconFav(song)" @click.stop="toggleFavorite(song)"></i>
-                                    <img class="icon-delete" @click.stop="deleteSong(song)" src="./delete.svg" width="14" height="14">
+                                    <!-- <img class="icon-delete" @click.stop="deleteSong(song)" src="./delete.svg" width="14" height="14"> -->
+                                    <span class="icon-delete" @click.stop="deleteSong(song)">删除</span>
                                 </div>
                             </li>
                         </transition-group>
@@ -153,7 +156,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../player/play-icon_font/iconfont.css'; 
+    // @import '../player/play-icon_font/iconfont.css'; 
     @import '../../sass/style.scss';
     * {
         margin: 0;

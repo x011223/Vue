@@ -39,7 +39,6 @@
             if (res.code === ERR_OK) {
                 // const vkey = res.data.items[0].vkey
                 const v = res.data.items["0"]
-                console.log(v.vkey)
                 return new Song({
                     id: musicData.songid,
                     mid: musicData.songmid,

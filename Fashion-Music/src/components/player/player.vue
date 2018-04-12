@@ -7,7 +7,8 @@
                 </div>
                 <div class="player-top">
                     <div class="player-back" @click="playerBack">
-                        <img class="icon-back" src="../music-list/back.svg" width="24" height="24">
+                        <!-- <img class="icon-back" src="../music-list/back.svg" width="24" height="24"> -->
+                        <span class="icon-back">返回</span>
                     </div>
                     <h1 class="player-Song_name" v-html="currentSong.name"></h1>
                     <h2 class="player-Singer_name" v-html="currentSong.singer"></h2>
@@ -56,19 +57,24 @@
                     </div>
                     <div class="operators">
                         <div class="operator operator-left iconfont" @click="changeMode">
-                            <i :class="iconMode"></i>
+                            <!-- <i :class="iconMode"></i> -->
+                            <span v-html="iconMode"></span>
                         </div>
                         <div class="operator operator-left iconfont" :class="disableTouch">
-                            <i @click="prevSong" class="icon-prev"></i>
+                            <!-- <i @click="prevSong" class="icon-prev"></i> -->
+                            <span @click="prevSong">上一曲</span>
                         </div>
                         <div class="operator operator-center iconfont" :class="disableTouch">
-                            <i :class="playIcon" @click.stop.prevent="togglePlaying"></i>
+                            <!-- <i :class="playIcon" @click.stop.prevent="togglePlaying"></i> -->
+                            <span @click="togglePlaying" v-html="playIcon"></span>
                         </div>
                         <div class="operator operator-right iconfont" :class="disableTouch">
-                            <i @click="nextSong" class="icon-next"></i>
+                            <!-- <i @click="nextSong" class="icon-next"></i> -->
+                            <span @click="nextSong">下一曲</span>
                         </div>
                         <div class="operator operator-right iconfont">
-                            <i @click="toggleFavorite(currentSong)" :class="iconFav(currentSong)"></i>
+                            <!-- <i @click="toggleFavorite(currentSong)" :class="iconFav(currentSong)"></i> -->
+                            <!-- <span @click="toggleFavorite(currentSong)" v-html="iconFav(currentSong)"></span> -->
                         </div>
                     </div>
                 </div>
@@ -85,11 +91,13 @@
                 </div>
                 <div class="control-progress">
                     <div class="operator operator-center iconfont">
-                        <i :class="playIcon" @click.stop.prevent="togglePlaying"></i>
+                        <!-- <i :class="playIcon" @click.stop.prevent="togglePlaying"></i> -->
+                        <span v-html="playIcon" @click.stop.prevent="togglePlaying"></span>
                     </div>
                 </div>
                 <div class="control-list iconfont">
-                    <i class="icon-playlist" @click.stop="Showplaylist"></i>
+                    <!-- <i class="icon-playlist" @click.stop="Showplaylist"></i> -->
+                    <span @click.stop="Showplaylist">列表</span>
                 </div>
             </div>
         </transition>
@@ -362,9 +370,9 @@
             },
             // 播放暂停样式图标
             playIcon () {
-                return this.playing ? 'icon-zanting' : 'icon-bofang'
+                // return this.playing ? 'icon-zanting' : 'icon-bofang'
+                return this.playing ? '暂停' : '播放'
             },
-            
         },
         watch: {
             currentSong (newSong, oldSong) {
@@ -400,7 +408,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import './play-icon_font/iconfont.css';
+    // @import './play-icon_font/iconfont.css';
     @import '../../sass/style.scss';
     .top_in-enter-active, .top_in-leave-active {
         transition: all 0.1s cubic-bezier(0.37, -0.67, 0.48, 1.48)

@@ -54,7 +54,8 @@
                 list.forEach((rankItem) => {             
                     const musicData = rankItem.data
                     if (musicData.songid && musicData.albumid) {
-                        ret.push(creatSongs(musicData))
+                        // ret.push(creatSongs(musicData))
+                        creatSongs(musicData).then(res => ret.push(res))
                     }
                 });             
                 return ret

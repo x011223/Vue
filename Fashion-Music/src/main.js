@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 //引入 vue-lazyload
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
-    loading: require('../src/components/header/header_ico.svg'),
+    loading: require('../src/components/header/music.svg'),
 })
 
 import store from './store'

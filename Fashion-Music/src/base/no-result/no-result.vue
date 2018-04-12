@@ -1,7 +1,8 @@
 <template>
     <div class="no-result">
         <div class="logo-noresult">
-            <img src="./logo-noresult.svg">
+            <!-- <img src="./logo-noresult.svg"> -->
+            <span>没有结果</span>
         </div>
         <p class="text-noresult" v-html="title"></p>
     </div>
