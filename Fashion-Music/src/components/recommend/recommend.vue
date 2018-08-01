@@ -5,7 +5,7 @@
                 <div class="scroll-wrapper">
                     <div v-if="recommends.length" class="slider-wrapper">
                         <slider>
-                            <div v-for="recommend in recommends">
+                            <div v-for="(recommend, index) in recommends" :key="index">
                                 <a :href="recommend.linkUrl">
                                     <img @load="loadImage" :src="recommend.picUrl">
                                 </a>
@@ -15,7 +15,7 @@
                     <div class="recommend-list">
                         <h1 class="list-title">热门推荐</h1>
                         <ul>
-                            <li v-for="discList in discLists" class="discList" @click="selectDisc(discList)">
+                            <li v-for="(discList, index) in discLists" :key="index" class="discList" @click="selectDisc(discList)">
                                 <div class="list-icon">
                                     <img v-lazy="discList.imgurl" width="60" height="60">
                                 </div>

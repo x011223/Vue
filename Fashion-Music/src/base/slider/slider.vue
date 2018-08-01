@@ -6,7 +6,7 @@
             </slot>
         </div>
         <div class="dots">
-            <span class="dot" v-for="(dot, id) in dots" :class="{active: pageId === id}"></span>
+            <span class="dot" v-for="(dot, id) in dots" :key="id" :class="{active: pageId === id}"></span>
         </div>
     </div>
 </template>

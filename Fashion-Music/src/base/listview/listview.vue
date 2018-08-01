@@ -4,10 +4,10 @@
                              @scroll="scroll"
                              :probe-type="probeType">
         <ul>
-            <li v-for="group in data" class="list-group" ref="listgroup">
+            <li v-for="(group, index) in data" class="list-group" ref="listgroup" :key="index">
                 <h2 class="boxSize list-title">{{group.title}}</h2>
                 <ul>
-                    <li v-for="item in group.items" class="list-item" @click="selectItem(item)">
+                    <li v-for="(item, index) in group.items" :key="index" class="list-item" @click="selectItem(item)">
                         <img class="lineSize item-avatar" v-lazy="item.avatar">
                         <span class="item-name">{{item.name}}</span>
                     </li>
@@ -17,7 +17,7 @@
         <div class="list-enter" @touchstart="onListEnterTouch" @touchmove.stop.prevent="onListMove">
             <ul>
                 <!-- 获取到触摸点击的index -->
-                <li class="item-pos" v-for="(item, index) in listEnter" :data-index="index" :class="{'current':currentIndex===index}">{{item}}</li>
+                <li class="item-pos" v-for="(item, index) in listEnter" :key="index" :data-index="index" :class="{'current':currentIndex===index}">{{item}}</li>
             </ul>
         </div>
         <div class="list-fixed posAbs" v-show="fixedTitle" ref="fixed">
