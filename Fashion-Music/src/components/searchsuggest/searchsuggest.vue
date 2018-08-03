@@ -6,7 +6,7 @@
                 @beforeScroll="resultScroll"
                 :refreshTime="refreshTime">
             <ul class="suggest-list">
-                <li v-for="result in results" @click="selectItem(result)" class="suggest-item">
+                <li v-for="(result, index) in results" :key="index" @click="selectItem(result)" class="suggest-item">
                     <div class="suggest-icon">
                         <!-- <img src="../../base/searchbox/song.svg" width="22" height="22"> -->
                         <span>歌曲</span>
@@ -95,14 +95,15 @@
             },
             // 搜索 调用接口
             search () {
-                this.hasMore = true
+                this.hasMore = true;
                 // 让页面滚动正常
-                this.page = 1                
-                this.$refs.suggest.scrollTo(0, 0)
-                search (this.inputText, this.page, this.showSinger, perpage).then((res) => {
+                this.page = 1;            
+                this.$refs.suggest.scrollTo(0, 0);
+                search (this.inputText, this.page, perpage).then((res) => {
                     if (res.code === ERR_OK) {
-                        this.results = this._dealResult(res.data)
-                        this._checkMore(res.data)
+                        console.log(res);
+                        this.results = this._dealResult(res.data);
+                        this._checkMore(res.data);
                     }
                 })
             },
@@ -112,10 +113,10 @@
                     return
                 }
                 this.page++
-                search (this.inputText, this.page, this.showSinger, perpage).then((res) => {
+                search (this.inputText, this.page, perpage).then((res) => {
                     if (res.code === ERR_OK) {
-                        this.results = this.results.concat(this._dealResult(res.data))
-                        this._checkMore(res.data)
+                        this.results = this.results.concat(this._dealResult(res.data));
+                        this._checkMore(res.data);
                     }
                 })
             },
@@ -129,9 +130,9 @@
                     this.$router.push({
                         path: `/search/${singer.id}`
                     })
-                    this.setSinger(singer)
+                    this.setSinger(singer);
                 } else {
-                    this.insertSong(result)
+                    this.insertSong(result);
                 }
                 this.$emit('searchHistory')
             },
@@ -146,20 +147,20 @@
             _dealSongs (list) {
                 let ret
                 list.forEach((item) => {
-                    let musicData = item
+                    let musicData = item;
                     if (musicData.songid && musicData.albumid) {
-                        // ret.push(creatSongs(musicData))
-                        creatSongs(musicData).then((res) => {
-                            ret.push(res)
-                            return ret
-                        })
+                        ret.push(creatSongs(musicData))
+                        // creatSongs(musicData).then((res) => {
+                        //     ret.push(res)
+                        //     return ret
+                        // })
                     }
                 })
                 // return ret
             },
             // 处理获得的结果
             _dealResult (data) {
-                let ret = []
+                let ret = [];
                 if (data.zhida && data.zhida.singerid) {
                     ret.push({...data.zhida, ...{type: Type_Singer}})
                 } 

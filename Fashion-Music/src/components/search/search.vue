@@ -10,7 +10,7 @@
                             <h1 class="hotKey-title">热门搜索</h1>
                             <h4 class="hotKey-change" @click="changeHotKey">换一批</h4>
                         <ul class="content-warpper">
-                            <li @click="addSearchText(hotKey.k)" v-for="hotKey in hotKeys1[indexs]" class="hotKey-content">
+                            <li @click="addSearchText(hotKey.k)" v-for="(hotKey, index) in hotKeys1[indexs]" :key="index" class="hotKey-content">
                                 <span v-html="hotKey.k"></span>
                             </li>
                         </ul>

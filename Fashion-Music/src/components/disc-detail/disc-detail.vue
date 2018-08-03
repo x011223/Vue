@@ -48,7 +48,9 @@
             _creatSongs (list) {
                 let ret = []
                 list.forEach((musicData) => {
+                    // 存在歌曲ID和专辑ID时创建歌曲
                     if (musicData.songid && musicData.albumid) {
+                        // 将创建的歌曲推入列表
                         ret.push(creatSongs (musicData))
                     }
                 });
