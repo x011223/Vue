@@ -152,7 +152,7 @@
                     }
                 }
                 .scroll {
-                    osition: fixed;
+                    position: fixed;
                     height: 100%;
                     bottom: 2px;
                     overflow: hidden;
