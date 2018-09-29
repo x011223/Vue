@@ -57,17 +57,29 @@
 8. Vuex状态管理(可以理解为全局的计算属性)
 
 ## 运行界面
-![recommend](./preview/recommend.jpg)![singers](./preview/singers.jpg)![mine](./preview/mine.jpg)
+<center>
+<img src="./preview/recommend.jpg" width="240px" height="400px">
+<img src="./preview/singers.jpg" width="260px" height="400px">
+<img src="./preview/mine.jpg" width="260px" height="400px">
+</center>
 
 -------
 
-![rank](./preview/rank.jpg)![play](./preview/play.jpg)![search](./preview/search.jpg)
-
+<center>
+<img src="./preview/rank.jpg" width="240px" height="400px">
+<img src="./preview/play.jpg" width="260px" height="400px">
+<img src="./preview/search.jpg" width="260px" height="400px">
+</center>
 
 -------
 
-![singer](./preview/singer.jpg)![rank-list](./preview/rank-list.jpg)![lyric](./preview/lyric.jpg)
+<center>
+<img src="./preview/singer.jpg" width="240px" height="400px">
+<img src="./preview/rank-list.jpg" width="260px" height="400px">
+<img src="./preview/lyric.jpg" width="260px" height="400px">
+</center>
 
+-------
 # fashion-music
 
 > A Vue.js project
