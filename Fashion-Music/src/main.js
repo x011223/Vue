@@ -37,32 +37,39 @@ const routes = [
     {
         path: '/recommend',
         component: Recommend,
-        children: [
-            { path: ':id', component: DiscDetail }
-        ]
+        children: [{
+            path: ':id',
+            component: DiscDetail
+        }]
     },
     {
         path: '/singer',
         component: Singer,
-        children: [
-            { path: ':id', component: SingersDetail }
-        ]
+        children: [{
+            path: ':id',
+            component: SingersDetail
+        }]
     },
     {
         path: '/rank',
         component: Rank,
-        children: [
-            { path: ':id', component: TopList }
-        ]
+        children: [{
+            path: ':id',
+            component: TopList
+        }]
     },
     {
         path: '/search',
         component: Search,
-        children: [
-            { path: ':id', component: SingersDetail }
-        ]
+        children: [{
+            path: ':id',
+            component: SingersDetail
+        }]
     },
-    { path: '/user', component: UserCenter },
+    {
+        path: '/user',
+        component: UserCenter
+    },
 ]
 const router = new VueRouter({
     mode: 'history',
@@ -78,7 +85,9 @@ router.push('/recommend')
 const app = new Vue({
     el: '#app',
     template: '<App/>',
-    components: { App },
+    components: {
+        App
+    },
     store,
     router
 }).$mount('#app')

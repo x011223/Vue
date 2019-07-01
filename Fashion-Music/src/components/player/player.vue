@@ -36,6 +36,7 @@
                                 <p class="lyric-text"
                                    :class="{'lyricCurrent' : currentLyricLine === index}" 
                                    ref="lyricText" 
+                                   :key="index"
                                    v-for="(line, index) in currentLyric.lines"
                                    @click.stop="JumpPlay(line.time)">{{line.txt}}</p>
                             </div>

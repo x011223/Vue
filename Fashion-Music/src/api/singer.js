@@ -1,9 +1,7 @@
-    
-    
     import jsonp from '../js/jsonp'
-    import {commonParams, options} from './config'
+    import { commonParams, options } from './config'
 
-    export function getSingerList () {
+    export function getSingerList() {
         const url = 'https://c.y.qq.com/v8/fcg-bin/v8.fcg'
         const data = Object.assign({}, commonParams, {
             channel: 'singer',
@@ -19,7 +17,7 @@
         return jsonp(url, data, options)
     }
 
-    export function getSingerDetail (singerId) {
+    export function getSingerDetail(singerId) {
         const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg'
         const data = Object.assign({}, commonParams, {
             hostUin: 0,
@@ -37,7 +35,7 @@
 
     export function getSongVkey(mid) {
         const url = "https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg";
-    
+
         const data = Object.assign({}, commonParams, {
             hostUin: 0,
             platform: 'yqq',
@@ -48,6 +46,6 @@
             filename: `C400${mid}.m4a`,
             guid: '3222376640'
         });
-    
+
         return jsonp(url, data);
     }

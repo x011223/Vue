@@ -1,10 +1,10 @@
 import jsonp from '../js/jsonp'
-import {commonParams, options} from './config'
+import { commonParams, options } from './config'
 import axios from 'axios'
-import {options1} from './config'
+import { options1 } from './config'
 
 //获取推荐页
-export function getRecommend () {
+export function getRecommend() {
     const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg';
     const data = Object.assign({}, commonParams, {
         platform: 'h5',
@@ -15,7 +15,7 @@ export function getRecommend () {
 }
 
 // 获取歌单列表
-export function getDiscList () {
+export function getDiscList() {
     const url = '/api/getDiscList'
     const data = Object.assign({}, commonParams, {
         platform: 'yqq',
@@ -29,15 +29,15 @@ export function getDiscList () {
         format: 'json'
     })
     return axios.get(url, {
-            params: data
-        }).then((res) => {
+        params: data
+    }).then((res) => {
         return Promise.resolve(res.data)
     })
 }
 
 // 获取歌单歌曲列表
-export function getDiscSong (disstid) {
-    const url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'    
+export function getDiscSong(disstid) {
+    const url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
     const data = Object.assign({}, commonParams, {
         disstid,
         type: 1,
@@ -56,7 +56,7 @@ export function getDiscSong (disstid) {
     return jsonp(url, data, options1)
 }
 
-export function getCdinfo () {
+export function getCdinfo() {
     const url = '/api/getCdinfo'
     const data = Object.assign({}, commonParams, {
         platform: 'yqq',
@@ -70,8 +70,8 @@ export function getCdinfo () {
         g_tk: 1928093487
     })
     return axios.get(url, {
-            params: data
-        }).then((res) => {
-                return Promise.resolve(res.cdlist)
+        params: data
+    }).then((res) => {
+        return Promise.resolve(res.cdlist)
     })
 }

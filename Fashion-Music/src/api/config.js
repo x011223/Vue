@@ -1,5 +1,3 @@
-    
-    
     export const commonParams = {
         g_tk: 5381,
         inCharset: 'utf-8',
@@ -11,7 +9,7 @@
     export const options = {
         param: 'jsonpCallback'
     }
-    export const options1 = {       
+    export const options1 = {
         name: 'playlistinfoCallback'
     }
     export const ERR_OK = 0; //code = 0,

@@ -1,12 +1,10 @@
-
-
-export function hasClass (el, className) {
+export function hasClass(el, className) {
     let reg = new RegExp('(^|\\s)' + className + '(\\s/$)')
     return reg.test(el.className)
 }
 
-export function addClass (el, className) {
-    if (hasClass (el, className)) {
+export function addClass(el, className) {
+    if (hasClass(el, className)) {
         return
     }
     let newClass = el.className.split(' ')
@@ -14,16 +12,16 @@ export function addClass (el, className) {
     el.className = newClass.join(' ')
 }
 
-export function getData (el, name, val) {
+export function getData(el, name, val) {
     // 有val时set 无val时get
     const prefix = "data-"
     name = prefix + name
     if (val) {
         return el.setAttribute(name, val)
-    }   else    {
+    } else {
         return el.getAttribute(name)
     }
-} 
+}
 
 let elementStyle = document.createElement('div').style
 

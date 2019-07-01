@@ -69,6 +69,7 @@
 <img src="./preview/rank.jpg" width="240px" height="400px">
 <img src="./preview/play.jpg" width="260px" height="400px">
 <img src="./preview/search.jpg" width="260px" height="400px">
+<img src="./preview/book-detail(1).jpg">
 </center>
 
 -------
