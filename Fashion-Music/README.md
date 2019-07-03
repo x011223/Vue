@@ -57,7 +57,7 @@
 8. Vuex状态管理(可以理解为全局的计算属性)
 
 ## 运行界面
-<center>
+<center display="flex" jsutify-content="center">
 <img src="./preview/recommend.jpg" width="240px" height="400px">
 <img src="./preview/singers.jpg" width="260px" height="400px">
 <img src="./preview/mine.jpg" width="260px" height="400px">
@@ -65,16 +65,15 @@
 
 -------
 
-<center>
+<center display="flex" jsutify-content="center">
 <img src="./preview/rank.jpg" width="240px" height="400px">
 <img src="./preview/play.jpg" width="260px" height="400px">
 <img src="./preview/search.jpg" width="260px" height="400px">
-<img src="./preview/book-detail(1).jpg">
 </center>
 
 -------
 
-<center>
+<center display="flex" jsutify-content="center">
 <img src="./preview/singer.jpg" width="240px" height="400px">
 <img src="./preview/rank-list.jpg" width="260px" height="400px">
 <img src="./preview/lyric.jpg" width="260px" height="400px">

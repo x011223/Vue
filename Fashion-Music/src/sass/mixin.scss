@@ -1,33 +1,32 @@
+@mixin routerLinkActive {
+    .router-link-active {
+        color: $color-text-active;
+        border-bottom: 6px solid #008080;
+        border-radius: 4px;
+    }
+}
 
+@mixin loadingStyle {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-        @mixin routerLinkActive {
-            .router-link-active {
-                color: $color-text-active;
-                border-bottom: 6px solid #008080;
-                border-radius: 4px;
-            }
-        }
+@mixin lineFlow ($width) {
+    width: $width;
+    /*！文本超出宽度的时候省略号*/
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 1;
+    // -webkit-box-orient: vertical;
+    // overflow: hidden;
+}
 
-        @mixin loadingStyle {
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        @mixin lineFlow ($width) {
-            width: $width;
-            /*！文本超出宽度的时候省略号*/
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            // display: -webkit-box;
-            // -webkit-line-clamp: 1;
-            // -webkit-box-orient: vertical;
-            // overflow: hidden;
-        }
-
-        @mixin inputNoneBorder {
-            input:focus {
-                outline: none;
-            }
-        }
+@mixin inputNoneBorder {
+    input:focus {
+        outline: none;
+    }
+}
