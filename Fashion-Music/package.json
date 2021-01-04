@@ -10,7 +10,7 @@
         "build": "node build/build.js"
     },
     "dependencies": {
-        "axios": "^0.17.0",
+        "axios": "^0.21.1",
         "better-scroll": "^1.4.0",
         "css-loader": "^0.28.10",
         "good-storage": "^1.0.1",
